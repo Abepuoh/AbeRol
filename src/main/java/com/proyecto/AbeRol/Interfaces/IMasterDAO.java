@@ -11,12 +11,12 @@ public interface IMasterDAO  {
 	* Save a new master in the base
 	* @return true if successfully saved
 	**/
-	public boolean KeepM();
+	public boolean SaveM();
 	/**
 	* Create a new master
 	* @return true if the master was created successfully
 	**/
-	public boolean newMaster(String email, String name, int password);
+	public boolean createAccount(String email, String name, int password);
 	/**
 	* Obtain all the data from the master
 	* @return the master data
@@ -34,15 +34,11 @@ public interface IMasterDAO  {
 	* @return true if successfully removed
 	**/
 	public boolean deleteM(int id);
-	// GET ALL ROL, ROL BY ID
-	
 	/**
-	 * Check if master exist
-	 * @param email
-	 * @param name
+	 * Method to start session if the master is in the database
+	 * @param name 
 	 * @param password
-	 * @return true if data base contains user
+	 * @returns true if the master is in the database
 	 */
-	public boolean getMaster(String email, String name, int password);
-	public boolean getMaster(String email);
+	public boolean logIn(String name,int password);
 }

@@ -3,9 +3,11 @@ package com.proyecto.AbeRol;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.proyecto.AbeRol.Model.Master;
-
+import com.proyecto.AbeRol.Model.MasterDAO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -43,53 +46,97 @@ public class logInController {
 
 	@FXML
 	protected void logUser(ActionEvent Event) throws IOException {
-		AnchorPane pane=FXMLLoader.load(App.class.getResource("menu.fxml"));
-		rootPane.getChildren().setAll(pane);
-//		String name = this.txtUser.getText();
-//		String password = this.txtPass.getText();
-//		Master dummy = new Master(name, password);
-//		// CHECK
-//		if (!masters.contains(dummy) && dummy.getPassword() == password && dummy.getName() == name) {
-//			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//			alert.setHeaderText(null);
-//			alert.setTitle("Informacion");
-//			alert.setContentText("Has entrado correctamente");
-//			alert.showAndWait();
-//			// CARGO VENTAN
-//		} else {
-//			Alert alert = new Alert(Alert.AlertType.ERROR);
-//			alert.setHeaderText(null);
-//			alert.setTitle("Error");
-//			alert.setContentText("Has introducido mal algun dato");
-//			alert.showAndWait();
-//		}
+		String name = this.txtUser.getText();
+		String password = this.txtPass.getText();
+		Master dummy = new Master(name, password);
+		   if(MasterDAO.logIn(name, password)){
+	            //OpenMenu();
+		} else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setTitle("Error");
+			alert.setContentText("Has introducido mal algun dato");
+			alert.showAndWait();
+		}
 	}
 
 	@FXML
 	protected void addMaster(ActionEvent Event) throws IOException {
-		AnchorPane pane=FXMLLoader.load(App.class.getResource("signUp.fxml"));
-		rootPane.getChildren().setAll(pane);
-//		Parent root = loader.load();
-//		SignUpController controlador = loader.getController();
-//	//	controlador.initAttributtes(masters);
-//
-//		Scene scene = new Scene(root);
-//		Stage stage = new Stage();
-//		stage.initModality(Modality.APPLICATION_MODAL);
-//		stage.setScene(scene);
-//		stage.showAndWait();
-//
-//		Master dummy = controlador.getMaster();
-//		if (dummy != null) {
-//			this.masters.add(dummy);
-//
-//		}
+		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("signUp.fxml"));
+        Parent modal;
+        modal = fxmlLoader.load();
+
+        Stage modalStage = new Stage();
+        modalStage.setTitle("Registro previo");
+        modalStage.getIcons().add(new Image("file:utils\\icon.png"));
+        modalStage.initModality(Modality.APPLICATION_MODAL);
+        modalStage.initOwner(App.rootstage);
+
+        Scene modalScene = new Scene(modal);
+        modalStage.setScene(modalScene);
+
+        SignUpController modalController = fxmlLoader.getController();
+        if (modalController != null) {
+            modalController.setStage(modalStage);
+            modalController.setParent(this);
+            modalController.setParams(null);
+        }
+
+        modalStage.showAndWait();
 	}
 	
 	@FXML
 	protected void recoveryMaster(ActionEvent Event) throws IOException {
-		AnchorPane pane=FXMLLoader.load(App.class.getResource("recovery.fxml"));
-		rootPane.getChildren().setAll(pane);
-	}
+		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("logIn.fxml"));
+        Parent modal;
+        modal = fxmlLoader.load();
 
+        Stage modalStage = new Stage();
+        modalStage.setTitle("Registro previo");
+        modalStage.getIcons().add(new Image("file:utils\\icon.png"));
+        modalStage.initModality(Modality.APPLICATION_MODAL);
+        modalStage.initOwner(App.rootstage);
+
+        Scene modalScene = new Scene(modal);
+        modalStage.setScene(modalScene);
+
+        RecoveryController modalController = fxmlLoader.getController();
+        if (modalController != null) {
+            modalController.setStage(modalStage);
+            modalController.setParent(this);
+            modalController.setParams(null);
+        }
+
+        modalStage.showAndWait();
+	}
+	
+	public void OpenMainWindow() {
+		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menu.fxml"));
+	        Parent modal;
+	        try {
+	            modal = fxmlLoader.load();
+
+	            Stage modalStage = new Stage();
+	            modalStage.getIcons().add(new Image("file:utils\\icon.png"));
+	            modalStage.initModality(Modality.APPLICATION_MODAL);
+	            modalStage.initOwner(App.rootstage);
+
+	            Scene modalScene = new Scene(modal);
+	            modalStage.setScene(modalScene);
+
+	            MainScreenController modalController = fxmlLoader.getController();
+	            if (modalController != null) {
+	                modalController.setStage(modalStage);
+
+	                modalController.setParent(this);
+
+	                modalController.setParams(null);
+	            }
+
+	            modalStage.showAndWait();
+
+	        } catch (IOException ex) {
+	            Logger.getLogger(logInController.class.getName()).log(Level.SEVERE, null, ex);
+	        }
+	    }
 }

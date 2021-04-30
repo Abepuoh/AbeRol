@@ -33,11 +33,8 @@ public class SignUpController {
 
 	}
 
-//	public void initAttributtes(ObservableList<Master> p) {
-//		this.masters = p;
-//	}
 	@FXML
-	private void guardarPersona(ActionEvent event) {
+	private void saveMaster(ActionEvent event) {
 		
 		String name = this.txtName.getText();
 		String password = this.txtPass.getText();
@@ -71,7 +68,4 @@ public class SignUpController {
 
 	}
 
-	public Master getMaster() {
-		return master;
-	}
 }

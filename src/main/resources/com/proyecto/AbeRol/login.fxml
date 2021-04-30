@@ -26,7 +26,7 @@
          <children>
             <TextField layoutX="94.0" layoutY="224.0" promptText="Nombre Usuario" />
             <PasswordField layoutX="89.0" layoutY="281.0" prefHeight="26.0" prefWidth="157.0" promptText="Contraseña" />
-            <Hyperlink layoutX="164.0" layoutY="432.0" text="¿Olvidaste tu contraseña?" />
+            <Hyperlink layoutX="164.0" layoutY="432.0" onAction="#recoveryMaster" text="¿Olvidaste tu contraseña?" />
             <Hyperlink layoutX="43.0" layoutY="432.0" onAction="#addMaster" text="Crear cuenta" />
             <Button layoutX="144.0" layoutY="353.0" mnemonicParsing="false" onAction="#logUser" text="Entrar" />
             <ImageView fitHeight="29.0" fitWidth="25.0" layoutX="61.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true">

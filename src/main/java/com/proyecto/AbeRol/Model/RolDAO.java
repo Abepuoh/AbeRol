@@ -3,13 +3,7 @@ package com.proyecto.AbeRol.Model;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class RolDAO extends Rol {
-	
-	private final static String GETROLBYID = "SELECT id FROM Rol WHERE rol=";	
-//	private final static String GETDESCRIP = 
-//	private final static String GETDATE =
-//	private final static String GETPLAYERS =	
-			
+public class RolDAO extends Rol {		
 			
 			
 	public RolDAO(String name, List<Player> jugadores, LocalDateTime fechaInicio,

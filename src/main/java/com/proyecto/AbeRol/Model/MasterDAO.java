@@ -17,6 +17,8 @@ import com.reproductor.proyectofinal.model.UserDAO;
 import com.reproductor.proyectofinal.utils.ConnectionUtil;
 
 public class MasterDAO extends Master {
+	
+	public static MasterDAO MMaster;
 
 	public MasterDAO(int id, String name, String surname, String password, List<Rol> rol) {
 		super(id, name, surname, password, rol);
@@ -39,7 +41,7 @@ public class MasterDAO extends Master {
 		super(email);
 	}
 
-	public static boolean Login(String userName, String userPassword) {
+	public static boolean logIn(String userName, String userPassword) {
 		boolean result = false;
 		try {
 			java.sql.Connection conn; // = Connection.getConnection();
@@ -67,28 +69,29 @@ public class MasterDAO extends Master {
 
 	public static boolean deleteUser() {
 		boolean result = false;
-		if (MainUser.getIDUsuario() > 0) {
+		if (MMaster.getId() > 0) {
 			try {
 				java.sql.Connection csql = ConnectionUtil.getConnection();
-				String q = "DELETE FROM Usuario WHERE IDUsuario = " + MainUser.getIDUsuario();
+				String q = "DELETE FROM Usuario WHERE IDUsuario = " + MMaster.getId();
 				PreparedStatement ps = csql.prepareStatement(q);
 				ps.executeUpdate();
 				result = true;
 			} catch (SQLException ex) {
-				Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+				Logger.getLogger(MasterDAO.class.getName()).log(Level.SEVERE, null, ex);
 			}
 		}
 		return result;
 	}
-	 public int save() {
+	
+	public int save() {
 	        int result = 0;
 	        try {
 	        java.sql.Connection csql = ConnectionUtil.getConnection();
 	        if (this.IDUsuario > 0) {
 	            //UPDATE
-	            String q = "UPDATE Usuario SET Nombre = ?, Password = ?, Pais = ?, estiloFav = ?, artistaFav = ? WHERE IDUsuario = ?";
+	            String q = "UPDATE Master SET name = ?, password = ?, email = ?, estiloFav = ?, artistaFav = ? WHERE IDUsuario = ?";
 	            PreparedStatement ps = csql.prepareStatement(q);
-	            ps.setString(1, Nombre);
+	            ps.setString(1, name);
 	            ps.setString(2, Password);
 	            ps.setString(3, Pais);
 	            ps.setString(4, estiloFavorito);
@@ -100,10 +103,10 @@ public class MasterDAO extends Master {
 	            //INSERT
 	            String q = "INSERT INTO Usuario(IDUsuario, Nombre, Password, Pais, estiloFav, artistaFav) VALUES(NULL,?,?,?,?,?)";
 	            PreparedStatement ps = csql.prepareStatement(q, Statement.RETURN_GENERATED_KEYS);
-	            ps.setString(1, Nombre);
-	            ps.setString(2, Password);
-	            ps.setString(3, Pais);
-	            ps.setString(4, estiloFavorito);
+	            ps.setString(1, name);
+	            ps.setString(2, password);
+	            ps.setString(3, email);
+	            ps.setLString(4, );
 	            ps.setString(5, artistaFav);
 	            result = ps.executeUpdate();
 	            System.out.println(result);
@@ -116,7 +119,7 @@ public class MasterDAO extends Master {
 	        }
 	        
 	    } catch (SQLException ex){
-	        Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+	        Logger.getLogger(Master.class.getName()).log(Level.SEVERE, null, ex);
 	    }
 
 	        return result;
