@@ -23,7 +23,7 @@
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
-  <summary><h2 style="display: inline-block">project index</h2></summary>
+  <summary><h2 style="display: inline-block">PROYECT INDEX</h2></summary>
   <ol>
     <li>
       <a href="#About-the-project">About the project</a>
