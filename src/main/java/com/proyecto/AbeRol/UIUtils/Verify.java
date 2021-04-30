@@ -16,4 +16,13 @@ public class Verify {
 		}
 		return dummy;
 	}
+	public static int checkInt(int attrib) {
+		int result = -1;
+		if(attrib<=1) {
+		return attrib;
+		}else {
+			System.out.println("Error al insertar");
+		}
+		return result;
+	}
 }

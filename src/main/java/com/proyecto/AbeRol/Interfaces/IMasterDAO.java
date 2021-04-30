@@ -35,4 +35,14 @@ public interface IMasterDAO  {
 	**/
 	public boolean deleteM(int id);
 	// GET ALL ROL, ROL BY ID
+	
+	/**
+	 * Check if master exist
+	 * @param email
+	 * @param name
+	 * @param password
+	 * @return true if data base contains user
+	 */
+	public boolean getMaster(String email, String name, int password);
+	public boolean getMaster(String email);
 }

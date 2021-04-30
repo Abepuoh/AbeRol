@@ -13,16 +13,15 @@ import java.util.List;
 public class Rol {
 	
 	private String name;
-	private List<Player> player;
+	private List<Player> contains;
 	private LocalDateTime startdate;
 	private String description;
-	//private static int ID_COUNTER = 1;
 	private int id;
 
 	public Rol(String name, List<Player> player, LocalDateTime startdate, String description, int id) {
 		super();
 		this.name = name;
-		this.player = player;
+		this.contains = player;
 		this.startdate = startdate;
 		this.description = description;
 		this.id = id;
@@ -46,11 +45,11 @@ public class Rol {
 	}
 
 	public List<Player> getPlayer() {
-		return player;
+		return contains;
 	}
 
 	public void setPlayer(List<Player> player) {
-		this.player = player;
+		this.contains = player;
 	}
 
 	public LocalDateTime getStartdate() {
@@ -101,7 +100,7 @@ public class Rol {
 
 	@Override
 	public String toString() {
-		return "Rol =" + name + ",contiene: Jugadores=" + player + "\n -FechaInicio=" + startdate
+		return "Rol =" + name + ",contiene: Jugadores=" + contains + "\n -FechaInicio=" + startdate
 				+ "\n -Descripcion=" + description + " -Id=" + id;
 	}
 

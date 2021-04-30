@@ -6,6 +6,7 @@ public enum EnumBBDD {
 	 * CREATE MASTER 
 	 * LOGIN
 	 */
+	LOGINMENU("SELECT name,password FROM Master WHERE name LIKE ? and password LIKE ?"),
     GETBYEMAIL("SELECT name,password,email FROM autor WHERE email = ?"), 
     INSERTMASTER("INSERT INTO master (email, name, password) VALUES (?,?,?)"),
     SELECTMASTER("SELECT name,password,email FROM autor"),

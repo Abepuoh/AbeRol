@@ -16,10 +16,9 @@ public class Character {
 	private String information; //información
 	private double height; //altura
 	private double weight; //peso
-	private String gender; //sexo
 
 	public Character(String name, int level, int strenght, int dexterity, int intelligence, String information,
-			double height, double weight, String gender) {
+			double height, double weight) {
 		super();
 		this.name = name;
 		this.level = level;
@@ -29,7 +28,6 @@ public class Character {
 		this.information = information;
 		this.height = height;
 		this.weight = weight;
-		this.gender = gender;
 	}
 
 	public String getName() {
@@ -96,14 +94,6 @@ public class Character {
 		this.weight = weight;
 	}
 
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	
 	
 
 }

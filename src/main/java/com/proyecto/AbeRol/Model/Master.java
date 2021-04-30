@@ -8,11 +8,11 @@ import java.util.List;
  */
 public class Master {
 	
-	private int id;
-	private String name;
-	private String email;
-	private String password;
-	private List<Rol> rol;
+	protected int id;
+	protected String name;
+	protected String email;
+	protected String password;
+	protected List<Rol> rol;
 
 	public Master(int id, String name, String email, String password, List<Rol> rol) {
 		super();

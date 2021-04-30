@@ -7,28 +7,18 @@ package com.proyecto.AbeRol.Model;
  */
 public class Player extends Character {
 
-	private static int ID_COUNTER = 1;
 	private int id;
 	private Class auxClass;
 	private int age;
+	private Rol contains;
 
-	public Player(String name, int level, int force, int dexterity, int intelligence,String information,
-			double height, double weight, String gender, int id, Class auxClass, int age) {
-		super(name, level, force, dexterity, intelligence, information, height, weight,
-				gender);
+	public Player(String name, int level, int strenght, int dexterity, int intelligence, String information,
+			double height, double weight, int id, Class auxClass, int age, Rol contains) {
+		super(name, level, strenght, dexterity, intelligence, information, height, weight);
+		this.id = id;
 		this.auxClass = auxClass;
 		this.age = age;
-		
-		this.id = ID_COUNTER;
-		ID_COUNTER++;
-	}
-	
-	public static int getID_COUNTER() {
-		return ID_COUNTER;
-	}
-
-	public static void setID_COUNTER(int iD_COUNTER) {
-		ID_COUNTER = iD_COUNTER;
+		this.contains = contains;
 	}
 
 	public int getId() {
@@ -53,6 +43,14 @@ public class Player extends Character {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public Rol getContains() {
+		return contains;
+	}
+
+	public void setContains(Rol contains) {
+		this.contains = contains;
 	}
 
 	@Override
