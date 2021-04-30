@@ -16,7 +16,7 @@
     -
     <a href="https://github.com/Abepuoh/RolApp/issues">Report Errors</a>
     -
-    <a href="https://github.com/Abepuoh/RolApp/issues">Submit Feedback</a> - </a> - </p> <p>Submit Feedback</a> - </p> <p
+    <a href="https://github.com/Abepuoh/RolApp/issues">Submit Feedback</a> <p>Submit Feedback</a> - </p> <p
   </p>
 </p>
 
