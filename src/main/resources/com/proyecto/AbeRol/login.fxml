@@ -24,11 +24,11 @@
    <center>
       <AnchorPane prefHeight="500.0" prefWidth="425.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField layoutX="94.0" layoutY="224.0" promptText="Nombre Usuario" />
-            <PasswordField layoutX="89.0" layoutY="281.0" prefHeight="26.0" prefWidth="157.0" promptText="Contraseña" />
-            <Hyperlink layoutX="164.0" layoutY="432.0" onAction="#recoveryMaster" text="¿Olvidaste tu contraseña?" />
-            <Hyperlink layoutX="43.0" layoutY="432.0" onAction="#addMaster" text="Crear cuenta" />
-            <Button layoutX="144.0" layoutY="353.0" mnemonicParsing="false" onAction="#logUser" text="Entrar" />
+            <TextField fx:id="txtUser" layoutX="94.0" layoutY="224.0" promptText="Nombre Usuario" />
+            <PasswordField fx:id="txtPass" layoutX="89.0" layoutY="281.0" prefHeight="26.0" prefWidth="157.0" promptText="Contraseña" />
+            <Hyperlink fx:id="txtForget" layoutX="164.0" layoutY="432.0" onAction="#recoveryMaster" text="¿Olvidaste tu contraseña?" />
+            <Hyperlink fx:id="buttCreate" layoutX="43.0" layoutY="432.0" onAction="#addMaster" text="Crear cuenta" />
+            <Button fx:id="LogButt" layoutX="144.0" layoutY="353.0" mnemonicParsing="false" onAction="#logUser" text="Entrar" />
             <ImageView fitHeight="29.0" fitWidth="25.0" layoutX="61.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/security-protection-protect-key-password-login_108554.png" />
@@ -39,7 +39,7 @@
                   <Image url="@../Images/user_customer_person_13976.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="238.0" fitWidth="261.0" layoutX="45.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="238.0" fitWidth="261.0" layoutX="45.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="66.60000000000002">
                <image>
                   <Image url="@../Images/log1.png" />
                </image>

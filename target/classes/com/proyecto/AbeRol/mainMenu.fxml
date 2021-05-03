@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.AbeRol.mainMenu">
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0598ff;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="logOut" layoutX="73.0" layoutY="333.0" mnemonicParsing="false" text="Salir" />
+            <Button fx:id="deleteMasterButt" layoutX="51.0" layoutY="189.0" mnemonicParsing="false" text="Borrar master" />
+            <Button fx:id="deleteRolButt" layoutX="51.0" layoutY="234.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" text="Borrar Rol" />
+            <Button fx:id="addRolButt" layoutX="50.0" layoutY="278.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" text="Añadir Rol" />
+            <ImageView fitHeight="67.0" fitWidth="320.0" layoutX="45.0" layoutY="407.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="181.0" fitWidth="252.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <left>
+            <GridPane prefWidth="496.0" BorderPane.alignment="CENTER_LEFT">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="160.8000244140625" minHeight="0.0" prefHeight="49.39999198913574" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="431.20000000000005" minHeight="10.0" prefHeight="23.799974060058638" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="419.0000259399414" minHeight="0.0" prefHeight="419.0000259399414" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ROLS DISPONIBLES" textOrigin="CENTER" GridPane.halignment="CENTER" />
+                  <ChoiceBox fx:id="choiceRol" prefHeight="33.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                  <Label text="PRIMER JUGADOR" textOverrun="CLIP" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Label text="SEGUNDO JUGADOR" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+         </left></BorderPane>
+   </right>
+</BorderPane>

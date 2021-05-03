@@ -25,8 +25,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class logInController {
-	@FXML
-	private AnchorPane rootPane;
+
 	@FXML
 	private TextField txtUser;
 	@FXML
@@ -38,19 +37,17 @@ public class logInController {
 	@FXML
 	private Button LogButt;
 
-	private static Scene scene;
-
 	@FXML
 	public void initialize(URL url, ResourceBundle rb) {
+	
 	}
 
 	@FXML
 	protected void logUser(ActionEvent Event) throws IOException {
 		String name = this.txtUser.getText();
 		String password = this.txtPass.getText();
-		Master dummy = new Master(name, password);
-		   if(MasterDAO.logIn(name, password)){
-	            //OpenMenu();
+		   if(MasterDAO.logIn(name, password)== true){
+		   OpenMenu();
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setHeaderText(null);
@@ -65,75 +62,37 @@ public class logInController {
 		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("signUp.fxml"));
         Parent modal;
         modal = fxmlLoader.load();
-
         Stage modalStage = new Stage();
-        modalStage.setTitle("Registro previo");
-        modalStage.getIcons().add(new Image("file:utils\\icon.png"));
         modalStage.initModality(Modality.APPLICATION_MODAL);
         modalStage.initOwner(App.rootstage);
 
         Scene modalScene = new Scene(modal);
         modalStage.setScene(modalScene);
-
-        SignUpController modalController = fxmlLoader.getController();
-        if (modalController != null) {
-            modalController.setStage(modalStage);
-            modalController.setParent(this);
-            modalController.setParams(null);
-        }
-
         modalStage.showAndWait();
 	}
 	
 	@FXML
 	protected void recoveryMaster(ActionEvent Event) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("logIn.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("recovery.fxml"));
         Parent modal;
         modal = fxmlLoader.load();
-
         Stage modalStage = new Stage();
-        modalStage.setTitle("Registro previo");
-        modalStage.getIcons().add(new Image("file:utils\\icon.png"));
         modalStage.initModality(Modality.APPLICATION_MODAL);
         modalStage.initOwner(App.rootstage);
-
-        Scene modalScene = new Scene(modal);
-        modalStage.setScene(modalScene);
-
-        RecoveryController modalController = fxmlLoader.getController();
-        if (modalController != null) {
-            modalController.setStage(modalStage);
-            modalController.setParent(this);
-            modalController.setParams(null);
-        }
-
         modalStage.showAndWait();
 	}
 	
-	public void OpenMainWindow() {
-		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("menu.fxml"));
+	public void OpenMenu() {
+		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("mainMenu.fxml"));
 	        Parent modal;
 	        try {
 	            modal = fxmlLoader.load();
-
 	            Stage modalStage = new Stage();
-	            modalStage.getIcons().add(new Image("file:utils\\icon.png"));
 	            modalStage.initModality(Modality.APPLICATION_MODAL);
 	            modalStage.initOwner(App.rootstage);
-
 	            Scene modalScene = new Scene(modal);
 	            modalStage.setScene(modalScene);
-
-	            MainScreenController modalController = fxmlLoader.getController();
-	            if (modalController != null) {
-	                modalController.setStage(modalStage);
-
-	                modalController.setParent(this);
-
-	                modalController.setParams(null);
-	            }
-
-	            modalStage.showAndWait();
+                modalStage.showAndWait();
 
 	        } catch (IOException ex) {
 	            Logger.getLogger(logInController.class.getName()).log(Level.SEVERE, null, ex);

@@ -1,5 +1,4 @@
 package com.proyecto.AbeRol.UIUtils;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,15 +6,22 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import java.util.List;
 
-public class Conexion {
+
+public class xmlConnection {
 	private static Connection con;
+	private final static String server="jdbc:mysql://localhost";
+	
+	private final static String database="RolApp";
+	private final static String username="root";
+	private final static String password="1234";
+	
 	public static void conecta() {
 		 try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con=DriverManager.getConnection(ReadXML.getServerDomain(null, null)+"/"+
-			ReadXML.getDataBase(null, null),ReadXML.getUsername(null, null),ReadXML.getpassword(null, null));
+			con=DriverManager.getConnection(server+"/"+database,username,password);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,7 +40,7 @@ public class Conexion {
 	}
 	
 	public static List<String[]> ejecutaSelect(String query){
-		List<String[]> resultado=new ArrayList();
+		List<String[]> resultado=new ArrayList<String[]>();
 		try {
 			Statement st=con.createStatement();
 			ResultSet rs= st.executeQuery(query);

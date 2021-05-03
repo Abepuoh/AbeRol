@@ -12,11 +12,11 @@ import java.util.List;
  */
 public class Rol {
 	
-	private String name;
-	private List<Player> contains;
-	private LocalDateTime startdate;
-	private String description;
-	private int id;
+	protected String name;
+	protected List<Player> contains;
+	protected LocalDateTime startdate;
+	protected String description;
+	protected int id;
 
 	public Rol(String name, List<Player> player, LocalDateTime startdate, String description, int id) {
 		super();

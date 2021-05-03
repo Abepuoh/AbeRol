@@ -29,6 +29,10 @@ public class Character {
 		this.height = height;
 		this.weight = weight;
 	}
+	public Character() {
+		super();
+	}
+
 
 	public String getName() {
 		return name;

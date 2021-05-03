@@ -1,14 +1,21 @@
 package com.proyecto.AbeRol.Model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+
+import com.proyecto.AbeRol.UIUtils.xmlConnection;
 
 public class RolDAO extends Rol {		
 			
 			
-	public RolDAO(String name, List<Player> jugadores, LocalDateTime fechaInicio,
-			String descripcion, int id) {
-		super(name, jugadores, fechaInicio, descripcion, id);
+	public RolDAO(String name, List<Player> players, LocalDateTime startdate,
+			String description, int id) {
+		super(name, players, startdate, description, id);
 	}
 	public RolDAO(int id) {
 		super();
@@ -17,5 +24,38 @@ public class RolDAO extends Rol {
 		super();
 	}
 	
+	public List<Player> getPlayer() {
+		
+		if (contains == null) {
+			
+			contains = RolDAO.searchByName(this.name);
+		}
+		return contains;
+	}
 	
+	public static List<Player> searchByName(String nombre) {
+		List<Player> result = new ArrayList<Player>();
+		Connection con = xmlConnection.getConexion();
+		if (con != null) {
+			try {
+				PreparedStatement q = con.prepareStatement(SELECTBYNAME);
+				q.setString(1, "%" + nombre + "%");
+				ResultSet rs = q.executeQuery();
+				while (rs.next()) {
+					// es que hay al menos un resultado
+					Player a = new Player();
+					a.setId(rs.getInt("id"));
+					a.setName(rs.getString("name"));
+					a.setDescription(rs.getString("description"));
+					a.setPassive(rs.getInt("passive"));
+					result.add(a);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return result;
+	}
 }

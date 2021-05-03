@@ -20,6 +20,13 @@ public class Player extends Character {
 		this.age = age;
 		this.contains = contains;
 	}
+	
+
+	public Player() {
+		super();
+	}
+
+
 
 	public int getId() {
 		return id;

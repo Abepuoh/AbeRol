@@ -46,7 +46,7 @@ public class Master {
 		this.email = email;
 	}
 	public Master() {
-		super();
+		this(-1,"Unknown","Unknown@Email","UnknownPassword",null);
 	}
 
 	public String getName() {
