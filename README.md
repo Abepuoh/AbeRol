@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/Abepuoh/RolApp">
-    <img src="src/main/resources/com/proyecto/Images/logo.png" alt="Logo" width="80" height="80">
+    <img src="src/main/resources/com/proyecto/AbeRol/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">RolApp</h3>
