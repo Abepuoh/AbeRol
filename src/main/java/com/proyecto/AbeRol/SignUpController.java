@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 
 public class SignUpController {
@@ -26,8 +27,9 @@ public class SignUpController {
 	private TextField txtEmail;
 	@FXML
 	private Button buttCreate;
-
 	
+    private Stage signUpStage;
+    
 	public void initialize(URL url, ResourceBundle rb) {
 		 
 	}
@@ -40,7 +42,7 @@ public class SignUpController {
 		MasterDAO dummy = new MasterDAO(name,password,email);
 		if(dummy.createAccount(name, email, password) ==true) {
 			showInfo();
-			//close();
+			this.signUpStage.close();
 		}else {
 			showWarning("Error de validación", "Has introducido mal algun dato", "Asegurate que los campos introducidos "
 					+ "son correctos.");

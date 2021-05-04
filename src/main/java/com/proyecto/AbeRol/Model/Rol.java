@@ -25,7 +25,6 @@ public class Rol {
 	}
 
 	public Rol(int id) {
-		super();
 		this.id = id;
 	}
 
