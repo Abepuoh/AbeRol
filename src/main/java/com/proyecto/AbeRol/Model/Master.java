@@ -2,7 +2,7 @@ package com.proyecto.AbeRol.Model;
 
 import java.util.List;
 /**
- * Clase Master la cual sera primordial para el desarrollo de la aplicación.
+ * Central class of the application from which we can access all available processes
  * @author Abepuoh
  *
  */
@@ -15,7 +15,6 @@ public class Master {
 	protected List<Rol> rol;
 
 	public Master(int id, String name, String email, String password, List<Rol> rol) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
@@ -24,25 +23,21 @@ public class Master {
 	}
 	
 	public Master(String name, String email, String password) {
-		super();
 		this.name = name;
 		this.email = email;
 		this.password = password;
 	}
 
 	public Master(String name, String password) {
-		super();
 		this.name = name;
 		this.password = password;
 	}
 
 	public Master(int id) {
-		super();
 		this.id = id;
 	}
 
 	public Master(String email) {
-		super();
 		this.email = email;
 	}
 	public Master() {

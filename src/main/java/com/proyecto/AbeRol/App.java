@@ -21,7 +21,6 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
     	scene = new Scene(loadFXML("login"), 700, 500);
         stage.setScene(scene);
-  
         stage.getIcons().add(new Image(App.class.getResourceAsStream("logo.png")));
         stage.show();
  

@@ -11,34 +11,29 @@ public interface IMasterDAO  {
 	* Save a new master in the base
 	* @return true if successfully saved
 	**/
-	public boolean SaveM();
+	public int SaveMaster();
 	/**
 	* Create a new master
 	* @return true if the master was created successfully
 	**/
-	public boolean createAccount(String email, String name, int password);
-	/**
-	* Obtain all the data from the master
-	* @return the master data
-	**/
-	public Master getMaster();
+	public boolean createAccount(String name, String email, String password);
 	/**
 	* Obtain Master thanks to the identifier
 	* @param id identifier of the master
 	* @return returns the master that we have entered
 	*/
-	public Master getMasterByID(int id);
+	public Master getMasterByEmail(String email);
 	/**
 	* Delete a master starting from the id
 	* @param id identify of the master
 	* @return true if successfully removed
 	**/
-	public boolean deleteM(int id);
+	public int deleteMaster(int id);
 	/**
 	 * Method to start session if the master is in the database
 	 * @param name 
 	 * @param password
 	 * @returns true if the master is in the database
 	 */
-	public boolean logIn(String name,int password);
+	public boolean logIn(String name,String password);
 }

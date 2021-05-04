@@ -1,7 +1,5 @@
 package com.proyecto.AbeRol.Model;
 
-
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -12,19 +10,18 @@ import java.util.List;
  */
 public class Rol {
 	
-	protected String name;
-	protected List<Player> contains;
-	protected LocalDateTime startdate;
-	protected String description;
 	protected int id;
-
-	public Rol(String name, List<Player> player, LocalDateTime startdate, String description, int id) {
-		super();
-		this.name = name;
-		this.contains = player;
-		this.startdate = startdate;
-		this.description = description;
+	protected String name;
+	protected String description;
+	protected Master masterRol;
+	protected List<Player> contains;
+	
+	public Rol(int id,String name,String description, Master masterRol, List<Player> contains) {
 		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.masterRol = masterRol;
+		this.contains = contains;
 	}
 
 	public Rol(int id) {
@@ -33,7 +30,7 @@ public class Rol {
 	}
 
 	public Rol() {
-		super();
+		this(-1,"UnknownRol","UnknownDesc",new Master(),null);
 	}
 
 	public String getName() {
@@ -50,14 +47,6 @@ public class Rol {
 
 	public void setPlayer(List<Player> player) {
 		this.contains = player;
-	}
-
-	public LocalDateTime getStartdate() {
-		return startdate;
-	}
-
-	public void setStartdate(LocalDateTime startdate) {
-		this.startdate = startdate;
 	}
 
 	public String getDescription() {
@@ -96,12 +85,6 @@ public class Rol {
 		if (id != other.id)
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Rol =" + name + ",contiene: Jugadores=" + contains + "\n -FechaInicio=" + startdate
-				+ "\n -Descripcion=" + description + " -Id=" + id;
 	}
 
 }

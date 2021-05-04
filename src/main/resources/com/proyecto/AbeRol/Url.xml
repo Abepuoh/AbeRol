@@ -1,0 +1,6 @@
+<conexion>
+    <server>jdbc:mysql://localhost</server>
+    <database>RolApp</database>
+    <username>root</username>
+    <password>1234</password>
+</conexion>

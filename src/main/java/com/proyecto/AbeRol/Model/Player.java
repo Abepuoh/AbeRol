@@ -2,31 +2,29 @@ package com.proyecto.AbeRol.Model;
 
 /**
  * Clase Player donde almacenaremos todos los datos de un persosnaje
+ * 
  * @author Abepuoh
  *
  */
 public class Player extends Character {
 
 	private int id;
-	private Class auxClass;
+	private String classRol;
 	private int age;
 	private Rol contains;
 
 	public Player(String name, int level, int strenght, int dexterity, int intelligence, String information,
-			double height, double weight, int id, Class auxClass, int age, Rol contains) {
+			double height, double weight, int id, String classRol, int age, Rol contains) {
 		super(name, level, strenght, dexterity, intelligence, information, height, weight);
 		this.id = id;
-		this.auxClass = auxClass;
+		this.classRol = classRol;
 		this.age = age;
 		this.contains = contains;
 	}
-	
 
 	public Player() {
 		super();
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -36,20 +34,20 @@ public class Player extends Character {
 		this.id = id;
 	}
 
-	public Class getAuxClass() {
-		return auxClass;
-	}
-
-	public void setAuxClass(Class auxClass) {
-		this.auxClass = auxClass;
-	}
-
 	public int getAge() {
 		return age;
 	}
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public String getClassRol() {
+		return classRol;
+	}
+
+	public void setClassRol(String classRol) {
+		this.classRol = classRol;
 	}
 
 	public Rol getContains() {
@@ -72,4 +70,3 @@ public class Player extends Character {
 		return true;
 	}
 }
-

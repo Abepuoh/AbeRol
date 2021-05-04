@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.proyecto.AbeRol.UIUtils.EnumBBDD;
 import com.proyecto.AbeRol.UIUtils.xmlConnection;
 
 public class RolDAO extends Rol {		
@@ -35,10 +36,10 @@ public class RolDAO extends Rol {
 	
 	public static List<Player> searchByName(String nombre) {
 		List<Player> result = new ArrayList<Player>();
-		Connection con = xmlConnection.getConexion();
+		Connection con = xmlConnection.getConectionInfo();
 		if (con != null) {
 			try {
-				PreparedStatement q = con.prepareStatement(SELECTBYNAME);
+				PreparedStatement q = con.prepareStatement(EnumBBDD.SELECTMASTER.getSelect());
 				q.setString(1, "%" + nombre + "%");
 				ResultSet rs = q.executeQuery();
 				while (rs.next()) {

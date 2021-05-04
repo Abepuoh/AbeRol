@@ -36,7 +36,7 @@
    <right>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <left>
-            <GridPane prefWidth="496.0" BorderPane.alignment="CENTER_LEFT">
+            <GridPane prefHeight="369.0" prefWidth="496.0" BorderPane.alignment="CENTER_LEFT">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -44,7 +44,19 @@
               <rowConstraints>
                 <RowConstraints maxHeight="160.8000244140625" minHeight="0.0" prefHeight="49.39999198913574" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="431.20000000000005" minHeight="10.0" prefHeight="23.799974060058638" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="419.0000259399414" minHeight="0.0" prefHeight="419.0000259399414" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="431.20000000000005" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="431.20000000000005" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="431.20000000000005" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="431.20000000000005" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="431.20000000000005" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="431.20000000000005" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="431.20000000000005" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="431.20000000000005" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="431.20000000000005" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="431.20000000000005" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="431.20000000000005" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="431.20000000000005" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="431.20000000000005" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ROLS DISPONIBLES" textOrigin="CENTER" GridPane.halignment="CENTER" />

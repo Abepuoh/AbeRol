@@ -7,8 +7,9 @@ public enum EnumBBDD {
 	 * LOGIN
 	 */
 	LOGINMENU("SELECT name,password FROM Master WHERE name LIKE ? and password LIKE ?"),
-    GETBYEMAIL("SELECT name,password,email FROM autor WHERE email = ?"), 
-    INSERTMASTER("INSERT INTO master (email, name, password) VALUES (?,?,?)"),
+    GETBYEMAIL("SELECT name,password FROM autor WHERE email = ?"), 
+    GETBYID("SELECT id,name,password,email,rol FROM autor WHERE id = ?"), 
+    INSERTUPDATE("INSERT INTO Master (name, email, password,rol) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE name=?,email=?,password=?,rol=?"),
     SELECTMASTER("SELECT name,password,email FROM autor"),
 	DELETE ("DELETE FROM Master WHERE id=?");
 	
@@ -24,5 +25,7 @@ public enum EnumBBDD {
     public void setConstante(String select) {
 		this.select = select;
 	}
-   
+    public String getString() {
+		return this.select;
+	}
 }

@@ -4,51 +4,40 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.proyecto.AbeRol.Interfaces.IMasterDAO;
 import com.proyecto.AbeRol.UIUtils.*;
 
-import pruebaDAO.utils.Conexion;
+public class MasterDAO extends Master implements IMasterDAO {
 
-
-public class MasterDAO extends Master {
-	
-	private final static String LOGINMENU ="SELECT name,password FROM Master WHERE name LIKE ? and password LIKE ?";
-	private final static String GETBYEMAIL = "SELECT name,email,password FROM autor WHERE email = ?"; 
-	private final static String INSERTMASTER = "INSERT INTO master (name,email,password) VALUES (?,?,?)";
-	private final static String SELECTMASTER = "SELECT name,email,password FROM Master";
-	private final static String	DELETE = "DELETE FROM Master WHERE id=?";
-	private final static String	UPDATEMASTER ="UPDATE Master SET name = ?, password = ?, email = ?, Rols = ?,  WHERE Id = ?";
-	
-	
-	
-	
 	public static MasterDAO MMaster;
 
-	public MasterDAO(int id, String name, String surname, String password, List<Rol> rol) {
-		super(id, name, surname, password, rol);
+	public MasterDAO(int id, String name, String email, String password, List<Rol> rol) {
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.rol = rol;
+	}
 
+	public MasterDAO(String name, String email, String password) {
+		this.name = name;
+		this.email = email;
+		this.password = password;
 	}
 
 	public MasterDAO(String name, String password) {
-		super(name, password);
+		this.name = name;
+		this.password = password;
 	}
 
 	public MasterDAO(String email) {
-		super(email);
+		this.email = email;
 	}
 
 	public MasterDAO() {
-		super();
-	}
-
-	public MasterDAO(int id) {
-		super(id);
+		this(-1, "Unknown", "Unknown@Email", "UnknownPassword", null);
 	}
 
 	public MasterDAO(Master a) {
@@ -58,88 +47,114 @@ public class MasterDAO extends Master {
 		this.password = a.email;
 	}
 
-	public static boolean logIn(String userName, String userPassword) {
-		boolean result = false;
-		try {
-			Connection conn = xmlConnection.getConexion();
-			PreparedStatement ps = conn.prepareStatement(LOGINMENU);
-			ps.setString(1, userName);
-			ps.setString(2, userPassword);
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				if (rs.getString("name").trim().length() > 0) {
-					Master dummy = new Master();
-					dummy.setName(rs.getString("name"));
-					dummy.setPassword(rs.getString("password"));
-					MasterDAO dummyDAO = new MasterDAO(dummy);
-					dummy = dummyDAO;
-					result = true;
+	public MasterDAO(int id) {
+		Connection con = ConnectionDB.getConexion();
+		if (con != null) {
+			try {
+				PreparedStatement query = con.prepareStatement(EnumBBDD.GETBYID.getString());
+				query.setInt(1, id);
+				ResultSet rs = query.executeQuery();
+				while (rs.next()) {
+					this.id = rs.getInt("ID");
+					this.name = rs.getString("Name");
+					this.password = rs.getString("Password");
+					this.email = rs.getString("Password");
+					// this.rol=rs.getString("rol");
 				}
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-		} catch (SQLException ex) {
-			System.out.println(ex);
-			Logger.getLogger(MasterDAO.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+
+	@Override
+	public int SaveMaster() {
+		int result = 0;
+		Connection con = ConnectionDB.getConexion();
+		if (con != null) {
+			try {
+				PreparedStatement q = con.prepareStatement(EnumBBDD.INSERTUPDATE.getString());
+				q.setInt(1, this.id);
+				q.setString(2, this.name);
+				q.setString(3, this.password);
+				q.setString(4, this.email);
+				// q.setInt(5, this.rol);
+				result = q.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return result;
 	}
 
-	public static boolean deleteUser(String id) {
-		boolean rs = false;
-	    Connection con = xmlConnection.getConexion();
+	@Override
+	public Master getMasterByEmail(String email) {
+		Master dummy = new Master();
+		Connection con = ConnectionDB.getConexion();
+		if (con != null) {
+			try {
+				PreparedStatement q = con.prepareStatement(EnumBBDD.GETBYEMAIL.getString());
+				q.setString(1, this.name);
+				// dummy.setName(q);
+				q.setString(2, this.password);
+				// dummy.setPassword(q);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return dummy;
 
-	    if (con != null) {
-	      try {
-	        PreparedStatement q = con.prepareStatement(DELETE);
-	        q.setString(1,id);
-	        rs = q.executeUpdate();
-	        this.name = "U";
-	        this.nombre = "";
-	        this.edad = -1;
-	      } catch (SQLException e) {
-	        // TODO Auto-generated catch block
-	        e.printStackTrace();
-	      }
-	    }
-	    return rs;
-	  }
+	}
 
-	public int save() {
-	        int result = 0;
-	        try {
-		        Connection csql = xmlConnection.getConexion();  
-		        if (this.id > 0) {
-		            //UPDATE
-		            PreparedStatement q = csql.prepareStatement(UPDATEMASTER);
-		            q.setString(1, name);
-		            q.setString(2, email);
-		            q.setString(3, password);
-		            q.setString(result, DELETE);
-		            q.setInt(6, MainUser.IDUsuario);
-		            
-		            result = q.executeUpdate();
-		        } else {
-		            //INSERT
-		            String q = "INSERT INTO Usuario(IDUsuario, Nombre, Password, Pais, estiloFav, artistaFav) VALUES(NULL,?,?,?,?,?)";
-		            PreparedStatement ps = csql.prepareStatement(q, Statement.RETURN_GENERATED_KEYS);
-		            ps.setString(1, name);
-		            ps.setString(2, password);
-		            ps.setString(3, email);
-		            ps.setLString(4, );
-		            ps.setString(5, artistaFav);
-		            result = ps.executeUpdate();
-		            System.out.println(result);
-		            try(ResultSet generatedKeys = ps.getGeneratedKeys()){
-		                if(generatedKeys.next()){
-		                    result = generatedKeys.getInt(1);
-		                }
-		            }
-		            this.IDUsuario = result;
-		        }
-		        
-		    } catch (SQLException ex){
-		        Logger.getLogger(Master.class.getName()).log(Level.SEVERE, null, ex);
-		    }
+	@Override
+	public int deleteMaster(int id) {
+		int result = 0;
+		Connection con = ConnectionDB.getConexion();
+		if (con != null) {
+			try {
+				PreparedStatement q = con.prepareStatement(EnumBBDD.DELETE.getString());
+				q.setInt(1, id);
+				result = q.executeUpdate();
+				this.id = -1;
+				this.name = "Unknown";
+				this.email = "Unknown@Email";
+				this.password = "UnknownPassword";
+				this.rol = null;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
 
-	        return result;
-	    }
+	@Override
+	public boolean logIn(String name, String password) {
+		boolean result = false;
+		try {
+			Connection con = ConnectionDB.getConexion();
+			PreparedStatement q = con.prepareStatement(EnumBBDD.LOGINMENU.getString());
+			q.setString(1, name);
+			q.setString(2, password);
+			ResultSet rs = q.executeQuery();
+			Master dummy = new Master();
+			dummy.setName(rs.getString("name"));
+			dummy.setPassword(rs.getString("password"));
+			MasterDAO dummyDAO = new MasterDAO(dummy);
+			dummy = dummyDAO;
+			result = true;
+
+		} catch (SQLException ex) {
+			System.out.println(ex);
+		}
+		return result;
+	}
+
+	@Override
+	public boolean createAccount(String name, String email, String password) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

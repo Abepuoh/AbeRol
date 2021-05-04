@@ -1,65 +1,55 @@
 package com.proyecto.AbeRol.UIUtils;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 
-import java.util.List;
+import java.io.IOException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
+
+import com.proyecto.AbeRol.App;
 
 public class xmlConnection {
-	private static Connection con;
-	private final static String server="jdbc:mysql://localhost";
 	
-	private final static String database="RolApp";
-	private final static String username="root";
-	private final static String password="1234";
-	
-	public static void conecta() {
-		 try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con=DriverManager.getConnection(server+"/"+database,username,password);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			con=null;
-			e.printStackTrace();
-		}
-	}
-	
-	public static Connection getConexion() {
-		if(con==null) {
-			conecta();
-		}
-		return con;
-	}
-	
-	public static List<String[]> ejecutaSelect(String query){
-		List<String[]> resultado=new ArrayList<String[]>();
-		try {
-			Statement st=con.createStatement();
-			ResultSet rs= st.executeQuery(query);
-			ResultSetMetaData rsmd=(ResultSetMetaData)rs.getMetaData();
-			int ncolumns=rsmd.getColumnCount();
-			while(rs.next()) {
-				String[] fila=new String[ncolumns];
-				int i=1;
-				while(i<=ncolumns) {
-					fila[i-1]=rs.getString(i);
-				}
-				resultado.add(fila);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return resultado;
-	}
-	
+	public static String getConectionInfo(String data) {
+		   
+		    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		    factory.setNamespaceAware(true);
+		    DocumentBuilder builder;
+		    Document doc = null;
+		    String url = null;
+		    try {
+		      builder = factory.newDocumentBuilder();
+		      doc = builder.parse(App.class.getResourceAsStream("url.xml"));
+
+		      // Create XPathFactory object
+		      XPathFactory xpathFactory = XPathFactory.newInstance();
+
+		      // Create XPath object
+		      XPath xpath = xpathFactory.newXPath();
+		      XPathExpression expr = xpath.compile("/conexion/" + data + "/text()");
+		      url = (String) expr.evaluate(doc, XPathConstants.STRING);
+		      
+		      
+		    } catch (XPathExpressionException e) {
+		      e.printStackTrace();
+		    } catch (SAXException e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		    } catch (IOException e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		    } catch (ParserConfigurationException e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		    }
+
+		    return url;
+		  }
 }
