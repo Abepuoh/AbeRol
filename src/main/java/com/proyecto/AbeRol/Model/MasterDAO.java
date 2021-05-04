@@ -46,7 +46,7 @@ public class MasterDAO extends Master implements IMasterDAO {
 		this.email = a.email;
 		this.password = a.email;
 	}
-
+	
 	public MasterDAO(int id) {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
@@ -156,5 +156,5 @@ public class MasterDAO extends Master implements IMasterDAO {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	
 }

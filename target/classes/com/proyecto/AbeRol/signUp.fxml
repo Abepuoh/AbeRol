@@ -14,7 +14,7 @@
             <Image url="@../Images/signUp.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="buttCreate" layoutX="133.0" layoutY="428.0" mnemonicParsing="false" onAction="#saveMaster" text="Registrrate" />
+      <Button fx:id="buttSave" layoutX="227.0" layoutY="428.0" mnemonicParsing="false" onAction="#exit" text="Salir" />
       <TextField fx:id="txtName" layoutX="102.0" layoutY="273.0" promptText="Nombre Usuario" />
       <TextField fx:id="txtEmail" layoutX="102.0" layoutY="323.0" promptText="Email" />
       <PasswordField fx:id="txtPass" layoutX="102.0" layoutY="374.0" promptText="Contraseña" />
@@ -33,5 +33,6 @@
             <Image url="@../Images/user.png" />
          </image>
       </ImageView>
+      <Button fx:id="buttCreate1" layoutX="61.0" layoutY="428.0" mnemonicParsing="false" onAction="#saveMaster" text="Registrrate" />
    </children>
 </AnchorPane>

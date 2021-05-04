@@ -38,7 +38,7 @@ public class RolDAO extends Rol {
 	if(con!=null) {
 		result = this.contains;
 		try {
-			PreparedStatement q = con.prepareStatement(EnumBBDD.SELECTMASTER.getString());
+			PreparedStatement q = con.prepareStatement(EnumBBDD.SELECTPLAYERS.getString());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

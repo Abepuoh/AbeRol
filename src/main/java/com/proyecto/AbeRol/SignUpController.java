@@ -1,19 +1,15 @@
 package com.proyecto.AbeRol;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import com.proyecto.AbeRol.Model.MasterDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
@@ -27,6 +23,8 @@ public class SignUpController {
 	private TextField txtEmail;
 	@FXML
 	private Button buttCreate;
+	@FXML
+	private Button buttSave;
 	
     private Stage signUpStage;
     
@@ -62,5 +60,11 @@ public class SignUpController {
         alert.setContentText("Ahora toca disfrutar!!!.");
         Optional<ButtonType> result = alert.showAndWait();
     }
-
+    
+    @FXML
+    private void exit(ActionEvent event) {
+        Stage stage = (Stage) this.buttSave.getScene().getWindow();
+        stage.close();
+ 
+    }
 }

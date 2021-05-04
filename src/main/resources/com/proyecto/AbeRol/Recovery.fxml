@@ -14,7 +14,7 @@
             <Image url="@../Images/recovery.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="buttRecovery" layoutX="85.0" layoutY="269.0" mnemonicParsing="false" onAction="#saveMaster" text="Recuperar" />
+      <Button fx:id="buttRecovery" layoutX="85.0" layoutY="269.0" mnemonicParsing="false" onAction="#recover" text="Recuperar" />
       <ImageView fitHeight="49.0" fitWidth="38.0" layoutX="47.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/email.png" />
@@ -23,6 +23,6 @@
       <Label fx:id="labelUser" layoutX="228.0" layoutY="334.0" prefHeight="18.0" prefWidth="57.0" text="USUARIO" />
       <Label fx:id="labelPassword" layoutX="213.0" layoutY="409.0" text="CONTRASEÑA" />
       <TextField fx:id="txtEmail" layoutX="98.0" layoutY="220.0" promptText="Email" />
-      <Button fx:id="buttExit" layoutX="180.0" layoutY="269.0" mnemonicParsing="false" onAction="#exit" prefHeight="32.0" prefWidth="77.0" text="Salir" />
+      <Button fx:id="buttExit" layoutX="201.0" layoutY="269.0" mnemonicParsing="false" onAction="#exit" text="Salir" />
    </children>
 </AnchorPane>

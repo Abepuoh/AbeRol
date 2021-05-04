@@ -10,8 +10,9 @@ public enum EnumBBDD {
     GETBYEMAIL("SELECT name,password FROM autor WHERE email = ?"), 
     GETBYID("SELECT id,name,password,email,rol FROM autor WHERE id = ?"), 
     INSERTUPDATE("INSERT INTO Master (name, email, password,rol) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE name=?,email=?,password=?,rol=?"),
-    SELECTMASTER("SELECT name,password,email FROM autor"),
+    SELECTPLAYERS("SELECT p.* FROM Player p,Contains con,Rol ro WHERE ro.id = con.id_rol and p.id = con.id_player "),
 	DELETE ("DELETE FROM Master WHERE id=?");
+	SELECTROLBYID("SELECT ")
 	
 	private String select;
 	 

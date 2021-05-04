@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
+import javafx.stage.Stage;
 
 public class mainMenu {
 
@@ -24,7 +25,7 @@ public class mainMenu {
 	private Button addRolButt;
 
 	@FXML
-	private Button logOut;
+	private Button buttExit;
 
 	@FXML
 	private ChoiceBox<Rol> choiceRol;
@@ -53,9 +54,11 @@ public class mainMenu {
 		
 	}
 	@FXML
-	protected void logOut(ActionEvent Event) throws IOException {
-		
-	}
+    private void exit(ActionEvent event) {
+        Stage stage = (Stage) this.buttExit.getScene().getWindow();
+        stage.close();
+ 
+    }
 	public boolean showConfirm(String nombre) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirme la acción");
