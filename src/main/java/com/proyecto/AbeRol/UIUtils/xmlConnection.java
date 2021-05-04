@@ -17,8 +17,7 @@ import com.proyecto.AbeRol.App;
 
 public class xmlConnection {
 	
-	public static String getConectionInfo(String data) {
-		   
+	  public static String getConectionInfo(String data) {
 		    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		    factory.setNamespaceAware(true);
 		    DocumentBuilder builder;
@@ -35,8 +34,7 @@ public class xmlConnection {
 		      XPath xpath = xpathFactory.newXPath();
 		      XPathExpression expr = xpath.compile("/conexion/" + data + "/text()");
 		      url = (String) expr.evaluate(doc, XPathConstants.STRING);
-		      
-		      
+
 		    } catch (XPathExpressionException e) {
 		      e.printStackTrace();
 		    } catch (SAXException e) {
@@ -51,5 +49,5 @@ public class xmlConnection {
 		    }
 
 		    return url;
-		  }
+		  }	
 }

@@ -38,65 +38,66 @@ public class logInController {
 
 	@FXML
 	public void initialize(URL url, ResourceBundle rb) {
-	
+
 	}
 
 	@FXML
 	protected void logUser(ActionEvent Event) throws IOException {
-//		String name = this.txtUser.getText();
-//		String password = this.txtPass.getText();
-//		   if(MasterDAO.logIn(name, password)== true){
+		String name = this.txtUser.getText();
+		String password = this.txtPass.getText();
+		MasterDAO dummy = new MasterDAO();
+		if (dummy.logIn(name, password) == true) {
 			OpenMenu();
-//		} else {
-//			Alert alert = new Alert(Alert.AlertType.ERROR);
-//			alert.setHeaderText(null);
-//			alert.setTitle("Error");
-//			alert.setContentText("Has introducido mal algun dato");
-//			alert.showAndWait();
-//		}
+		} else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setTitle("Error");
+			alert.setContentText("Has introducido mal algun dato");
+			alert.showAndWait();
+		}
 	}
 
 	@FXML
 	protected void addMaster(ActionEvent Event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("signUp.fxml"));
-        Parent modal;
-        modal = fxmlLoader.load();
-        Stage modalStage = new Stage();
-        modalStage.initModality(Modality.APPLICATION_MODAL);
-        modalStage.initOwner(App.rootstage);
+		Parent modal;
+		modal = fxmlLoader.load();
+		Stage modalStage = new Stage();
+		modalStage.initModality(Modality.APPLICATION_MODAL);
+		modalStage.initOwner(App.rootstage);
 
-        Scene modalScene = new Scene(modal);
-        modalStage.setScene(modalScene);
-        modalStage.showAndWait();
+		Scene modalScene = new Scene(modal);
+		modalStage.setScene(modalScene);
+		modalStage.showAndWait();
 	}
-	
+
 	@FXML
 	protected void recoveryMaster(ActionEvent Event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("recovery.fxml"));
-        Parent modal;
-        modal = fxmlLoader.load();
-        Stage modalStage = new Stage();
-        modalStage.initModality(Modality.APPLICATION_MODAL);
-        modalStage.initOwner(App.rootstage);
-        Scene modalScene = new Scene(modal);
-        modalStage.setScene(modalScene);
-        modalStage.showAndWait();
+		Parent modal;
+		modal = fxmlLoader.load();
+		Stage modalStage = new Stage();
+		modalStage.initModality(Modality.APPLICATION_MODAL);
+		modalStage.initOwner(App.rootstage);
+		Scene modalScene = new Scene(modal);
+		modalStage.setScene(modalScene);
+		modalStage.showAndWait();
 	}
-	
+
 	public void OpenMenu() {
 		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("mainMenu.fxml"));
-	        Parent modal;
-	        try {
-	            modal = fxmlLoader.load();
-	            Stage modalStage = new Stage();
-	            modalStage.initModality(Modality.APPLICATION_MODAL);
-	            modalStage.initOwner(App.rootstage);
-	            Scene modalScene = new Scene(modal);
-	            modalStage.setScene(modalScene);
-                modalStage.showAndWait();
+		Parent modal;
+		try {
+			modal = fxmlLoader.load();
+			Stage modalStage = new Stage();
+			modalStage.initModality(Modality.APPLICATION_MODAL);
+			modalStage.initOwner(App.rootstage);
+			Scene modalScene = new Scene(modal);
+			modalStage.setScene(modalScene);
+			modalStage.showAndWait();
 
-	        } catch (IOException ex) {
-	            Logger.getLogger(logInController.class.getName()).log(Level.SEVERE, null, ex);
-	        }
-	    }
+		} catch (IOException ex) {
+			Logger.getLogger(logInController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 }

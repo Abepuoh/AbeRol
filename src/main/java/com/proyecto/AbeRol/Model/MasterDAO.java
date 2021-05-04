@@ -46,7 +46,7 @@ public class MasterDAO extends Master implements IMasterDAO {
 		this.email = a.email;
 		this.password = a.email;
 	}
-	
+
 	public MasterDAO(int id) {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
@@ -138,13 +138,16 @@ public class MasterDAO extends Master implements IMasterDAO {
 			q.setString(1, name);
 			q.setString(2, password);
 			ResultSet rs = q.executeQuery();
-			Master dummy = new Master();
-			dummy.setName(rs.getString("name"));
-			dummy.setPassword(rs.getString("password"));
-			MasterDAO dummyDAO = new MasterDAO(dummy);
-			dummy = dummyDAO;
-			result = true;
-
+			if (rs.next()) {
+				if (rs.getString("name").trim().length() > 0) {
+					Master mainMaster = new Master();
+					mainMaster.setName(rs.getString("name"));
+					mainMaster.setPassword(rs.getString("password"));
+					MasterDAO dummy = new MasterDAO(mainMaster);
+					mainMaster = dummy;
+					result = true;
+				}
+			}
 		} catch (SQLException ex) {
 			System.out.println(ex);
 		}
@@ -156,5 +159,5 @@ public class MasterDAO extends Master implements IMasterDAO {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 }

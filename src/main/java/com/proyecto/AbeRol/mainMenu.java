@@ -3,8 +3,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import com.proyecto.AbeRol.Model.Player;
 import com.proyecto.AbeRol.Model.Rol;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -29,10 +33,13 @@ public class mainMenu {
 
 	@FXML
 	private ChoiceBox<Rol> choiceRol;
-
+	@FXML 
+	private ObservableList<Player> Players;
+	 
 	@FXML
 	public void initialize(URL url, ResourceBundle rb) {
-
+		 Players = FXCollections.observableArrayList();
+		
 	}
 
 	@FXML
