@@ -74,7 +74,6 @@ public class MasterDAO extends Master implements IMasterDAO {
 		if (con != null) {
 			try {
 				PreparedStatement q = con.prepareStatement(EnumBBDD.INSERTUPDATE.getString());
-				q.setInt(1, this.id);
 				q.setString(2, this.name);
 				q.setString(3, this.password);
 				q.setString(4, this.email);
@@ -89,21 +88,22 @@ public class MasterDAO extends Master implements IMasterDAO {
 
 	@Override
 	public Master getMasterByEmail(String email) {
-		Master dummy = new Master();
+		Master mainMaster = new Master();
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
 				PreparedStatement q = con.prepareStatement(EnumBBDD.GETBYEMAIL.getString());
-				q.setString(1, this.name);
-				// dummy.setName(q);
-				q.setString(2, this.password);
+				q.setString(1, email);
+				ResultSet rs = q.executeQuery();
+				mainMaster.setName(rs.getString("name"));
+				mainMaster.setPassword(rs.getString("password"));
 				// dummy.setPassword(q);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		return dummy;
+		return mainMaster;
 
 	}
 
@@ -155,9 +155,21 @@ public class MasterDAO extends Master implements IMasterDAO {
 	}
 
 	@Override
-	public boolean createAccount(String name, String email, String password) {
-		// TODO Auto-generated method stub
-		return false;
+	public int createAccount(String name, String email, String password) {
+		int result = 0;
+		Connection con = ConnectionDB.getConexion();
+		if (con != null) {
+			try {
+				PreparedStatement q = con.prepareStatement(EnumBBDD.INSERTUPDATE.getString());
+				q.setString(1, "name");
+				q.setString(2, "email");
+				q.setString(3, "password");
+				//q.setInt(5, this.rol);
+				result = q.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
 	}
-
 }

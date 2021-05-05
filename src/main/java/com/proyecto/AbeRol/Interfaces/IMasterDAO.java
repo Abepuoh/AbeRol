@@ -16,7 +16,7 @@ public interface IMasterDAO  {
 	* Create a new master
 	* @return true if the master was created successfully
 	**/
-	public boolean createAccount(String name, String email, String password);
+	public int createAccount(String name, String email, String password);
 	/**
 	* Obtain Master thanks to the identifier
 	* @param id identifier of the master

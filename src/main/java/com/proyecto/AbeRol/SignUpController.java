@@ -12,7 +12,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
 public class SignUpController {
 
 	@FXML
@@ -25,11 +24,9 @@ public class SignUpController {
 	private Button buttCreate;
 	@FXML
 	private Button buttSave;
-	
-    private Stage signUpStage;
-    
+
 	public void initialize(URL url, ResourceBundle rb) {
-		 
+
 	}
 
 	@FXML
@@ -37,34 +34,26 @@ public class SignUpController {
 		String name = this.txtName.getText();
 		String password = this.txtPass.getText();
 		String email = this.txtEmail.getText();
-		MasterDAO dummy = new MasterDAO(name,password,email);
-		if(dummy.createAccount(name, email, password) ==true) {
-			showInfo();
-			this.signUpStage.close();
-		}else {
-			showWarning("Error de validación", "Has introducido mal algun dato", "Asegurate que los campos introducidos "
-					+ "son correctos.");
+		MasterDAO dummy = new MasterDAO(name, password, email);
+		if (dummy.logIn(name, password) == true) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setTitle("Error");
+			alert.setContentText("La persona ya existe");
+			alert.showAndWait();	
+		}else if(dummy.createAccount(name, email, password) == 0) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setHeaderText(null);
+			alert.setTitle("Informacion");
+			alert.setContentText("Se ha añadido correctamente");
+			alert.showAndWait();
 		}
 	}
-	public static void showWarning(String title, String header, String description) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(description);
-        alert.showAndWait();
-    }
-
-    public void showInfo() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText("Enhorabuena"+this.txtName+" has creado tu cuenta correctamente");
-        alert.setContentText("Ahora toca disfrutar!!!.");
-        Optional<ButtonType> result = alert.showAndWait();
-    }
-    
-    @FXML
+	@FXML
     private void exit(ActionEvent event) {
         Stage stage = (Stage) this.buttSave.getScene().getWindow();
         stage.close();
  
     }
+
 }

@@ -2,8 +2,12 @@ package com.proyecto.AbeRol;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.proyecto.AbeRol.Model.MasterDAO;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -32,7 +36,12 @@ public class recovery {
 	}
 	@FXML
 	public void recover() {
-		
+		String email = this.txtEmail.getText();	
+		MasterDAO dummy = new MasterDAO();
+		dummy.getMasterByEmail(email);
+		dummy.getName();
+		dummy.getPassword();
+	
 	}
 	@FXML
     private void exit(ActionEvent event) {
