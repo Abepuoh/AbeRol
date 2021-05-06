@@ -15,6 +15,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.image.Image;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class mainMenu {
@@ -35,12 +37,16 @@ public class mainMenu {
 	private ChoiceBox<Rol> choiceRol;
 	@FXML 
 	private ObservableList<Player> Players;
-	 
+	
+	private Stage myStage;
+	
 	@FXML
 	public void initialize(URL url, ResourceBundle rb) {
-		 Players = FXCollections.observableArrayList();
+		myStage.getIcons().add(new Image(App.class.getResourceAsStream("logo.png")));
+		Players = FXCollections.observableArrayList();
 		
 	}
+
 
 	@FXML
 	protected void deleteMaster(ActionEvent Event) throws IOException {
@@ -72,7 +78,6 @@ public class mainMenu {
         alert.setHeaderText("¿Desea borrar el usuario " +nombre+ "?");
         alert.setContentText("Está a punto de eliminar su perfil, ¿desea hacerlo?");
 
-           
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             return true;

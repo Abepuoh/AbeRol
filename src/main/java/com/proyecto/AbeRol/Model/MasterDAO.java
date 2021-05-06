@@ -95,9 +95,10 @@ public class MasterDAO extends Master implements IMasterDAO {
 				PreparedStatement q = con.prepareStatement(EnumBBDD.GETBYEMAIL.getString());
 				q.setString(1, email);
 				ResultSet rs = q.executeQuery();
+				if(!rs.next()) {
 				mainMaster.setName(rs.getString("name"));
 				mainMaster.setPassword(rs.getString("password"));
-				// dummy.setPassword(q);
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -113,7 +114,7 @@ public class MasterDAO extends Master implements IMasterDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.DELETE.getString());
+				PreparedStatement q = con.prepareStatement(EnumBBDD.DELETEMASTER.getString());
 				q.setInt(1, id);
 				result = q.executeUpdate();
 				this.id = -1;
@@ -138,15 +139,10 @@ public class MasterDAO extends Master implements IMasterDAO {
 			q.setString(1, name);
 			q.setString(2, password);
 			ResultSet rs = q.executeQuery();
-			if (rs.next()) {
-				if (rs.getString("name").trim().length() > 0) {
-					Master mainMaster = new Master();
-					mainMaster.setName(rs.getString("name"));
-					mainMaster.setPassword(rs.getString("password"));
-					MasterDAO dummy = new MasterDAO(mainMaster);
-					mainMaster = dummy;
+			if (!rs.next()) {
+					result = false;
+				}else {
 					result = true;
-				}
 			}
 		} catch (SQLException ex) {
 			System.out.println(ex);
@@ -155,21 +151,12 @@ public class MasterDAO extends Master implements IMasterDAO {
 	}
 
 	@Override
-	public int createAccount(String name, String email, String password) {
-		int result = 0;
-		Connection con = ConnectionDB.getConexion();
-		if (con != null) {
-			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.INSERTUPDATE.getString());
-				q.setString(1, "name");
-				q.setString(2, "email");
-				q.setString(3, "password");
-				//q.setInt(5, this.rol);
-				result = q.executeUpdate();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+	public List<Rol> getRols() {
+
+		if (rol == null) {
+			
+			// rol = MasterDAO.buscaLibrosPorAutor(this.dni);
 		}
-		return result;
+		return rol;
 	}
 }

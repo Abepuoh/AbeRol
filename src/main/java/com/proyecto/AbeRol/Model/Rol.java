@@ -1,5 +1,6 @@
 package com.proyecto.AbeRol.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,14 +15,14 @@ public class Rol {
 	protected String name;
 	protected String description;
 	protected Master masterRol;
-	protected List<Player> contains;
+	protected List<Player> players;
 	
-	public Rol(int id,String name,String description, Master masterRol, List<Player> contains) {
+	public Rol(int id,String name,String description, Master masterRol, List<Player> players) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.masterRol = masterRol;
-		this.contains = contains;
+		this.players = players;
 	}
 
 	public Rol(int id) {
@@ -29,7 +30,7 @@ public class Rol {
 	}
 
 	public Rol() {
-		this(-1,"UnknownRol","UnknownDesc",new Master(),null);
+		this(-1,"UnknownRol","UnknownDesc",new Master(),new ArrayList<Player>());
 	}
 
 	public String getName() {
@@ -41,11 +42,11 @@ public class Rol {
 	}
 
 	public List<Player> getPlayer() {
-		return contains;
+		return players;
 	}
 
 	public void setPlayer(List<Player> player) {
-		this.contains = player;
+		this.players = player;
 	}
 
 	public String getDescription() {

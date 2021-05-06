@@ -8,22 +8,22 @@ package com.proyecto.AbeRol.Model;
  */
 public class Character {
 	
-	private String name; //nombre
-	private int level; // nivel
-	private int strenght; // fuerza
-	private int dexterity; // destreza
-	private int intelligence; //inteligencia
-	private String information; //información
-	private double height; //altura
-	private double weight; //peso
+	protected String name; //nombre
+	protected int level; // nivel
+	protected int strenght; // fuerza
+	protected int dexerity; // destreza
+	protected int intelligence; //inteligencia
+	protected String information; //información
+	protected int height; //altura
+	protected int weight; //peso
 
-	public Character(String name, int level, int strenght, int dexterity, int intelligence, String information,
-			double height, double weight) {
+	public Character(String name, int level, int strenght, int dexerity, int intelligence, String information,
+			int height, int weight) {
 		super();
 		this.name = name;
 		this.level = level;
 		this.strenght = strenght;
-		this.dexterity = dexterity;
+		this.dexerity = dexerity;
 		this.intelligence = intelligence;
 		this.information = information;
 		this.height = height;
@@ -59,11 +59,11 @@ public class Character {
 	}
 
 	public int getDexterity() {
-		return dexterity;
+		return dexerity;
 	}
 
 	public void setDexterity(int dexterity) {
-		this.dexterity = dexterity;
+		this.dexerity = dexterity;
 	}
 
 	public int getIntelligence() {
@@ -86,7 +86,7 @@ public class Character {
 		return height;
 	}
 
-	public void setHeight(double height) {
+	public void setHeight(int height) {
 		this.height = height;
 	}
 
@@ -94,7 +94,7 @@ public class Character {
 		return weight;
 	}
 
-	public void setWeight(double weight) {
+	public void setWeight(int weight) {
 		this.weight = weight;
 	}
 

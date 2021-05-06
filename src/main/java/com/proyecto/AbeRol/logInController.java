@@ -5,10 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import com.proyecto.AbeRol.Model.Master;
 import com.proyecto.AbeRol.Model.MasterDAO;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -35,10 +32,12 @@ public class logInController {
 	private Hyperlink buttCreate;
 	@FXML
 	private Button LogButt;
-
+	
+	private Stage myStage;
+	
 	@FXML
 	public void initialize(URL url, ResourceBundle rb) {
-
+		myStage.getIcons().add(new Image(App.class.getResourceAsStream("logo.png")));
 	}
 
 	@FXML
@@ -46,12 +45,14 @@ public class logInController {
 		String name = this.txtUser.getText();
 		String password = this.txtPass.getText();
 		MasterDAO dummy = new MasterDAO();
+		this.txtUser.clear();
+		this.txtPass.clear();
 		if (dummy.logIn(name, password) == true) {
 			OpenMenu();
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setHeaderText(null);
-			alert.setTitle("Error");
+			alert.setTitle("Error de acceso");
 			alert.setContentText("Has introducido mal algun dato");
 			alert.showAndWait();
 		}

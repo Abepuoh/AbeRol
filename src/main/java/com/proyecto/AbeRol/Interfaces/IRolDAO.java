@@ -27,4 +27,5 @@ public interface IRolDAO {
 	* @return true if successfully removed
 	**/
 	public boolean deleteRol(int id);
+	
 }

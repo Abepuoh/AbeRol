@@ -28,24 +28,9 @@ public class RolDAO extends Rol {
 	}
 
 	public RolDAO() {
-		this(-1,"UnknownRol","UnknownDesc",new Master(),null);
+		this(-1,"UnknownRol","UnknownDesc",new Master(),new ArrayList<Player>());
 	}		
-	
-	
-	public List<Player> getPlayer() {
-	List<Player> result = new ArrayList<Player>();
 	Connection con = ConnectionDB.getConexion();
-	if(con!=null) {
-		result = this.contains;
-		try {
-			PreparedStatement q = con.prepareStatement(EnumBBDD.SELECTPLAYERS.getString());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-		
-		return result;
-	}
+	
 	
 }

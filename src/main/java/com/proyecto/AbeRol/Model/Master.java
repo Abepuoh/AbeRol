@@ -1,5 +1,6 @@
 package com.proyecto.AbeRol.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 /**
  * Central class of the application from which we can access all available processes
@@ -41,7 +42,7 @@ public class Master {
 		this.email = email;
 	}
 	public Master() {
-		this(-1,"Unknown","Unknown@Email","UnknownPassword",null);
+		this(-1,"Unknown","Unknown@Email","UnknownPassword",new ArrayList<Rol>());
 	}
 
 	public String getName() {

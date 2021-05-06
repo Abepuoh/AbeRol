@@ -23,7 +23,6 @@ public class App extends Application {
         stage.setScene(scene);
         stage.getIcons().add(new Image(App.class.getResourceAsStream("logo.png")));
         stage.show();
- 
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

@@ -8,14 +8,14 @@ package com.proyecto.AbeRol.Model;
  */
 public class Player extends Character {
 
-	private int id;
-	private String classRol;
-	private int age;
-	private Rol contains;
+	protected int id;
+	protected String classRol;
+	protected int age;
+	protected Rol contains;
 
-	public Player(String name, int level, int strenght, int dexterity, int intelligence, String information,
-			double height, double weight, int id, String classRol, int age, Rol contains) {
-		super(name, level, strenght, dexterity, intelligence, information, height, weight);
+	public Player(int id,String name, int level, int strength, int dexerity, int intelligence, String information,
+			int height, int weight, String classRol, int age, Rol contains) {
+		super(name, level, strength, dexerity, intelligence, information, height, weight);
 		this.id = id;
 		this.classRol = classRol;
 		this.age = age;
@@ -23,7 +23,7 @@ public class Player extends Character {
 	}
 
 	public Player() {
-		super();
+		this(-1,"Unknown",-1,-1,-1,-1,"Unknown",-1,-1,"Unknown",-1,new Rol());
 	}
 
 	public int getId() {

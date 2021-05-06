@@ -1,6 +1,6 @@
 <conexion>
     <server>jdbc:mysql://localhost</server>
-    <database>rolapp</database>
+    <database>aberol</database>
     <username>root</username>
     <password>1234</password>
 </conexion>

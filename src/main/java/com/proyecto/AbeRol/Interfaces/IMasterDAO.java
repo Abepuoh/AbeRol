@@ -1,6 +1,9 @@
 package com.proyecto.AbeRol.Interfaces;
 
+import java.util.List;
+
 import com.proyecto.AbeRol.Model.Master;
+import com.proyecto.AbeRol.Model.Rol;
 /**
  * IMasterDAO is the Master's DAO interface
  * @author Abepuoh
@@ -9,14 +12,9 @@ import com.proyecto.AbeRol.Model.Master;
 public interface IMasterDAO  {
 	/**
 	* Save a new master in the base
-	* @return true if successfully saved
+	* @return 0 if successfully saved
 	**/
 	public int SaveMaster();
-	/**
-	* Create a new master
-	* @return true if the master was created successfully
-	**/
-	public int createAccount(String name, String email, String password);
 	/**
 	* Obtain Master thanks to the identifier
 	* @param id identifier of the master
@@ -36,4 +34,7 @@ public interface IMasterDAO  {
 	 * @returns true if the master is in the database
 	 */
 	public boolean logIn(String name,String password);
+	
+	
+	public List<Rol> getRols();
 }
