@@ -25,10 +25,10 @@ public interface IMasterDAO  {
 	public ObservableList<MasterDAO> getMasterByEmail(String email);
 	/**
 	* Delete a master starting from the id
-	* @param id identify of the master
-	* @return true if successfully removed
+	* @param name of the master
+	* @return 0 if successfully removed
 	**/
-	public int deleteMaster(int id);
+	public int deleteMaster(String name);
 	/**
 	 * Method to start session if the master is in the database
 	 * @param name 
@@ -36,7 +36,10 @@ public interface IMasterDAO  {
 	 * @returns true if the master is in the database
 	 */
 	public boolean logIn(String name,String password);
-	
-	
-	public List<Rol> getRols();
+	/**
+	 * Method that gets all roles given username
+	 * @param name of the master
+	 * @return the list of all roles
+	 */
+	public List<Rol> getRolsByMaster(String name);
 }
