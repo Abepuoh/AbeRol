@@ -22,6 +22,7 @@ public class App extends Application {
     	scene = new Scene(loadFXML("login"), 700, 500);
         stage.setScene(scene);
         stage.getIcons().add(new Image(App.class.getResourceAsStream("logo.png")));
+        stage.setResizable(false);
         stage.show();
     }
 

@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import com.proyecto.AbeRol.Model.MasterDAO;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,19 +29,22 @@ public class recovery {
 	private TableColumn<MasterDAO, String> colPassword;
 	@FXML
 	private Button buttExit;
-
+	
+	
 	@FXML
 	public void initialize(URL url, ResourceBundle rb) {
-		this.colUser.setCellValueFactory(new PropertyValueFactory("name"));
-		this.colPassword.setCellValueFactory(new PropertyValueFactory("password"));
+	
 	}
-	//PROBLEMA MASTER DAO APUNTA A NULL
+
 	@FXML
 	public void recover() {
+		this.colUser.setCellValueFactory(new PropertyValueFactory<MasterDAO, String>("name"));
+		this.colPassword.setCellValueFactory(new PropertyValueFactory<MasterDAO, String>("password"));
+		
 		String email = this.txtEmail.getText();
 		if (email.trim().length() > 0) {
-			MasterDAO dummy = new MasterDAO();
-			ObservableList<MasterDAO> items = dummy.getMasterByEmail(email);
+			MasterDAO dummy = new MasterDAO(email);
+			ObservableList<MasterDAO> items = FXCollections.observableArrayList(dummy);
 			this.recovery.setItems(items);
 		}
 	}

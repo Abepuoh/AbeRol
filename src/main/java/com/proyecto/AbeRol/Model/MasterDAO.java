@@ -15,8 +15,6 @@ import javafx.collections.ObservableList;
 
 public class MasterDAO extends Master implements IMasterDAO {
 
-	public static MasterDAO MMaster;
-
 	public MasterDAO(int id, String name, String email, String password, List<Rol> rol) {
 		super(id, name, email, password, rol);
 	}
@@ -40,18 +38,33 @@ public class MasterDAO extends Master implements IMasterDAO {
 		this.password = aux.email;
 		this.rol = aux.rol;
 	}
-
-	public MasterDAO(String name) {
+	public MasterDAO(int id) {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
 				PreparedStatement query = con.prepareStatement(EnumBBDD.GETMASTERBYNAME.getString());
-				query.setString(1, name);
+				query.setInt(1, id);
+				ResultSet rs = query.executeQuery();
+				while (rs.next()) {
+					this.name = rs.getString("Name");
+					this.email = rs.getString("Email");
+					this.password = rs.getString("Password");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	public MasterDAO(String email) {
+		Connection con = ConnectionDB.getConexion();
+		if (con != null) {
+			try {
+				PreparedStatement query = con.prepareStatement(EnumBBDD.GETMASTERBYEMAIL.getString());
+				query.setString(1, email);
 				ResultSet rs = query.executeQuery();
 				while (rs.next()) {
 					this.name = rs.getString("Name");
 					this.password = rs.getString("Password");
-					this.email = rs.getString("Password");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -67,8 +80,8 @@ public class MasterDAO extends Master implements IMasterDAO {
 			try {
 				PreparedStatement q = con.prepareStatement(EnumBBDD.INSERTUPDATEMASTER.getString());
 				q.setString(1, this.name);
-				q.setString(2, this.password);
-				q.setString(3, this.email);
+				q.setString(2, this.email);
+				q.setString(3, this.password);
 				q.setString(4, this.name);
 				q.setString(5, this.password);
 				q.setString(6, this.email);
@@ -92,7 +105,7 @@ public class MasterDAO extends Master implements IMasterDAO {
 				if (!rs.next()) {
 					String name = rs.getString("name");
 					String password = rs.getString("password");
-					MasterDAO dummy = new MasterDAO(name, password, email);
+					MasterDAO dummy = new MasterDAO(name,password);
 					getMasterResult.add(dummy);
 				}
 			} catch (SQLException e) {

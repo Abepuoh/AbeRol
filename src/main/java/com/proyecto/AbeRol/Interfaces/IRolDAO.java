@@ -18,14 +18,14 @@ public interface IRolDAO {
 	public List<Player> getPlayerbyRol(int id);
 	/**
 	* Save a new Rol in the base
-	* @return true if successfully saved
+	* @return 0 if successfully saved
 	**/
-	public boolean SaveRol();
+	public int saveRol();
 	/**
 	* Delete a Rol starting from the id
 	* @param id identify of the Rol
 	* @return true if successfully removed
 	**/
-	public boolean deleteRol(int id);
+	public int deleteRol(String name);
 	
 }

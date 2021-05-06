@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import com.proyecto.AbeRol.Model.MasterDAO;
 import com.proyecto.AbeRol.Model.Player;
 import com.proyecto.AbeRol.Model.Rol;
 
@@ -15,12 +16,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class mainMenu {
-
+public class mainMenu  {
+	@FXML
+	private TextField masterAux;
 	@FXML
 	private Button deleteMasterButt;
 
@@ -39,14 +42,16 @@ public class mainMenu {
 	private ObservableList<Player> Players;
 	
 	private Stage myStage;
+
+	logInController stage_controller_enstage2;
 	
 	@FXML
 	public void initialize(URL url, ResourceBundle rb) {
 		myStage.getIcons().add(new Image(App.class.getResourceAsStream("logo.png")));
-		Players = FXCollections.observableArrayList();
+		String name = this.masterAux.getText();
+		MasterDAO dummy = new MasterDAO(name);
 		
 	}
-
 
 	@FXML
 	protected void deleteMaster(ActionEvent Event) throws IOException {
@@ -85,4 +90,10 @@ public class mainMenu {
             return false;
         }
     }
+	@FXML
+	public void getParameter(logInController stage1,String text) {
+		masterAux.setText(text);
+		stage_controller_enstage2=stage1;
+		
+	}
 }

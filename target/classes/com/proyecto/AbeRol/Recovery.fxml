@@ -23,7 +23,7 @@
       </ImageView>
       <TextField fx:id="txtEmail" layoutX="98.0" layoutY="220.0" promptText="Email" />
       <Button fx:id="buttExit" layoutX="201.0" layoutY="269.0" mnemonicParsing="false" onAction="#exit" text="Salir" />
-      <TableView layoutX="147.0" layoutY="320.0" prefHeight="176.0" prefWidth="200.0">
+      <TableView fx:id="recovery" layoutX="147.0" layoutY="320.0" prefHeight="176.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="colUser" prefWidth="98.39996337890625" text="    USUARIO" />
           <TableColumn fx:id="colPassword" prefWidth="100.0" text="   CONTRASEÑA" />

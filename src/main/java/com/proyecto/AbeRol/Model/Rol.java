@@ -82,7 +82,7 @@ public class Rol {
 		if (getClass() != obj.getClass())
 			return false;
 		Rol other = (Rol) obj;
-		if (id != other.id)
+		if (name != other.name)
 			return false;
 		return true;
 	}

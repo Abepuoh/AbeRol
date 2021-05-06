@@ -94,7 +94,7 @@ public class Master {
 		if (getClass() != obj.getClass())
 			return false;
 		Master other = (Master) obj;
-		if (id != other.id)
+		if (name != other.name)
 			return false;
 		return true;
 	}

@@ -35,8 +35,10 @@ public class logInController {
 	
 	private Stage myStage;
 	
+	logInController logInController;
 	@FXML
 	public void initialize(URL url, ResourceBundle rb) {
+		logInController = this;
 		myStage.getIcons().add(new Image(App.class.getResourceAsStream("logo.png")));
 	}
 
@@ -69,6 +71,7 @@ public class logInController {
 		Scene modalScene = new Scene(modal);
 		modalStage.setScene(modalScene);
 		modalStage.showAndWait();
+		modalStage.setResizable(false);
 	}
 
 	@FXML
@@ -82,10 +85,19 @@ public class logInController {
 		Scene modalScene = new Scene(modal);
 		modalStage.setScene(modalScene);
 		modalStage.showAndWait();
+		modalStage.setResizable(false);
 	}
-
+	
+	@FXML
+	public void getParameter(String auxMaster) {
+		txtUser.setText(auxMaster);
+	}
+	
 	public void OpenMenu() {
 		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("mainMenu.fxml"));
+		//controller null
+		mainMenu mainMenuControllerInstance = (mainMenu)fxmlLoader.getController();
+		mainMenuControllerInstance.getParameter(logInController,txtUser.getText());
 		Parent modal;
 		try {
 			modal = fxmlLoader.load();
@@ -95,6 +107,7 @@ public class logInController {
 			Scene modalScene = new Scene(modal);
 			modalStage.setScene(modalScene);
 			modalStage.showAndWait();
+			modalStage.setResizable(false);
 
 		} catch (IOException ex) {
 			Logger.getLogger(logInController.class.getName()).log(Level.SEVERE, null, ex);
