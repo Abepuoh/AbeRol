@@ -9,49 +9,42 @@ import java.util.List;
 import com.proyecto.AbeRol.Interfaces.IMasterDAO;
 import com.proyecto.AbeRol.UIUtils.*;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class MasterDAO extends Master implements IMasterDAO {
 
 	public static MasterDAO MMaster;
 
 	public MasterDAO(int id, String name, String email, String password, List<Rol> rol) {
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.rol = rol;
+		super(id, name, email, password, rol);
 	}
 
 	public MasterDAO(String name, String email, String password) {
-		this.name = name;
-		this.email = email;
-		this.password = password;
+		super(name,email,password);
 	}
 
 	public MasterDAO(String name, String password) {
-		this.name = name;
-		this.password = password;
-	}
-
-	public MasterDAO(String email) {
-		this.email = email;
+		super(name,password);
 	}
 
 	public MasterDAO() {
-		this(-1, "Unknown", "Unknown@Email", "UnknownPassword", null);
+		super();
 	}
 
-	public MasterDAO(Master a) {
-		this.id = a.id;
-		this.name = a.name;
-		this.email = a.email;
-		this.password = a.email;
+	public MasterDAO(Master aux) {
+		this.id = aux.id;
+		this.name = aux.name;
+		this.email = aux.email;
+		this.password = aux.email;
+		this.rol=aux.rol;
 	}
-
+	
 	public MasterDAO(int id) {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement query = con.prepareStatement(EnumBBDD.GETBYID.getString());
+				PreparedStatement query = con.prepareStatement(EnumBBDD.GETMASTERBYID.getString());
 				query.setInt(1, id);
 				ResultSet rs = query.executeQuery();
 				while (rs.next()) {
@@ -59,7 +52,6 @@ public class MasterDAO extends Master implements IMasterDAO {
 					this.name = rs.getString("Name");
 					this.password = rs.getString("Password");
 					this.email = rs.getString("Password");
-					// this.rol=rs.getString("rol");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -73,11 +65,13 @@ public class MasterDAO extends Master implements IMasterDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.INSERTUPDATE.getString());
-				q.setString(2, this.name);
-				q.setString(3, this.password);
-				q.setString(4, this.email);
-				// q.setInt(5, this.rol);
+				PreparedStatement q = con.prepareStatement(EnumBBDD.INSERTUPDATEMASTER.getString());
+				q.setString(1, this.name);
+				q.setString(2, this.password);
+				q.setString(3, this.email);
+				q.setString(4, this.name);
+				q.setString(5, this.password);
+				q.setString(6, this.email);
 				result = q.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -87,17 +81,19 @@ public class MasterDAO extends Master implements IMasterDAO {
 	}
 
 	@Override
-	public Master getMasterByEmail(String email) {
-		Master mainMaster = new Master();
+	public ObservableList<MasterDAO> getMasterByEmail(String email) {
+		ObservableList<MasterDAO> mainMaster = FXCollections.observableArrayList();
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.GETBYEMAIL.getString());
+				PreparedStatement q = con.prepareStatement(EnumBBDD.GETMASTERBYEMAIL.getString());
 				q.setString(1, email);
 				ResultSet rs = q.executeQuery();
 				if(!rs.next()) {
-				mainMaster.setName(rs.getString("name"));
-				mainMaster.setPassword(rs.getString("password"));
+				String name = rs.getString("name");
+				String password = rs.getString("password");
+				MasterDAO dummy = new MasterDAO(name,password,email);
+				mainMaster.add(dummy);
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -121,7 +117,6 @@ public class MasterDAO extends Master implements IMasterDAO {
 				this.name = "Unknown";
 				this.email = "Unknown@Email";
 				this.password = "UnknownPassword";
-				this.rol = null;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

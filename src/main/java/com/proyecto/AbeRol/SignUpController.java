@@ -2,8 +2,6 @@ package com.proyecto.AbeRol;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import com.proyecto.AbeRol.Model.Master;
 import com.proyecto.AbeRol.Model.MasterDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,7 +44,6 @@ public class SignUpController {
 			alert.setTitle("Informacion");
 			alert.setContentText("Se ha añadido correctamente");
 			alert.showAndWait();
-		
 		}
 	}
 	@FXML

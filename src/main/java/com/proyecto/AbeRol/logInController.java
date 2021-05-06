@@ -66,7 +66,6 @@ public class logInController {
 		Stage modalStage = new Stage();
 		modalStage.initModality(Modality.APPLICATION_MODAL);
 		modalStage.initOwner(App.rootstage);
-
 		Scene modalScene = new Scene(modal);
 		modalStage.setScene(modalScene);
 		modalStage.showAndWait();

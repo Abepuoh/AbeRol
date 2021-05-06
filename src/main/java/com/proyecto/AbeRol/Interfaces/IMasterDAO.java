@@ -1,9 +1,11 @@
 package com.proyecto.AbeRol.Interfaces;
 
 import java.util.List;
-
-import com.proyecto.AbeRol.Model.Master;
+import com.proyecto.AbeRol.Model.MasterDAO;
 import com.proyecto.AbeRol.Model.Rol;
+
+import javafx.collections.ObservableList;
+
 /**
  * IMasterDAO is the Master's DAO interface
  * @author Abepuoh
@@ -20,7 +22,7 @@ public interface IMasterDAO  {
 	* @param id identifier of the master
 	* @return returns the master that we have entered
 	*/
-	public Master getMasterByEmail(String email);
+	public ObservableList<MasterDAO> getMasterByEmail(String email);
 	/**
 	* Delete a master starting from the id
 	* @param id identify of the master
