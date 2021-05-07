@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,20 +8,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="347.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.AbeRol.SignUpController">
    <children>
-      <ImageView fitHeight="500.0" fitWidth="347.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/signUp.jpg" />
-         </image>
-      </ImageView>
       <Button fx:id="buttSave" layoutX="227.0" layoutY="428.0" mnemonicParsing="false" onAction="#exit" text="Salir" />
       <TextField fx:id="txtName" layoutX="102.0" layoutY="273.0" promptText="Nombre Usuario" />
-      <TextField fx:id="txtEmail" layoutX="102.0" layoutY="323.0" promptText="Email" />
-      <PasswordField fx:id="txtPass" layoutX="102.0" layoutY="374.0" promptText="Contraseña" />
-      <ImageView fitHeight="49.0" fitWidth="38.0" layoutX="47.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/email.png" />
-         </image>
-      </ImageView>
       <ImageView fitHeight="49.0" fitWidth="38.0" layoutX="47.0" layoutY="369.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/key.png" />
@@ -33,6 +20,6 @@
             <Image url="@../Images/user.png" />
          </image>
       </ImageView>
-      <Button fx:id="buttCreate1" layoutX="61.0" layoutY="428.0" mnemonicParsing="false" onAction="#saveMaster" text="Registrrate" />
+      <Button fx:id="buttCreate1" layoutX="61.0" layoutY="428.0" mnemonicParsing="false" onAction="#saveMaster" text="Borrar" />
    </children>
 </AnchorPane>
