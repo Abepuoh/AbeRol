@@ -1,29 +1,22 @@
 package com.proyecto.AbeRol;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 import com.proyecto.AbeRol.Model.MasterDAO;
 import com.proyecto.AbeRol.Model.Player;
 import com.proyecto.AbeRol.Model.Rol;
-
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.text.Font;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class mainMenu  {
-	@FXML
-	private TextField masterAux;
+	
 	@FXML
 	private Button deleteMasterButt;
 
@@ -37,20 +30,16 @@ public class mainMenu  {
 	private Button buttExit;
 
 	@FXML
-	private ChoiceBox<Rol> choiceRol;
+	private ComboBox<Rol> choiceRol;
 	@FXML 
 	private ObservableList<Player> Players;
-	
-	private Stage myStage;
-
-	logInController stage_controller_enstage2;
+	@FXML
+	private Label pitoDeLeche;
 	
 	@FXML
-	public void initialize(URL url, ResourceBundle rb) {
-		myStage.getIcons().add(new Image(App.class.getResourceAsStream("logo.png")));
-		String name = this.masterAux.getText();
-		MasterDAO dummy = new MasterDAO(name);
-		
+	public void initialize() {
+	 MasterDAO u = new MasterDAO();
+	//this.choiceRol.setItems((ObservableList<Rol>) u.getRol());
 	}
 
 	@FXML
@@ -67,10 +56,12 @@ public class mainMenu  {
 	protected void addRol(ActionEvent Event) throws IOException {
 
 	}
+	
 	@FXML 
-	protected void editMaster(ActionEvent Event)throws IOException{
-		
+	protected void setColumn1() {
+		//this.pitoDeLeche..set(choiceRol.getSelectionModel().getSelectedItem());
 	}
+	
 	@FXML
     private void exit(ActionEvent event) {
         Stage stage = (Stage) this.buttExit.getScene().getWindow();
@@ -90,10 +81,4 @@ public class mainMenu  {
             return false;
         }
     }
-	@FXML
-	public void getParameter(logInController stage1,String text) {
-		masterAux.setText(text);
-		stage_controller_enstage2=stage1;
-		
-	}
 }

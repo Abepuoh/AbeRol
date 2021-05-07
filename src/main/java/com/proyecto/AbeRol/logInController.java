@@ -5,6 +5,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
+
+
+import com.proyecto.AbeRol.Model.AudioFilePlayer;
 import com.proyecto.AbeRol.Model.MasterDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,21 +42,20 @@ public class logInController {
 	
 	private Stage myStage;
 	
-	logInController logInController;
 	@FXML
-	public void initialize(URL url, ResourceBundle rb) {
-		logInController = this;
-		myStage.getIcons().add(new Image(App.class.getResourceAsStream("logo.png")));
+	public void initialize() {
+		
 	}
-
+	
+	
 	@FXML
 	protected void logUser(ActionEvent Event) throws IOException {
 		String name = this.txtUser.getText();
 		String password = this.txtPass.getText();
-		MasterDAO dummy = new MasterDAO();
+		MasterDAO root = new MasterDAO();
 		this.txtUser.clear();
 		this.txtPass.clear();
-		if (dummy.logIn(name, password) == true) {
+		if (root.logIn(name, password) == true) {
 			OpenMenu();
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -95,9 +101,6 @@ public class logInController {
 	
 	public void OpenMenu() {
 		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("mainMenu.fxml"));
-		//controller null
-		mainMenu mainMenuControllerInstance = (mainMenu)fxmlLoader.getController();
-		mainMenuControllerInstance.getParameter(logInController,txtUser.getText());
 		Parent modal;
 		try {
 			modal = fxmlLoader.load();

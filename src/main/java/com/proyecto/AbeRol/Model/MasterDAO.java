@@ -180,4 +180,11 @@ public class MasterDAO extends Master implements IMasterDAO {
 		return rolList;
 	}
 
+	@Override
+	public String toString() {
+		return "MasterDAO [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", rol=" + rol
+				+ "]";
+	}
+	
+    
 }

@@ -1,7 +1,5 @@
 package com.proyecto.AbeRol;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import com.proyecto.AbeRol.Model.MasterDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,34 +21,49 @@ public class SignUpController {
 	private Button buttCreate;
 	@FXML
 	private Button buttSave;
-	
-	private Stage myStage;
-	
+
 	@FXML
-	public void initialize(URL url, ResourceBundle rb) {
-		myStage.getIcons().add(new Image(App.class.getResourceAsStream("logo.png")));
+	public void initialize() {
+
 	}
 
 	@FXML
 	private void saveMaster(ActionEvent event) {
 		String name = this.txtName.getText();
-		String password = this.txtPass.getText();
 		String email = this.txtEmail.getText();
-		if(name.trim().length() > 0 && email.trim().length() > 0 && password.trim().length() > 0) {	
-		MasterDAO dummy = new MasterDAO(name,email ,password);
-		dummy.SaveMaster();
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		String password = this.txtPass.getText();
+		if (name.trim().length() > 0 && email.trim().length() > 0 && password.trim().length() > 0 && name != null
+				&& email != null && password != null) {
+			MasterDAO dummyDao = new MasterDAO(email);
+			if (dummyDao.logIn(name, password) == false) {
+				MasterDAO dummy = new MasterDAO(name, email, password);
+				dummy.SaveMaster();
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.setHeaderText(null);
+				alert.setTitle("Informacion");
+				alert.setContentText("Se ha añadido correctamente");
+				alert.showAndWait();
+			} else {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setHeaderText(null);
+				alert.setTitle("Error de creacion");
+				alert.setContentText("El usuario ya existe, recuerde que siempre puede recuperar su cuenta");
+				alert.showAndWait();
+			}
+		} else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setHeaderText(null);
-			alert.setTitle("Informacion");
-			alert.setContentText("Se ha añadido correctamente");
+			alert.setTitle("Error de creacion");
+			alert.setContentText("Porfavor no deje ningun dato vacío");
 			alert.showAndWait();
 		}
 	}
+
 	@FXML
-    private void exit(ActionEvent event) {
-        Stage stage = (Stage) this.buttSave.getScene().getWindow();
-        stage.close();
- 
-    }
+	private void exit(ActionEvent event) {
+		Stage stage = (Stage) this.buttSave.getScene().getWindow();
+		stage.close();
+
+	}
 
 }
