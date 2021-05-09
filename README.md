@@ -31,7 +31,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## ABOUT THE PROJECT
+# ABOUT THE PROJECT
 
 This project comes after years of role-playing. One of the shortcomings of this minority sector is the <b>lack of tools</b>,
 especially <b>focused more on the Role Master</b> (the individual in charge of making the whole game work perfectly). This task is certainly complicated if you want to be carried out in a serious and professional way as it demands a lot of skills, not only when it comes to developing the story, but also to 
@@ -41,7 +41,7 @@ to manage a lot of data which are key for the development of the story and the p
 
 
 <!-- Technologies used -->
-### BUILD WITH
+## BUILD WITH
 
 In this section I show you the tools I have used to develop the project, both IDEs and languages and programs.
 * [JavaFx](https://www.java.com/es/)
@@ -52,12 +52,12 @@ In this section I show you the tools I have used to develop the project, both ID
 
 
 <!-- STATUS -->
-#### PROJECT STATUS  
+### PROJECT STATUS  
 
 
 
 <!-- CONTRIBUTING -->
-##### CONTRIBUTIONS
+#### CONTRIBUTIONS
 
 Contributions are what make the open source community such an amazing place to learn, inspire and create. Any contribution you make is <b>MOSTLY APPRECIATED</b>.
 
@@ -69,7 +69,7 @@ Contributions are what make the open source community such an amazing place to l
 
 
 <!-- CONTACT -->
-###### CONTACT
+##### CONTACT
 
 Miguel Ángel García Mérida - Dammiguelangel@gmail.com
 
@@ -78,7 +78,7 @@ Project Link: [https://github.com/Abepuoh/RolApp](https://github.com/Abepuoh/Rol
 
 
 <!-- LICENSE -->
-###### COPYRIGHT AND LICENSE
+##### COPYRIGHT AND LICENSE
 
 Code and documentation copyright 2011-2018 the authors. Code released under the [MIT License](https://reponame/blob/master/LICENSE).
 
