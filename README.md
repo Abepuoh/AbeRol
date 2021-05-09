@@ -17,9 +17,9 @@
 <details open="open">
   <summary><h2 style="display: inline-block">PROYECT INDEX</h2></summary>
   <ol>
-    <li><a href="#About-the-project">About the project</a>About the project  </li>
-    <li><a href="#built-with">Technologies used</a></li> </li>
-    <li><a href="#Status">Current Status</a></li> 
+    <li><a href="#About-the-project"</a></li>
+    <li><a href="#built-with"</a></li>
+    <li><a href="#Status"</a></li>
     <li><a href="#Contributing">Contributions</a></li>
     <li><a href="#bugs-and-feature-requests">Errors and bugs</a></li>
     <li><a href="#Contact">Contact details</a></li></li>
