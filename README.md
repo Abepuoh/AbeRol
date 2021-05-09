@@ -19,7 +19,7 @@
   <ol>
     <li><a href="#About-the-project"> ABOUT THE PROJECT</a></li></li>
     <li><a href="#built-with">TECHNOLOGIES USED</a></li></li>
-    <li><a href="#Status">PROJECT STATUS</a></li></li>
+    <li><a href="#Status"> PROJECT STATUS  </a></li></li>
     <li><a href="#Contributing">Contributions</a></li></li>
     <li><a href="#bugs-and-feature-requests">Errors and bugs</a></li></li>
     <li><a href="#Contact">Contact details</a></li></li>
@@ -41,7 +41,7 @@ to manage a lot of data which are key for the development of the story and the p
 
 
 <!-- Technologies used -->
-### TECHNOLOGIES USED
+### BUILD WITH
 
 In this section I show you the tools I have used to develop the project, both IDEs and languages and programs.
 * [JavaFx](https://www.java.com/es/)
