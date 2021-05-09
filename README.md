@@ -17,13 +17,13 @@
 <details open="open">
   <summary><h2 style="display: inline-block">PROYECT INDEX</h2></summary>
   <ol>
-    <li><a href="#About-the-project"</a></li>
-    <li><a href="#built-with"</a></li>
-    <li><a href="#Status"</a></li>
-    <li><a href="#Contributing">Contributions</a></li>
-    <li><a href="#bugs-and-feature-requests">Errors and bugs</a></li>
+    <li><a href="#About-the-project"> ABOUT THE PROJECT</a></li></li>
+    <li><a href="#built-with"></a></li></li></li>
+    <li><a href="#Status"></a></li></li>
+    <li><a href="#Contributing">Contributions</a></li></li>
+    <li><a href="#bugs-and-feature-requests">Errors and bugs</a></li></li>
     <li><a href="#Contact">Contact details</a></li></li>
-    <li><a href="#copyright-and-licensing">Copyright and licensing</a></li>
+    <li><a href="#copyright-and-licensing">Copyright and licensing</a></li></li>
   </ol>
 </details>
 
