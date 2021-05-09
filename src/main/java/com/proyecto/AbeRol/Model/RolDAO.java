@@ -5,10 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import com.proyecto.AbeRol.Interfaces.IRolDAO;
+
 import com.proyecto.AbeRol.UIUtils.EnumBBDD;
 
-public class RolDAO extends Rol implements IRolDAO {
+import javafx.collections.FXCollections;
+
+public class RolDAO extends Rol {
 
 	public RolDAO(int id, String name, String description, Master masterRol, List<Player> players) {
 		super(id, name, description, masterRol, players);
@@ -45,6 +47,7 @@ public class RolDAO extends Rol implements IRolDAO {
 					this.name = rs.getString("name");
 					this.description = rs.getString("description");
 					this.masterRol = new MasterDAO(rs.getInt("id_Master"));
+					this.players=PlayerDAO.getPlayerByRol(this.id);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -52,7 +55,6 @@ public class RolDAO extends Rol implements IRolDAO {
 		}
 	}
 
-	@Override
 	public int saveRol() {
 		int saveResult = 0;
 		Connection con = ConnectionDB.getConexion();
@@ -73,13 +75,6 @@ public class RolDAO extends Rol implements IRolDAO {
 		return saveResult;
 	}
 
-	@Override
-	public List<Player> getPlayerbyRol(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public int deleteRol(String name) {
 		int deleteMasterResult = 0;
 		Connection con = ConnectionDB.getConexion();
@@ -91,7 +86,6 @@ public class RolDAO extends Rol implements IRolDAO {
 				this.id = -1;
 				this.name = "Unknown";
 				this.description = "UnknownDescription";
-				this.masterRol.id = -1;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -99,4 +93,26 @@ public class RolDAO extends Rol implements IRolDAO {
 		}
 		return deleteMasterResult;
 	}
+//
+//	public static Rol getRolByPlayer(int id) {
+//		Rol result = new Rol();
+//		Connection con = ConnectionDB.getConexion();
+//		if (con != null) {
+//			try {
+//				PreparedStatement q = con.prepareStatement(SELECTAUTORBYISBN);
+//				q.setString(1, isbn);
+//				ResultSet rs = q.executeQuery();
+//				while (rs.next()) {
+//					result.setDni(rs.getString("dni"));
+//					result.setNombre(rs.getString("nombre"));
+//					result.setEdad(rs.getInt("edad"));
+//				}
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//
+//		return result;
+//	}
 }

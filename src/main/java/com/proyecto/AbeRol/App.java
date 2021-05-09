@@ -8,9 +8,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
-import com.proyecto.AbeRol.Model.AudioFilePlayer;
-import com.proyecto.AbeRol.Model.MasterDAO;
+import com.proyecto.AbeRol.UIUtils.AudioFilePlayer;
 
 /**
  * JavaFX App

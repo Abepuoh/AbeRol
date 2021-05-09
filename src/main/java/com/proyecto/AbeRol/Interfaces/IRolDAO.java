@@ -2,7 +2,8 @@ package com.proyecto.AbeRol.Interfaces;
 
 import java.util.List;
 
-import com.proyecto.AbeRol.Model.Player;
+import com.proyecto.AbeRol.Model.Rol;
+
 
 /**
  * IMasterDAO is the Master's DAO interface
@@ -11,11 +12,11 @@ import com.proyecto.AbeRol.Model.Player;
  */
 public interface IRolDAO {
 	/**
-	 * method to get all the players of each role
+	 * method to get the rols of each Master
 	 * @param id to identify each rol
 	 * @return the list of players for each rol
 	 */
-	public List<Player> getPlayerbyRol(int id);
+	public List<Rol> getRolByMaster(int id);
 	/**
 	* Save a new Rol in the base
 	* @return 0 if successfully saved

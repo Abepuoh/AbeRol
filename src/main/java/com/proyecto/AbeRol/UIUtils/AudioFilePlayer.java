@@ -1,7 +1,9 @@
-package com.proyecto.AbeRol.Model;
+package com.proyecto.AbeRol.UIUtils;
+import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
+import static javax.sound.sampled.AudioSystem.getAudioInputStream;
+
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -10,9 +12,6 @@ import javax.sound.sampled.DataLine.Info;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
-import static javax.sound.sampled.AudioSystem.getAudioInputStream;
-import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
 
 public class AudioFilePlayer extends Thread{
 	

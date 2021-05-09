@@ -24,6 +24,12 @@ public class Rol {
 		this.masterRol = masterRol;
 		this.players = players;
 	}
+	
+	public Rol(String name, String description) {
+		super();
+		this.name = name;
+		this.description = description;
+	}
 
 	public Rol(int id) {
 		this.id = id;
@@ -31,6 +37,22 @@ public class Rol {
 
 	public Rol() {
 		this(-1,"UnknownRol","UnknownDesc",new Master(),new ArrayList<Player>());
+	}
+
+	public Master getMasterRol() {
+		return masterRol;
+	}
+
+	public void setMasterRol(Master masterRol) {
+		this.masterRol = masterRol;
+	}
+
+	public List<Player> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(List<Player> players) {
+		this.players = players;
 	}
 
 	public String getName() {

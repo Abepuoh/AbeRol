@@ -21,11 +21,11 @@ public interface IPlayerDAO {
 	 * Returns the rol of a player
 	 * @return the player´s rol
 	 */
-	public Rol getRol();
+	public Rol getMyRol();
 	/**
 	 * Method that returns a list of players
 	 * @param name of the Rol
 	 * @return a list of players
 	 */
-	public List<Player> getPlayersByRol(String name);
+	public List<Player> getPlayerByRol(int id);
 }

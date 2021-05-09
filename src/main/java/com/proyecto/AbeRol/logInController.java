@@ -1,18 +1,11 @@
 package com.proyecto.AbeRol;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import java.io.File;
-
-
-import com.proyecto.AbeRol.Model.AudioFilePlayer;
 import com.proyecto.AbeRol.Model.MasterDAO;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +16,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -39,21 +31,18 @@ public class logInController {
 	private Hyperlink buttCreate;
 	@FXML
 	private Button LogButt;
-	
-	private Stage myStage;
+
 	
 	@FXML
 	public void initialize() {
 		
 	}
 	
-	
 	@FXML
 	protected void logUser(ActionEvent Event) throws IOException {
 		String name = this.txtUser.getText();
 		String password = this.txtPass.getText();
 		MasterDAO root = new MasterDAO();
-		this.txtUser.clear();
 		this.txtPass.clear();
 		if (root.logIn(name, password) == true) {
 			OpenMenu();
@@ -94,10 +83,6 @@ public class logInController {
 		modalStage.setResizable(false);
 	}
 	
-	@FXML
-	public void getParameter(String auxMaster) {
-		txtUser.setText(auxMaster);
-	}
 	
 	public void OpenMenu() {
 		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("mainMenu.fxml"));
@@ -111,6 +96,8 @@ public class logInController {
 			modalStage.setScene(modalScene);
 			modalStage.showAndWait();
 			modalStage.setResizable(false);
+			modalStage.initOwner(App.rootstage);
+			modalStage.show();
 
 		} catch (IOException ex) {
 			Logger.getLogger(logInController.class.getName()).log(Level.SEVERE, null, ex);

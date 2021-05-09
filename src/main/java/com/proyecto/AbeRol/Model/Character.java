@@ -58,11 +58,11 @@ public class Character {
 		this.strenght = strenght;
 	}
 
-	public int getDexterity() {
+	public int getDexerity() {
 		return dexerity;
 	}
 
-	public void setDexterity(int dexterity) {
+	public void setDexerity(int dexterity) {
 		this.dexerity = dexterity;
 	}
 

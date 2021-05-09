@@ -2,11 +2,11 @@ module com.proyecto.AbeRol {
 	 requires javafx.controls;
 	 requires javafx.fxml;
 	 requires transitive javafx.graphics;
-	 requires java.sql;
+	 requires transitive java.sql;
 	 requires java.xml;
 	 requires javafx.base;
 	 requires javafx.media;
- 	requires java.desktop;
+ 	 requires java.desktop;
 
     opens com.proyecto.AbeRol to javafx.fxml,javafx.media,javafx.base;
     opens com.proyecto.AbeRol.Model to javafx.base,javafx.fxml;

@@ -2,6 +2,8 @@ package com.proyecto.AbeRol.Model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.collections.FXCollections;
 /**
  * Central class of the application from which we can access all available processes
  * @author Abepuoh

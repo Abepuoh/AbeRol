@@ -22,7 +22,7 @@ public interface IMasterDAO  {
 	* @param id identifier of the master
 	* @return returns the master that we have entered
 	*/
-	public ObservableList<MasterDAO> getMasterByEmail(String email);
+	public ObservableList<MasterDAO> getMasterByEmail(int id);
 	/**
 	* Delete a master starting from the id
 	* @param name of the master
