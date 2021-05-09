@@ -15,17 +15,30 @@
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
-  <summary><h2 style="display: inline-block">PROYECT INDEX</h2></summary>
+  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
-    <li><a href="#About-the-project"> ABOUT THE PROJECT</a></li></li>
-    <li><a href="#built-with">TECHNOLOGIES USED</a></li></li>
-    <li><a href="#Status"> PROJECT STATUS  </a></li></li>
-    <li><a href="#Contributing">Contributions</a></li></li>
-    <li><a href="#bugs-and-feature-requests">Errors and bugs</a></li></li>
-    <li><a href="#Contact">Contact details</a></li></li>
-    <li><a href="#copyright-and-licensing">Copyright and licensing</a></li></li>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
+
 
 
 
