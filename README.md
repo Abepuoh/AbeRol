@@ -9,14 +9,9 @@
 
   <p align="center">
     JavaFX RolApp Project
-    <br />
-    <a href="https://github.com/Abepuoh/RolApp"><strong>Explore the project"</strong></a></a>
-    <br />
-    <br />
-    -
-    <a href="https://github.com/Abepuoh/RolApp/issues">Report Errors</a>
-    -
-    <a href="https://github.com/Abepuoh/RolApp/issues">Submit Feedback</a> 
+      <a href="https://github.com/Abepuoh/RolApp"><strong>Explore the project"</strong></a></a>
+      <a href="https://github.com/Abepuoh/RolApp/issues">Report Errors</a>
+      <a href="https://github.com/Abepuoh/RolApp/issues">Submit Feedback</a> 
 </p>
 
 
