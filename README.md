@@ -1,5 +1,12 @@
 <!-- PROJECT LOGO -->
 <br />
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+
+
 <p align="center">
   <a href="https://github.com/Abepuoh/RolApp">
     <img src="src/main/resources/com/proyecto/AbeRol/logo.png" alt="Logo" width="80" height="80">
@@ -9,10 +16,7 @@
 
   <p align="center">
     JavaFX RolApp Project
-      <a href="https://github.com/Abepuoh/RolApp"><strong>Explore the project"</strong></a></a>
-      <a href="https://github.com/Abepuoh/RolApp/issues">Report Errors</a>
-      <a href="https://github.com/Abepuoh/RolApp/issues">Submit Feedback</a> 
-</p>
+  </p>
 
 
 
