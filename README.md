@@ -7,11 +7,7 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[1[Contributors][contributors-shield]][contributors-url]
-[2[Forks][forks-shield]][forks-url]
-[3[Stargazers][stars-shield]][stars-url]
-[4[Issues][issues-shield]][issues-url]
-[5[MIT License][license-shield]][license-url]
+![](https://img.shields.io/github/stars/pandao/editor.md.svg) ![](https://img.shields.io/github/forks/pandao/editor.md.svg) ![](https://img.shields.io/github/tag/pandao/editor.md.svg) ![](https://img.shields.io/github/release/pandao/editor.md.svg) ![](https://img.shields.io/github/issues/pandao/editor.md.svg) ![](https://img.shields.io/bower/v/editor.md.svg)
 <!-- [![LinkedIn][linkedin-shield]][linkedin-url] -->
 
 <br />
