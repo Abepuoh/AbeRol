@@ -21,11 +21,7 @@ public class PlayerDAO extends Player  {
 		super(id, name, level, strength, dexerity, intelligence, information, height, weight, classRol, age, contains);
 		// TODO Auto-generated constructor stub
 	}
-	public PlayerDAO( String name, int level, int strength, int dexerity, int intelligence, String information,
-			int height, int weight, String classRol, int age, Rol contains) {
-		super(name, level, strength, dexerity, intelligence, information, height, weight, classRol, age, contains);
-		// TODO Auto-generated constructor stub
-	}
+	
 	public PlayerDAO() {
 		super();
 	}
@@ -65,7 +61,7 @@ public class PlayerDAO extends Player  {
 					this.classRol = rs.getString("class");
 					this.age = rs.getInt("age");
 					this.contains = new RolDAO(rs.getInt("id_rol"));
-				}			
+				}	
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -119,7 +115,7 @@ public class PlayerDAO extends Player  {
 		}
 		return rs;
 	}
-
+	
 	public static ObservableList<Player> getPlayerByRol(int id) {
 		
 		ObservableList<Player> listPlayers=FXCollections.observableArrayList();
@@ -168,4 +164,9 @@ public class PlayerDAO extends Player  {
 	        }
 	        return getNombres;
 	      }
+	@Override
+	public String toString() {
+		return  name;
+	}
+	 
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import com.proyecto.AbeRol.Model.Master;
 import com.proyecto.AbeRol.Model.MasterDAO;
+import com.proyecto.AbeRol.Model.MasterSingleton;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,8 +35,8 @@ public class editMasterController {
 
 	@FXML
 	public void initialize() {
-		int id = 1;
-		dummy = new MasterDAO(id);
+		MasterSingleton transfer = MasterSingleton.getInstance();
+		dummy = transfer.getUser();
 	}
 
 	@FXML
@@ -75,7 +76,6 @@ public class editMasterController {
 
 	@FXML
 	private void deleteMaster(ActionEvent event) throws IOException {
-
 		if (dummy != null) {
 			if (showConfirm(dummy.getName()) == true) {
 				dummy.deleteMaster(dummy.getName());

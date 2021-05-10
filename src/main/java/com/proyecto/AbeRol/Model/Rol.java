@@ -1,7 +1,7 @@
 package com.proyecto.AbeRol.Model;
 
-import java.util.ArrayList;
-import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Clase que usaremos para guardar los 
@@ -15,9 +15,9 @@ public class Rol {
 	protected String name;
 	protected String description;
 	protected Master masterRol;
-	protected List<Player> players;
+	protected ObservableList<Player> players;
 	
-	public Rol(int id,String name,String description, Master masterRol, List<Player> players) {
+	public Rol(int id,String name,String description, Master masterRol, ObservableList<Player> players) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -36,7 +36,7 @@ public class Rol {
 	}
 
 	public Rol() {
-		this(-1,"UnknownRol","UnknownDesc",new Master(),new ArrayList<Player>());
+		this(999,"UnknownRol","UnknownDesc",new Master(),FXCollections.observableArrayList());
 	}
 
 	public Master getMasterRol() {
@@ -47,7 +47,7 @@ public class Rol {
 		this.masterRol = masterRol;
 	}
 
-	public void setPlayers(List<Player> players) {
+	public void setPlayers(ObservableList<Player> players) {
 		this.players = players;
 	}
 
@@ -59,12 +59,8 @@ public class Rol {
 		this.name = name;
 	}
 
-	public List<Player> getPlayer() {
+	public ObservableList<Player> getPlayer() {
 		return players;
-	}
-
-	public void setPlayer(List<Player> player) {
-		this.players = player;
 	}
 
 	public String getDescription() {

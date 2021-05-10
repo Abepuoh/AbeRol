@@ -15,8 +15,13 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.AbeRol.mainMenu">
    <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0598ff;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="413.0" prefWidth="159.0" style="-fx-background-color: #0598ff;" BorderPane.alignment="CENTER">
          <children>
+            <ImageView fitHeight="500.0" fitWidth="189.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/backmain.jpg" />
+               </image>
+            </ImageView>
             <Button fx:id="buttExit" layoutX="69.0" layoutY="377.0" mnemonicParsing="false" onAction="#exit" text="SALIR">
                <font>
                   <Font name="Bauhaus 93" size="14.0" />
@@ -65,25 +70,20 @@
                      <font>
                         <Font name="Bauhaus 93" size="18.0" />
                      </font></Text>
-                  <Label text="PRIMER JUGADOR" textOverrun="CLIP" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Bauhaus 93" size="18.0" />
-                     </font></Label>
-                  <Label text="SEGUNDO JUGADOR" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <Label text="SELECCION DE JUGADOR" textOverrun="CLIP" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <font>
                         <Font name="Bauhaus 93" size="18.0" />
                      </font></Label>
                   <ComboBox fx:id="choiceRol" prefHeight="28.0" prefWidth="279.0" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="choicePlayer" prefHeight="28.0" prefWidth="279.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </top>
          <center>
             <GridPane fx:id="gridPlayer" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.5999755859375" minWidth="10.0" prefWidth="151.0000244140625" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="374.0" minWidth="0.0" prefWidth="99.8000244140625" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="374.0" minWidth="10.0" prefWidth="162.9999755859375" />
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="374.0" minWidth="10.0" prefWidth="86.99992675781249" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.5999755859375" minWidth="10.0" prefWidth="148.00001220703123" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="409.20001220703125" minWidth="0.0" prefWidth="151.19998779296876" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -129,52 +129,7 @@
                      <font>
                         <Font name="Bauhaus 93" size="18.0" />
                      </font></Label>
-                  <Label text="FUERZA" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Bauhaus 93" size="18.0" />
-                     </font></Label>
-                  <Label GridPane.columnIndex="2" GridPane.rowIndex="8" />
                   <Label fx:id="txtStrength" text="FUERZA" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Bauhaus 93" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="txtName1" alignment="CENTER" text="NOMBRE" GridPane.columnIndex="2" GridPane.halignment="CENTER">
-                     <font>
-                        <Font name="Bauhaus 93" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" text="NIVEL" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Bauhaus 93" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" text="EDAD" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8">
-                     <font>
-                        <Font name="Bauhaus 93" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" text="CLASE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7">
-                     <font>
-                        <Font name="Bauhaus 93" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="0.0" prefWidth="40.0" text="PESO" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="Bauhaus 93" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" text="ALTURA" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="Bauhaus 93" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" text="INTELIGENCIA" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="Bauhaus 93" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" text="DESTREZA" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <font>
                         <Font name="Bauhaus 93" size="18.0" />
                      </font>
@@ -188,25 +143,14 @@
                   <Label fx:id="pitoDeLeche1113" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label fx:id="pitoDeLeche1114" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Label fx:id="pitoDeLeche1115" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <Label fx:id="pitoDeLeche1116" text="Label" GridPane.columnIndex="3" />
-                  <Label fx:id="pitoDeLeche1117" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <Label fx:id="pitoDeLeche1118" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <Label fx:id="pitoDeLeche1119" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <Label fx:id="pitoDeLeche11110" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                  <Label fx:id="pitoDeLeche11111" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                  <Label fx:id="pitoDeLeche11112" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                  <Label fx:id="pitoDeLeche11113" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-                  <Label fx:id="pitoDeLeche11114" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="8" />
                </children>
             </GridPane>
          </center>
          <bottom>
             <GridPane prefHeight="102.0" prefWidth="500.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.60001220703126" minWidth="10.0" prefWidth="89.4" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="200.60001220703126" minWidth="10.0" prefWidth="161.4" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="85.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="178.0" minWidth="10.0" prefWidth="163.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.19996337890626" minWidth="10.0" prefWidth="71.19996337890628" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="286.40003662109376" minWidth="10.0" prefWidth="286.40003662109376" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -214,17 +158,18 @@
                <children>
                   <Label text="DESCRIPCION" GridPane.halignment="CENTER">
                      <font>
-                        <Font name="Bauhaus 93" size="12.0" />
+                        <Font name="Bauhaus 93" size="18.0" />
                      </font></Label>
-                  <Label prefHeight="15.0" prefWidth="95.0" text="DESCRIPCION" GridPane.columnIndex="2">
-                     <font>
-                        <Font name="Bauhaus 93" size="12.0" />
-                     </font>
-                  </Label>
                   <Label fx:id="pitoDeLeche11115" text="Label" GridPane.columnIndex="1" />
-                  <Label fx:id="pitoDeLeche111151" text="Label" GridPane.columnIndex="3" />
                </children>
             </GridPane>
-         </bottom></BorderPane>
+         </bottom>
+         <right>
+            <ImageView fitHeight="343.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../Images/character.jpg" />
+               </image>
+            </ImageView>
+         </right></BorderPane>
    </right>
 </BorderPane>

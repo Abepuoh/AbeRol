@@ -5,11 +5,12 @@ public enum EnumBBDD {
 	SELECTROL("SELECT name FROM Rol"),
 	SELECTPLAYERS("SELECT name FROM player"),
 	LOGINMENU("SELECT name,password FROM Master WHERE name LIKE ? and password LIKE ?"), 
-	GETMASTERBYEMAIL("SELECT name,password FROM Master WHERE email = ?"),
-	GETMASTERBYNAME("SELECT name,password,email,rol FROM Master WHERE name = ?"), 
+	GETMASTERBYEMAIL("SELECT id,name,password FROM Master WHERE email = ?"),
+	GETMASTERBYNAMEPASS("SELECT id,name,password,email FROM Master WHERE name = ? AND password =?"), 
 	GETMASTERBYID("SELECT id,name,password,email FROM Master WHERE id = ?"), 
 	GETROLBYMASTER("SELECT id,name,description FROM Rol WHERE id_master = ?"), 
-	GETROLBYNAME("SELECT id,name,description,id_Master FROM Rol WHERE id=?"),
+	GETROLBYID("SELECT id,name,description,id_Master FROM Rol WHERE id=?"),
+	GETROLBYNAME("SELECT id, name, description, id_master FROM rol WHERE name =?"),
 	INSERTUPDATEMASTER(
 			"INSERT INTO Master (name, email, password) VALUES (?,?,?) ON DUPLICATE KEY UPDATE name= ?, "
 					+ "email = ?, password= ?"), 
@@ -25,7 +26,7 @@ public enum EnumBBDD {
 					+ ",information=?,height=?,weight=?,classRol=?,age=?,contains=?"),
 
 	
-	DELETEMASTER("DELETE FROM Master WHERE id = ?"), /**/
+	DELETEMASTER("DELETE FROM Master WHERE name = ?"), /**/
 	DELETEPLAYER("DELETE FROM Player WHERE id = ?"), /**/
 	DELETEROL("DELETE FROM Rol WHERE name = ?");/**/
 

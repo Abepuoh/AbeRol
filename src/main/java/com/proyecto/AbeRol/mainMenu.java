@@ -5,8 +5,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.proyecto.AbeRol.Model.MasterDAO;
+import com.proyecto.AbeRol.Model.MasterSingleton;
+import com.proyecto.AbeRol.Model.Player;
 import com.proyecto.AbeRol.Model.PlayerDAO;
 import com.proyecto.AbeRol.Model.Rol;
+import com.proyecto.AbeRol.Model.RolDAO;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +23,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class mainMenu {
-
+	   private static Scene scene;
 	@FXML
 	private Button buttEditMaster;
 
@@ -37,17 +40,24 @@ public class mainMenu {
 	private ComboBox<Rol> choiceRol;
 
 	@FXML
+	ComboBox<Player> choosePlayer;
+
+	@FXML
 	private GridPane gridPlayer;
+
+	MasterDAO user = new MasterDAO();
 
 	@FXML
 	public void initialize() {
-		MasterDAO user = new MasterDAO(1);
-		PlayerDAO p1 = new PlayerDAO(1);
-		PlayerDAO p2 = new PlayerDAO(2);
+		MasterSingleton transfer = MasterSingleton.getInstance();
+		user = transfer.getUser();
+		this.choiceRol.setItems(user.getRol());
+
+		RolDAO value = new RolDAO(this.choiceRol.getSelectionModel().getSelectedItem());
+		System.out.println(value);
+		//this.choosePlayer.setItems(value.getPlayer());
 		
 		gridPlayer.setGridLinesVisible(true);
-		this.choiceRol.setItems(user.getRol());
-		
 	}
 
 	@FXML

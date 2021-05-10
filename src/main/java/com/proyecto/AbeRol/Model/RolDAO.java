@@ -14,7 +14,7 @@ import javafx.collections.ObservableList;
 
 public class RolDAO extends Rol {
 
-	public RolDAO(int id, String name, String description, Master masterRol, List<Player> players) {
+	public RolDAO(int id, String name, String description, Master masterRol, ObservableList<Player> players) {
 		super(id, name, description, masterRol, players);
 
 	}
@@ -33,12 +33,12 @@ public class RolDAO extends Rol {
 		this.masterRol = aux.masterRol;
 		this.players = aux.players;
 	}
-
+	
 	public RolDAO(int id) {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement query = con.prepareStatement(EnumBBDD.GETROLBYNAME.getString());
+				PreparedStatement query = con.prepareStatement(EnumBBDD.GETROLBYID.getString());
 				query.setInt(1, id);
 				ResultSet rs = query.executeQuery();
 				while (rs.next()) {
@@ -53,7 +53,25 @@ public class RolDAO extends Rol {
 			}
 		}
 	}
-
+	public RolDAO(String name) {
+		Connection con = ConnectionDB.getConexion();
+		if (con != null) {
+			try {
+				PreparedStatement query = con.prepareStatement(EnumBBDD.GETROLBYNAME.getString());
+				query.setString(1, name);
+				ResultSet rs = query.executeQuery();
+				while (rs.next()) {
+					this.id = rs.getInt("id");
+					this.name = rs.getString("name");
+					this.description = rs.getString("description");
+					this.masterRol = new MasterDAO(rs.getInt("id_Master"));
+				}
+				this.players = PlayerDAO.getPlayerByRol(this.id);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	public int saveRol() {
 		int saveResult = 0;
 		Connection con = ConnectionDB.getConexion();
@@ -128,4 +146,5 @@ public class RolDAO extends Rol {
 	        }
 	        return getNombres;
 	      }
+	 
 }

@@ -4,9 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-import com.proyecto.AbeRol.Model.Master;
 import com.proyecto.AbeRol.Model.MasterDAO;
-import com.proyecto.AbeRol.Model.PlayerDAO;
+import com.proyecto.AbeRol.Model.MasterSingleton;
 import com.proyecto.AbeRol.Model.Rol;
 import com.proyecto.AbeRol.Model.RolDAO;
 
@@ -31,32 +30,33 @@ public class editRolController {
 	@FXML
 	private Button buttExit;
 	@FXML
-	private ComboBox <Rol> comboRol;
-	
-	
+	private ComboBox<Rol> comboRol;
 
-	MasterDAO user=new MasterDAO(1);
-		@FXML
+	MasterDAO user = new MasterDAO();
+
+	@FXML
 	public void initialize() {
-
+		MasterSingleton transfer = MasterSingleton.getInstance();
+		user = transfer.getUser();
 		this.comboRol.setItems(user.getRol());
-		System.out.println(comboRol.getItems().get(1));
 	}
 
 	@FXML
 	private void editRol(ActionEvent event) throws IOException {
 		String name = this.txtName.getText();
 		String desription = this.txtDesc.getText();
-		if (!this.txtName.getText().trim().isEmpty() && !this.txtDesc.getText().trim().isEmpty()) {
+
+
+		if (!this.txtName.getText().trim().isEmpty() && !this.txtDesc.getText().trim().isEmpty() && comboRol.getSelectionModel().isEmpty()) {
 			List<String> dummyDao = RolDAO.getRols();
-			if (!dummyDao.contains(comboRol.getItems().get(1).toString())) {
+			if (!dummyDao.contains(name) && comboRol.getValue().toString() == name) {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setHeaderText(null);
 				alert.setTitle("Error de edicion");
-				alert.setContentText("Tiene que introducir su usuario");
+				alert.setContentText("Solo puede editar su partida");
 				alert.showAndWait();
 			} else {
-				Rol dummy = new Rol(name,desription);
+				Rol dummy = new Rol(name, desription);
 				RolDAO aux = new RolDAO(dummy);
 				aux.saveRol();
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -72,15 +72,23 @@ public class editRolController {
 			alert.setTitle("Error de creacion");
 			alert.setContentText("Porfavor no deje ningun dato vacío");
 			alert.showAndWait();
+			
 		}
 	}
-	
+
 	@FXML
 	private void deleteRol(ActionEvent event) throws IOException {
-			if (showConfirm(comboRol.getItems().get(1).toString()) == true) {
-				RolDAO.deleteRol(comboRol.getItems().get(1).toString());
-			}
+		String selectedItem = comboRol.getValue().toString();
+
+		if (showConfirm(selectedItem) == true) {
+			RolDAO.deleteRol(selectedItem);
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setHeaderText(null);
+			alert.setTitle("Informacion");
+			alert.setContentText("Se ha borrado correctamente");
+			alert.showAndWait();
 		}
+	}
 
 	public boolean showConfirm(String nombre) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -94,7 +102,7 @@ public class editRolController {
 			return false;
 		}
 	}
-	
+
 	public boolean showEdit(String nombre) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Confirme la acción");

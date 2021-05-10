@@ -4,10 +4,12 @@ import java.util.List;
 
 import com.proyecto.AbeRol.Model.Master;
 import com.proyecto.AbeRol.Model.MasterDAO;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -23,6 +25,8 @@ public class SignUpController {
 	private Button buttCreate;
 	@FXML
 	private Button buttSave;
+	@FXML
+	private ProgressBar progress;
 
 	@FXML
 	public void initialize() {
@@ -34,7 +38,7 @@ public class SignUpController {
 		String name = this.txtName.getText();
 		String email = this.txtEmail.getText();
 		String password = this.txtPass.getText();
-
+		
 		if (!this.txtName.getText().trim().isEmpty() && !this.txtPass.getText().trim().isEmpty()
 				&& !this.txtEmail.getText().trim().isEmpty()) {
 			 List<String> dummyDao = MasterDAO.getMasters();
@@ -69,5 +73,4 @@ public class SignUpController {
 		stage.close();
 
 	}
-
 }

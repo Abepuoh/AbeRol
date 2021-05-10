@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.proyecto.AbeRol.Model.MasterDAO;
+import com.proyecto.AbeRol.Model.MasterSingleton;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,8 +43,11 @@ public class logInController {
 		String name = this.txtUser.getText();
 		String password = this.txtPass.getText();
 		MasterDAO root = new MasterDAO();
+		MasterSingleton transfer =MasterSingleton.getInstance();
 		this.txtPass.clear();
 		if (root.logIn(name, password) == true) {
+			MasterDAO data = new MasterDAO(name,password);
+			transfer.setUser(data);
 			OpenMenu();
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -86,6 +90,7 @@ public class logInController {
 		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("mainMenu.fxml"));
 		Parent modal;
 		try {
+	
 			modal = fxmlLoader.load();
 			Stage modalStage = new Stage();
 			modalStage.initModality(Modality.APPLICATION_MODAL);

@@ -22,10 +22,6 @@ public class MasterDAO extends Master {
 		super(name, email, password);
 	}
 
-	public MasterDAO(String name, String password) {
-		super(name, password);
-	}
-
 	public MasterDAO() {
 		super();
 	}
@@ -37,7 +33,7 @@ public class MasterDAO extends Master {
 		this.password = aux.password;
 		this.rol = aux.rol;
 	}
-
+	
 	public MasterDAO(int id) {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
@@ -58,7 +54,26 @@ public class MasterDAO extends Master {
 			}
 		}
 	}
-
+	public MasterDAO(String name,String pass) {
+		Connection con = ConnectionDB.getConexion();
+		if (con != null) {
+			try {
+				PreparedStatement query = con.prepareStatement(EnumBBDD.GETMASTERBYNAMEPASS.getString());
+				query.setString(1, name);
+				query.setString(2, pass);
+				ResultSet rs = query.executeQuery();
+				while (rs.next()) {
+					this.id = rs.getInt("id");
+					this.name = rs.getString("name");
+					this.email =rs.getString("email");
+					this.password = rs.getString("password");
+					this.rol = RolDAO.getRolByMaster(id);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	public MasterDAO(String email) {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
@@ -67,6 +82,7 @@ public class MasterDAO extends Master {
 				query.setString(1, email);
 				ResultSet rs = query.executeQuery();
 				while (rs.next()) {
+					this.id = rs.getInt("id");
 					this.name = rs.getString("name");
 					this.password = rs.getString("password");
 				}
@@ -105,10 +121,6 @@ public class MasterDAO extends Master {
 				PreparedStatement q = con.prepareStatement(EnumBBDD.DELETEMASTER.getString());
 				q.setString(1, name);
 				deleteMasterResult = q.executeUpdate();
-				this.id = -1;
-				this.name = "Unknown";
-				this.email = "Unknown@Email";
-				this.password = "UnknownPassword";
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -135,13 +147,6 @@ public class MasterDAO extends Master {
 		}
 		return logResult;
 	}
-
-    public List<Rol> getMisobras(){
-		if(rol==null) {
-			rol=RolDAO.getRolByMaster(this.id);
-		}
-		return rol;
-    }
    
     public static List<String> getMasters() {
         List<String> getNombres = new ArrayList<>();
@@ -160,10 +165,5 @@ public class MasterDAO extends Master {
         }
         return getNombres;
       }
-	@Override
-	public String toString() {
-		return "MasterDAO [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", rol=" + rol
-				+ "]";
-	}
 	
 }
