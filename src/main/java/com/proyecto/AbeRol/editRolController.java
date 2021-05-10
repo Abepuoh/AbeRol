@@ -3,6 +3,8 @@ package com.proyecto.AbeRol;
 import java.io.IOException;
 import java.util.Optional;
 
+import com.proyecto.AbeRol.Model.MasterDAO;
+import com.proyecto.AbeRol.Model.PlayerDAO;
 import com.proyecto.AbeRol.Model.Rol;
 import com.proyecto.AbeRol.Model.RolDAO;
 
@@ -29,12 +31,14 @@ public class editRolController {
 	@FXML
 	private ComboBox <Rol> comboRol;
 	
-	String name = "Norsca";
-	RolDAO dummy = new RolDAO(name);
+	
 
+	MasterDAO user=new MasterDAO(1);
+	
 		@FXML
 	public void initialize() {
-			
+		System.out.println(user.getMisobras().toString());	
+		this.comboRol.setItems(RolDAO.getRolByMaster(user.getId()));
 	}
 
 	@FXML

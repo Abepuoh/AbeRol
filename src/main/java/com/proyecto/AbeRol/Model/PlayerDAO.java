@@ -4,10 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.proyecto.AbeRol.UIUtils.EnumBBDD;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class PlayerDAO extends Player  {
 	
@@ -29,7 +30,7 @@ public class PlayerDAO extends Player  {
 		this.contains = dummy.contains;
 		this.name = dummy.name;
 		this.level = dummy.level;
-		this.strenght = dummy.strenght;
+		this.strength = dummy.strength;
 		this.dexerity = dummy.dexerity;
 		this.intelligence = dummy.intelligence;
 		this.information = dummy.information;
@@ -43,21 +44,21 @@ public class PlayerDAO extends Player  {
 		if (con != null) {
 			try {
 				PreparedStatement q = con.prepareStatement(EnumBBDD.GETPLAYERBYID.getString());
+				q.setInt(1,id);
 				ResultSet rs = q.executeQuery();
 				while(rs.next()) {
 					this.id=rs.getInt("id");
-					this.classRol = rs.getString("id");
-					this.age = rs.getInt("id");
-					this.contains = new RolDAO(rs.getInt("id"));
-					this.name = rs.getString("id");
-					this.level = rs.getInt("id");
-					this.strenght = rs.getInt("id");
-					this.dexerity = rs.getInt("id");
-					this.intelligence = rs.getInt("id");
-					this.information = rs.getString("id");
-					this.height = rs.getInt("id");
-					this.weight = rs.getInt("id");
-					this.contains=new RolDAO(rs.getInt("id_Rol"));
+					this.name = rs.getString("name");
+					this.level = rs.getInt("level");
+					this.strength = rs.getInt("strength");
+					this.dexerity = rs.getInt("dexerity");
+					this.intelligence = rs.getInt("intelligence");
+					this.information = rs.getString("information");
+					this.height = rs.getInt("height");
+					this.weight = rs.getInt("weight");
+					this.classRol = rs.getString("class");
+					this.age = rs.getInt("age");
+					this.contains = new RolDAO(rs.getInt("id_rol"));
 				}			
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -78,7 +79,7 @@ public class PlayerDAO extends Player  {
 				q.setInt(1, this.id);
 				q.setString(2, this.name);
 				q.setInt(3, this.level);
-				q.setInt(4, this.strenght);
+				q.setInt(4, this.strength);
 				q.setInt(5, this.dexerity);
 				q.setInt(6, this.intelligence);
 				q.setString(7, this.information);
@@ -114,21 +115,13 @@ public class PlayerDAO extends Player  {
 		return rs;
 	}
 
-	
-	public Rol getMyRol() {
-		if(this.contains==null || this.contains.getId() == -1) {
-			this.contains=RolDAO.getRolByPlayer(this.id);
-		}
-		return super.getContains();
-	}
-
-	
-	public static List<Player> getPlayerByRol(int id) {
-		List<Player> listPlayers=new ArrayList<Player>();
+	public static ObservableList<Player> getPlayerByRol(int id) {
+		
+		ObservableList<Player> listPlayers=FXCollections.observableArrayList();
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement q=con.prepareStatement(EnumBBDD.GETPLAYERBYMATER.getString());
+				PreparedStatement q=con.prepareStatement(EnumBBDD.GETPLAYERSBYROL.getString());
 				q.setInt(1, id);
 				ResultSet rs =q.executeQuery();
 				while(rs.next()) { 	
@@ -136,7 +129,7 @@ public class PlayerDAO extends Player  {
 					auxP.setId(rs.getInt("id"));
 					auxP.setName(rs.getString("name"));
 					auxP.setLevel(rs.getInt("level"));
-					auxP.setStrenght(rs.getInt("strength"));
+					auxP.setStrength(rs.getInt("strength"));
 					auxP.setDexerity(rs.getInt("dexerity"));
 					auxP.setIntelligence(rs.getInt("intelligence"));
 					auxP.setInformation(rs.getString("information"));
@@ -144,13 +137,6 @@ public class PlayerDAO extends Player  {
 					auxP.setWeight(rs.getInt("weight"));
 					auxP.setClassRol(rs.getString("class"));
 					auxP.setAge(rs.getInt("age"));
-					
-					Rol auxR = new Rol();
-					auxR.setId(rs.getInt("id"));
-					auxR.setName(rs.getString("name"));
-					auxR.setDescription(rs.getString("description"));
-					auxP.setContains(auxR);
-					//maybe create Master
 					listPlayers.add(auxP);
 				}			
 			} catch (SQLException e) {
@@ -160,4 +146,12 @@ public class PlayerDAO extends Player  {
 		}
 		return listPlayers;
 	}
+
+	@Override
+	public String toString() {
+		return "PlayerDAO [id=" + id + ", classRol=" + classRol + ", age=" + age + ", contains=" + contains + ", name="
+				+ name + ", level=" + level + ", strength=" + strength + ", dexerity=" + dexerity + ", intelligence="
+				+ intelligence + ", information=" + information + ", height=" + height + ", weight=" + weight + "]";
+	}
+	
 }

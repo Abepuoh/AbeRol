@@ -96,7 +96,6 @@ public class logInController {
 			modalStage.setScene(modalScene);
 			modalStage.showAndWait();
 			modalStage.setResizable(false);
-			modalStage.initOwner(App.rootstage);
 			modalStage.show();
 
 		} catch (IOException ex) {

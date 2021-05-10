@@ -4,17 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+
 import com.proyecto.AbeRol.UIUtils.EnumBBDD;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
 public class MasterDAO extends Master {
 
-	public MasterDAO(int id, String name, String email, String password,List<Rol> rol) {
+	public MasterDAO(int id, String name, String email, String password,ObservableList<Rol> rol) {
 		super(id, name, email, password, rol);
 	}
 
@@ -46,11 +45,13 @@ public class MasterDAO extends Master {
 				query.setInt(1, id);
 				ResultSet rs = query.executeQuery();
 				while (rs.next()) {
+					this.id = rs.getInt("id");
 					this.name = rs.getString("Name");
 					this.email = rs.getString("Email");
 					this.password = rs.getString("Password");
+					this.rol = RolDAO.getRolByMaster(id);
 				}
-				this.rol = MasterDAO.getRolByMaster(this.id);
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -65,12 +66,9 @@ public class MasterDAO extends Master {
 				query.setString(1, email);
 				ResultSet rs = query.executeQuery();
 				while (rs.next()) {
-					this.id = rs.getInt("id");
-					this.name = rs.getString("Name");
-					this.password = rs.getString("Password");
+					this.name = rs.getString("name");
+					this.password = rs.getString("password");
 				}
-				RolDAO u = new RolDAO();
-				// this.rol=u.getRolByMaster(this.id);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -137,36 +135,18 @@ public class MasterDAO extends Master {
 		return logResult;
 	}
 
-	public List<Rol> getMyRols(int id) {
-		
+    public List<Rol> getMisobras(){
 		if(rol==null) {
-			rol=MasterDAO.getRolByMaster(this.id);
+			rol=RolDAO.getRolByMaster(this.id);
 		}
-		System.out.println(rol);
 		return rol;
-	}
+    }
+   
 
-	public static List<Rol> getRolByMaster(int id) {
-		List<Rol> rolList = FXCollections.observableArrayList();
-		Connection con = ConnectionDB.getConexion();
-		if (con != null) {
-			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.GETROLBYMASTER.getString());
-				q.setInt(1, id);
-				ResultSet rs = q.executeQuery();
-				while (rs.next()) {
-					// cada row
-					Rol auxR = new Rol();
-					auxR.setId(rs.getInt("id"));
-					auxR.setName(rs.getString("name"));
-					auxR.setDescription(rs.getString("description"));
-					rolList.add(auxR);
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return rolList;
+	@Override
+	public String toString() {
+		return "MasterDAO [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", rol=" + rol
+				+ "]";
 	}
+	
 }

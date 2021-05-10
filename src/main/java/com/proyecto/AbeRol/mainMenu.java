@@ -1,28 +1,20 @@
 package com.proyecto.AbeRol;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.proyecto.AbeRol.Model.Master;
 import com.proyecto.AbeRol.Model.MasterDAO;
-import com.proyecto.AbeRol.Model.Player;
 import com.proyecto.AbeRol.Model.Rol;
 import com.proyecto.AbeRol.Model.RolDAO;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -42,12 +34,12 @@ public class mainMenu {
 
 	@FXML
 	private ComboBox<Rol> choiceRol;
-
+	
 	MasterDAO user=new MasterDAO(1);
 
 	@FXML
-	public void initialize() {
-		
+	public void initialize() {	
+		this.choiceRol.setItems(user.getRol());	
 	}
 	
 	@FXML

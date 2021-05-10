@@ -1,9 +1,7 @@
 package com.proyecto.AbeRol.Model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 /**
  * Central class of the application from which we can access all available processes
  * @author Abepuoh
@@ -15,9 +13,9 @@ public class Master {
 	protected String name;
 	protected String email;
 	protected String password;
-	protected List<Rol> rol;
+	protected ObservableList<Rol> rol;
 
-	public Master(int id, String name, String email, String password, List<Rol> rol) {
+	public Master(int id, String name, String email, String password, ObservableList<Rol> rol) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
@@ -44,7 +42,7 @@ public class Master {
 		this.email = email;
 	}
 	public Master() {
-		this(-1,"Unknown","Unknown@Email","UnknownPassword",new ArrayList<Rol>());
+		this(-1,"Unknown","Unknown@Email","UnknownPassword",FXCollections.observableArrayList());
 	}
 
 	public String getName() {
@@ -79,11 +77,11 @@ public class Master {
 		this.id = id;
 	}
 
-	public List<Rol> getRol() {
+	public ObservableList<Rol> getRol() {
 		return rol;
 	}
 
-	public void setRol(List<Rol> rol) {
+	public void setRol(ObservableList<Rol> rol) {
 		this.rol = rol;
 	}
 

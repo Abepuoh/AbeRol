@@ -4,21 +4,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.proyecto.AbeRol.UIUtils.EnumBBDD;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class RolDAO extends Rol {
 
 	public RolDAO(int id, String name, String description, Master masterRol, List<Player> players) {
 		super(id, name, description, masterRol, players);
-
-	}
-
-	public RolDAO(int id) {
-		super(id);
 
 	}
 
@@ -34,21 +31,21 @@ public class RolDAO extends Rol {
 		this.masterRol = aux.masterRol;
 		this.players = aux.players;
 	}
-
-	public RolDAO(String name) {
+	
+	public RolDAO(int id) {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
 				PreparedStatement query = con.prepareStatement(EnumBBDD.GETROLBYNAME.getString());
-				query.setString(1, name);
+				query.setInt(1, id);
 				ResultSet rs = query.executeQuery();
 				while (rs.next()) {
 					this.id = rs.getInt("id");
 					this.name = rs.getString("name");
 					this.description = rs.getString("description");
 					this.masterRol = new MasterDAO(rs.getInt("id_Master"));
-					this.players=PlayerDAO.getPlayerByRol(this.id);
 				}
+				this.players = PlayerDAO.getPlayerByRol(this.id);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -93,26 +90,42 @@ public class RolDAO extends Rol {
 		}
 		return deleteMasterResult;
 	}
-//
-//	public static Rol getRolByPlayer(int id) {
-//		Rol result = new Rol();
-//		Connection con = ConnectionDB.getConexion();
-//		if (con != null) {
-//			try {
-//				PreparedStatement q = con.prepareStatement(SELECTAUTORBYISBN);
-//				q.setString(1, isbn);
-//				ResultSet rs = q.executeQuery();
-//				while (rs.next()) {
-//					result.setDni(rs.getString("dni"));
-//					result.setNombre(rs.getString("nombre"));
-//					result.setEdad(rs.getInt("edad"));
-//				}
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-//
-//		return result;
-//	}
+
+	public List<Player> getMyPlayers() {
+		if (this.players == null) {
+			this.players = PlayerDAO.getPlayerByRol(this.id);
+		}
+		return this.players;
+	}
+
+	public static ObservableList<Rol> getRolByMaster(int id) {
+		ObservableList<Rol> rolList = FXCollections.observableArrayList();
+		Connection con = ConnectionDB.getConexion();
+		if (con != null) {
+			try {
+				PreparedStatement q = con.prepareStatement(EnumBBDD.GETROLBYMASTER.getString());
+				q.setInt(1, id);
+				ResultSet rs = q.executeQuery();
+				while (rs.next()) {
+					// cada row
+					Rol auxR = new Rol();
+					auxR.setId(rs.getInt("id"));
+					auxR.setName(rs.getString("name"));
+					auxR.setDescription(rs.getString("description"));
+					rolList.add(auxR);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return rolList;
+	}
+
+	@Override
+	public String toString() {
+		return "RolDAO [id=" + id + ", name=" + name + ", description=" + description + ", masterRol=" + masterRol
+				+ ", players=" + players + "]";
+	}
+
 }

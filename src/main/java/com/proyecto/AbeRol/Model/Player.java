@@ -69,4 +69,5 @@ public class Player extends Character {
 			return false;
 		return true;
 	}
+	
 }

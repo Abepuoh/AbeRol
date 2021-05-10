@@ -10,7 +10,7 @@ public class Character {
 	
 	protected String name; //nombre
 	protected int level; // nivel
-	protected int strenght; // fuerza
+	protected int strength; // fuerza
 	protected int dexerity; // destreza
 	protected int intelligence; //inteligencia
 	protected String information; //información
@@ -22,7 +22,7 @@ public class Character {
 		super();
 		this.name = name;
 		this.level = level;
-		this.strenght = strenght;
+		this.strength = strenght;
 		this.dexerity = dexerity;
 		this.intelligence = intelligence;
 		this.information = information;
@@ -50,12 +50,12 @@ public class Character {
 		this.level = level;
 	}
 
-	public int getStrenght() {
-		return strenght;
+	public int getStrength() {
+		return strength;
 	}
 
-	public void setStrenght(int strenght) {
-		this.strenght = strenght;
+	public void setStrength(int strenght) {
+		this.strength = strenght;
 	}
 
 	public int getDexerity() {
