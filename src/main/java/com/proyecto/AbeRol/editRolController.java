@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Optional;
 
 import com.proyecto.AbeRol.Model.MasterDAO;
-import com.proyecto.AbeRol.Model.PlayerDAO;
 import com.proyecto.AbeRol.Model.Rol;
 import com.proyecto.AbeRol.Model.RolDAO;
 
@@ -34,7 +33,7 @@ public class editRolController {
 	
 
 	MasterDAO user=new MasterDAO(1);
-	
+	RolDAO dummy = new RolDAO(1);
 		@FXML
 	public void initialize() {
 		System.out.println(user.getMisobras().toString());	

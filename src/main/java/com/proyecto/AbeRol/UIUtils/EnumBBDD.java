@@ -1,7 +1,7 @@
 package com.proyecto.AbeRol.UIUtils;
 
 public enum EnumBBDD {
-
+	SELECTMASTERS("SELECT name FROM Master"),
 	LOGINMENU("SELECT name,password FROM Master WHERE name LIKE ? and password LIKE ?"), 
 	GETMASTERBYEMAIL("SELECT name,password FROM Master WHERE email = ?"),
 	GETMASTERBYNAME("SELECT name,password,email,rol FROM Master WHERE name = ?"), 

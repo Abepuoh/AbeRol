@@ -32,12 +32,11 @@ public class logInController {
 	@FXML
 	private Button LogButt;
 
-	
 	@FXML
 	public void initialize() {
-		
+
 	}
-	
+
 	@FXML
 	protected void logUser(ActionEvent Event) throws IOException {
 		String name = this.txtUser.getText();
@@ -82,8 +81,7 @@ public class logInController {
 		modalStage.showAndWait();
 		modalStage.setResizable(false);
 	}
-	
-	
+
 	public void OpenMenu() {
 		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("mainMenu.fxml"));
 		Parent modal;

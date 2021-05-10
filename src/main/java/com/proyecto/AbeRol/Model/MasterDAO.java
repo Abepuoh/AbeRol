@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.proyecto.AbeRol.UIUtils.EnumBBDD;
@@ -33,7 +34,7 @@ public class MasterDAO extends Master {
 		this.id = aux.id;
 		this.name = aux.name;
 		this.email = aux.email;
-		this.password = aux.email;
+		this.password = aux.password;
 		this.rol = aux.rol;
 	}
 
@@ -142,7 +143,23 @@ public class MasterDAO extends Master {
 		return rol;
     }
    
-
+    public static List<String> getMasters() {
+        List<String> getNombres = new ArrayList<>();
+        Connection con = ConnectionDB.getConexion();
+        if (con != null) {
+          try {
+        	PreparedStatement q = con.prepareStatement(EnumBBDD.SELECTMASTERS.getString());
+            ResultSet rs = q.executeQuery();
+            while (rs.next()) {
+              getNombres.add(rs.getString("name"));
+            }
+          } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+          }
+        }
+        return getNombres;
+      }
 	@Override
 	public String toString() {
 		return "MasterDAO [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", rol=" + rol

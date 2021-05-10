@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 
 import com.proyecto.AbeRol.Model.MasterDAO;
 import com.proyecto.AbeRol.Model.Rol;
-import com.proyecto.AbeRol.Model.RolDAO;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,10 +34,11 @@ public class mainMenu {
 	@FXML
 	private ComboBox<Rol> choiceRol;
 	
-	MasterDAO user=new MasterDAO(1);
-
+	static MasterDAO user=new MasterDAO(1);
+	
 	@FXML
 	public void initialize() {	
+	
 		this.choiceRol.setItems(user.getRol());	
 	}
 	

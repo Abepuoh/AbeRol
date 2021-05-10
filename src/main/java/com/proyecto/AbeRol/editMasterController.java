@@ -1,8 +1,10 @@
 package com.proyecto.AbeRol;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
+import com.proyecto.AbeRol.Model.Master;
 import com.proyecto.AbeRol.Model.MasterDAO;
 
 import javafx.event.ActionEvent;
@@ -41,19 +43,33 @@ public class editMasterController {
 		String name = this.txtName.getText();
 		String email = this.txtEmail.getText();
 		String password = this.txtPassword.getText();
-		
-		if (dummy != null) {
-			dummy.setName(name);
-			dummy.setEmail(email);
-			dummy.setPassword(password);
-			if(showEdit(dummy.getName()) == true) {
-				dummy.SaveMaster();
+
+		if (!this.txtName.getText().trim().isEmpty() && !this.txtPassword.getText().trim().isEmpty()
+				&& !this.txtEmail.getText().trim().isEmpty()) {
+			List<String> dummyDao = MasterDAO.getMasters();
+			if (!dummyDao.contains(name)) {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setHeaderText(null);
+				alert.setTitle("Error de edicion");
+				alert.setContentText("Tiene que introducir su usuario");
+				alert.showAndWait();
+			} else {
+				Master dummy = new Master(name, email, password);
+				MasterDAO aux = new MasterDAO(dummy);
+				aux.SaveMaster();
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setHeaderText(null);
-				alert.setTitle("Usuario Editado ");
-				alert.setContentText("Ha sido todo un exito, has editado tu usuario");
+				alert.setTitle("Informacion");
+				alert.setContentText("Se ha añadido correctamente");
 				alert.showAndWait();
-			}		
+
+			}
+		} else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setTitle("Error de creacion");
+			alert.setContentText("Porfavor no deje ningun dato vacío");
+			alert.showAndWait();
 		}
 	}
 
@@ -79,7 +95,7 @@ public class editMasterController {
 			return false;
 		}
 	}
-	
+
 	public boolean showEdit(String nombre) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Confirme la acción");
