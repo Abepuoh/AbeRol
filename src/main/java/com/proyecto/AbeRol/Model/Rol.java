@@ -105,4 +105,9 @@ public class Rol {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return  name;
+	}
+
 }

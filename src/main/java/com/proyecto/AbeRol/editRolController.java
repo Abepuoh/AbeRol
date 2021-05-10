@@ -1,9 +1,12 @@
 package com.proyecto.AbeRol;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
+import com.proyecto.AbeRol.Model.Master;
 import com.proyecto.AbeRol.Model.MasterDAO;
+import com.proyecto.AbeRol.Model.PlayerDAO;
 import com.proyecto.AbeRol.Model.Rol;
 import com.proyecto.AbeRol.Model.RolDAO;
 
@@ -33,42 +36,51 @@ public class editRolController {
 	
 
 	MasterDAO user=new MasterDAO(1);
-	RolDAO dummy = new RolDAO(1);
 		@FXML
 	public void initialize() {
-		System.out.println(user.getMisobras().toString());	
-		this.comboRol.setItems(RolDAO.getRolByMaster(user.getId()));
+
+		this.comboRol.setItems(user.getRol());
+		System.out.println(comboRol.getItems().get(1));
 	}
 
 	@FXML
 	private void editRol(ActionEvent event) throws IOException {
 		String name = this.txtName.getText();
-		String desc = this.txtDesc.getText();
-		
-		if (dummy != null) {
-			dummy.setName(name);
-			dummy.setDescription(desc);
-		
-			if(showEdit(dummy.getName()) == true) {
-				dummy.saveRol();
+		String desription = this.txtDesc.getText();
+		if (!this.txtName.getText().trim().isEmpty() && !this.txtDesc.getText().trim().isEmpty()) {
+			List<String> dummyDao = RolDAO.getRols();
+			if (!dummyDao.contains(comboRol.getItems().get(1).toString())) {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setHeaderText(null);
+				alert.setTitle("Error de edicion");
+				alert.setContentText("Tiene que introducir su usuario");
+				alert.showAndWait();
+			} else {
+				Rol dummy = new Rol(name,desription);
+				RolDAO aux = new RolDAO(dummy);
+				aux.saveRol();
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setHeaderText(null);
-				alert.setTitle("Usuario Editado ");
-				alert.setContentText("Ha sido todo un exito, has editado tu usuario");
+				alert.setTitle("Informacion");
+				alert.setContentText("Se ha añadido correctamente");
 				alert.showAndWait();
-			}		
+
+			}
+		} else {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setTitle("Error de creacion");
+			alert.setContentText("Porfavor no deje ningun dato vacío");
+			alert.showAndWait();
 		}
 	}
 	
 	@FXML
 	private void deleteRol(ActionEvent event) throws IOException {
-
-		if (dummy != null) {
-			if (showConfirm(dummy.getName()) == true) {
-				dummy.deleteRol(dummy.getName());
+			if (showConfirm(comboRol.getItems().get(1).toString()) == true) {
+				RolDAO.deleteRol(comboRol.getItems().get(1).toString());
 			}
 		}
-	}
 
 	public boolean showConfirm(String nombre) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

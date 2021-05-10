@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.proyecto.AbeRol.UIUtils.EnumBBDD;
@@ -17,7 +18,9 @@ public class RolDAO extends Rol {
 		super(id, name, description, masterRol, players);
 
 	}
-
+	public RolDAO(String name, String description) {
+		super(name,description);
+	}
 	public RolDAO() {
 		super();
 
@@ -59,10 +62,8 @@ public class RolDAO extends Rol {
 				PreparedStatement q = con.prepareStatement(EnumBBDD.INTERTUPDATEROL.getString());
 				q.setString(1, this.name);
 				q.setString(2, this.description);
-				q.setInt(3, this.masterRol != null ? this.masterRol.id : -1);
-				q.setString(4, this.name);
-				q.setString(5, this.description);
-				q.setInt(6, this.masterRol.id);
+				q.setString(3, this.name);
+				q.setString(4, this.description);
 				saveResult = q.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -71,7 +72,7 @@ public class RolDAO extends Rol {
 		return saveResult;
 	}
 
-	public int deleteRol(String name) {
+	public static int deleteRol(String name) {
 		int deleteMasterResult = 0;
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
@@ -79,10 +80,7 @@ public class RolDAO extends Rol {
 				PreparedStatement q = con.prepareStatement(EnumBBDD.DELETEROL.getString());
 				q.setString(1, name);
 				deleteMasterResult = q.executeUpdate();
-				this.id = -1;
-				this.name = "Unknown";
-				this.description = "UnknownDescription";
-			} catch (SQLException e) {
+				} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -113,11 +111,21 @@ public class RolDAO extends Rol {
 		}
 		return rolList;
 	}
-
-	@Override
-	public String toString() {
-		return "RolDAO [id=" + id + ", name=" + name + ", description=" + description + ", masterRol=" + masterRol
-				+ ", players=" + players + "]";
-	}
-
+	 public static List<String> getRols() {
+	        List<String> getNombres = new ArrayList<>();
+	        Connection con = ConnectionDB.getConexion();
+	        if (con != null) {
+	          try {
+	        	PreparedStatement q = con.prepareStatement(EnumBBDD.SELECTROL.getString());
+	            ResultSet rs = q.executeQuery();
+	            while (rs.next()) {
+	              getNombres.add(rs.getString("name"));
+	            }
+	          } catch (SQLException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	          }
+	        }
+	        return getNombres;
+	      }
 }

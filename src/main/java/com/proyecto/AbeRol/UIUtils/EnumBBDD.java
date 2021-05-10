@@ -2,6 +2,8 @@ package com.proyecto.AbeRol.UIUtils;
 
 public enum EnumBBDD {
 	SELECTMASTERS("SELECT name FROM Master"),
+	SELECTROL("SELECT name FROM Rol"),
+	SELECTPLAYERS("SELECT name FROM player"),
 	LOGINMENU("SELECT name,password FROM Master WHERE name LIKE ? and password LIKE ?"), 
 	GETMASTERBYEMAIL("SELECT name,password FROM Master WHERE email = ?"),
 	GETMASTERBYNAME("SELECT name,password,email,rol FROM Master WHERE name = ?"), 
@@ -12,7 +14,7 @@ public enum EnumBBDD {
 			"INSERT INTO Master (name, email, password) VALUES (?,?,?) ON DUPLICATE KEY UPDATE name= ?, "
 					+ "email = ?, password= ?"), 
 	INTERTUPDATEROL(
-			"INSERT INTO Rol (name,description, id_Master) VALUES(?,?,?) ON DUPLICATE KEY UPDATE name= ?, description= ?, id_Master = ?"), 
+			"INSERT INTO Rol (name,description) VALUES(?,?) ON DUPLICATE KEY UPDATE name= ?, description= ?"), 
 
 	GETPLAYERSBYROL("SELECT id, name, level, strength, dexerity, intelligence, information, height, weight, class, age, id_Rol FROM player WHERE id_Rol = ? "),/**/
 	
@@ -25,7 +27,7 @@ public enum EnumBBDD {
 	
 	DELETEMASTER("DELETE FROM Master WHERE id = ?"), /**/
 	DELETEPLAYER("DELETE FROM Player WHERE id = ?"), /**/
-	DELETEROL("DELETE FROM Rol WHERE id = ?");/**/
+	DELETEROL("DELETE FROM Rol WHERE name = ?");/**/
 
 	private String select;
 

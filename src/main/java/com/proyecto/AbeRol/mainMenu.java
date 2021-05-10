@@ -47,6 +47,7 @@ public class mainMenu {
 		
 		gridPlayer.setGridLinesVisible(true);
 		this.choiceRol.setItems(user.getRol());
+		
 	}
 
 	@FXML

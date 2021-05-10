@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.proyecto.AbeRol.UIUtils.EnumBBDD;
 
@@ -149,12 +151,21 @@ public class PlayerDAO extends Player  {
 		}
 		return listPlayers;
 	}
-
-	@Override
-	public String toString() {
-		return "PlayerDAO [id=" + id + ", classRol=" + classRol + ", age=" + age + ", contains=" + contains + ", name="
-				+ name + ", level=" + level + ", strength=" + strength + ", dexerity=" + dexerity + ", intelligence="
-				+ intelligence + ", information=" + information + ", height=" + height + ", weight=" + weight + "]";
-	}
-	
+	 public static List<String> getPlayers() {
+	        List<String> getNombres = new ArrayList<>();
+	        Connection con = ConnectionDB.getConexion();
+	        if (con != null) {
+	          try {
+	        	PreparedStatement q = con.prepareStatement(EnumBBDD.SELECTPLAYERS.getString());
+	            ResultSet rs = q.executeQuery();
+	            while (rs.next()) {
+	              getNombres.add(rs.getString("name"));
+	            }
+	          } catch (SQLException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	          }
+	        }
+	        return getNombres;
+	      }
 }
