@@ -47,10 +47,6 @@ public class Rol {
 		this.masterRol = masterRol;
 	}
 
-	public List<Player> getPlayers() {
-		return players;
-	}
-
 	public void setPlayers(List<Player> players) {
 		this.players = players;
 	}

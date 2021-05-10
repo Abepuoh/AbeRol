@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.proyecto.AbeRol.Model.MasterDAO;
+import com.proyecto.AbeRol.Model.PlayerDAO;
 import com.proyecto.AbeRol.Model.Rol;
 
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -33,15 +35,20 @@ public class mainMenu {
 
 	@FXML
 	private ComboBox<Rol> choiceRol;
-	
-	static MasterDAO user=new MasterDAO(1);
-	
+
 	@FXML
-	public void initialize() {	
-	
-		this.choiceRol.setItems(user.getRol());	
+	private GridPane gridPlayer;
+
+	@FXML
+	public void initialize() {
+		MasterDAO user = new MasterDAO(1);
+		PlayerDAO p1 = new PlayerDAO(1);
+		PlayerDAO p2 = new PlayerDAO(2);
+		
+		gridPlayer.setGridLinesVisible(true);
+		this.choiceRol.setItems(user.getRol());
 	}
-	
+
 	@FXML
 	protected void editMaster(ActionEvent Event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("editMaster.fxml"));
@@ -104,6 +111,5 @@ public class mainMenu {
 		Stage stage = (Stage) this.buttExit.getScene().getWindow();
 		stage.close();
 	}
-	
+
 }
-	

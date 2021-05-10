@@ -30,7 +30,7 @@ public class RolDAO extends Rol {
 		this.masterRol = aux.masterRol;
 		this.players = aux.players;
 	}
-	
+
 	public RolDAO(int id) {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
@@ -88,13 +88,6 @@ public class RolDAO extends Rol {
 			}
 		}
 		return deleteMasterResult;
-	}
-
-	public List<Player> getMyPlayers() {
-		if (this.players == null) {
-			this.players = PlayerDAO.getPlayerByRol(this.id);
-		}
-		return this.players;
 	}
 
 	public static ObservableList<Rol> getRolByMaster(int id) {

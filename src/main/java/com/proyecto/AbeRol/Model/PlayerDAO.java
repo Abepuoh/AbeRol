@@ -19,7 +19,11 @@ public class PlayerDAO extends Player  {
 		super(id, name, level, strength, dexerity, intelligence, information, height, weight, classRol, age, contains);
 		// TODO Auto-generated constructor stub
 	}
-
+	public PlayerDAO( String name, int level, int strength, int dexerity, int intelligence, String information,
+			int height, int weight, String classRol, int age, Rol contains) {
+		super(name, level, strength, dexerity, intelligence, information, height, weight, classRol, age, contains);
+		// TODO Auto-generated constructor stub
+	}
 	public PlayerDAO() {
 		super();
 	}
@@ -68,7 +72,7 @@ public class PlayerDAO extends Player  {
 	}
 	
 	public int SavePlayer() {
-		int rs=0;
+		int save=0;
 		Connection con = ConnectionDB.getConexion();
 		if(this.contains==null) {
 			this.contains=new Rol();
@@ -76,25 +80,24 @@ public class PlayerDAO extends Player  {
 		if (con != null) {
 			try {
 				PreparedStatement q=con.prepareStatement(EnumBBDD.INSERTUPDATEPLAYER.getString());
-				q.setInt(1, this.id);
-				q.setString(2, this.name);
-				q.setInt(3, this.level);
-				q.setInt(4, this.strength);
-				q.setInt(5, this.dexerity);
-				q.setInt(6, this.intelligence);
-				q.setString(7, this.information);
-				q.setInt(8, this.height);
-				q.setInt(9, this.weight);
-				q.setString(10, this.classRol);
-				q.setInt(11, this.age);
-				q.setInt(12, this.contains!=null?this.contains.id:-1);
-				rs =q.executeUpdate();		
+				q.setString(1, this.name);
+				q.setInt(2, this.level);
+				q.setInt(3, this.strength);
+				q.setInt(4, this.dexerity);
+				q.setInt(5, this.intelligence);
+				q.setString(6, this.information);
+				q.setInt(7, this.height);
+				q.setInt(8, this.weight);
+				q.setString(9, this.classRol);
+				q.setInt(10, this.age);
+				q.setInt(11, this.contains.getId());
+				save =q.executeUpdate();		
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		return rs;
+		return save;
 	}
 
 

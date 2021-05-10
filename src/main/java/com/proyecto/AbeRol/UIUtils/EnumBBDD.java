@@ -18,8 +18,8 @@ public enum EnumBBDD {
 	
 	GETPLAYERBYID("SELECT id, name, level, strength, dexerity, intelligence, information, height, weight, class, age, id_Rol FROM player WHERE id = ?"),
 	INSERTUPDATEPLAYER(
-			"INSERT INTO Player (id,name, level, strength, dexerity, intelligence, information, height, weight, classRol, age, contains) "
-					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE name=?,level=?,strength=?,dexerity=?,intelligence=?"
+			"INSERT INTO Player (name, level, strength, dexerity, intelligence, information, height, weight, classRol, age, contains) "
+					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE name=?,level=?,strength=?,dexerity=?,intelligence=?"
 					+ ",information=?,height=?,weight=?,classRol=?,age=?,contains=?"),
 
 	

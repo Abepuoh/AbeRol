@@ -21,7 +21,13 @@ public class Player extends Character {
 		this.age = age;
 		this.contains = contains;
 	}
-
+	public Player(String name, int level, int strength, int dexerity, int intelligence, String information,
+			int height, int weight, String classRol, int age, Rol contains) {
+		super(name, level, strength, dexerity, intelligence, information, height, weight);
+		this.classRol = classRol;
+		this.age = age;
+		this.contains = contains;
+	}
 	public Player() {
 		this(-1,"Unknown",-1,-1,-1,-1,"Unknown",-1,-1,"Unknown",-1,new Rol());
 	}
