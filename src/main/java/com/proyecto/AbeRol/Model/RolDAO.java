@@ -46,8 +46,8 @@ public class RolDAO extends Rol {
 					this.name = rs.getString("name");
 					this.description = rs.getString("description");
 					this.masterRol = new MasterDAO(rs.getInt("id_Master"));
+					this.players = PlayerDAO.getPlayerByRol(this.id);
 				}
-				this.players = PlayerDAO.getPlayerByRol(this.id);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -72,6 +72,7 @@ public class RolDAO extends Rol {
 			}
 		}
 	}
+	
 	public int saveRol() {
 		int saveResult = 0;
 		Connection con = ConnectionDB.getConexion();

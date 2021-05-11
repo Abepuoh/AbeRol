@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -75,7 +76,7 @@
                         <Font name="Bauhaus 93" size="18.0" />
                      </font></Label>
                   <ComboBox fx:id="choiceRol" prefHeight="28.0" prefWidth="279.0" GridPane.columnIndex="1" />
-                  <ComboBox fx:id="choicePlayer" prefHeight="28.0" prefWidth="279.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ChoiceBox fx:id="choosePlayer" prefHeight="28.0" prefWidth="254.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </top>
@@ -101,7 +102,7 @@
                      <font>
                         <Font name="Bauhaus 93" size="18.0" />
                      </font></Label>
-                  <Label text="INTELIGENCIA" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                  <Label fx:id="txtIntelligence" text="INTELIGENCIA" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                      <font>
                         <Font name="Bauhaus 93" size="18.0" />
                      </font></Label>
@@ -134,23 +135,30 @@
                         <Font name="Bauhaus 93" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="P1Name" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                  <Label fx:id="pitoDeLeche1" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="pitoDeLeche11" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label fx:id="pitoDeLeche111" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label fx:id="pitoDeLeche1111" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label fx:id="pitoDeLeche1112" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label fx:id="pitoDeLeche1113" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <Label fx:id="pitoDeLeche1114" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <Label fx:id="pitoDeLeche1115" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <Label fx:id="name" text="Label" GridPane.columnIndex="1" />
+                  <Label fx:id="level" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="strength" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="dexerity" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="intelligence" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="height" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label fx:id="weigth" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label fx:id="pclass" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Label fx:id="age" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                </children>
             </GridPane>
          </center>
+         <right>
+            <ImageView fitHeight="343.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../Images/character.jpg" />
+               </image>
+            </ImageView>
+         </right>
          <bottom>
-            <GridPane prefHeight="102.0" prefWidth="500.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
+            <GridPane fx:id="gridDescripcion" prefHeight="102.0" prefWidth="482.0" BorderPane.alignment="CENTER">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.19996337890626" minWidth="10.0" prefWidth="71.19996337890628" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="286.40003662109376" minWidth="10.0" prefWidth="286.40003662109376" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="253.39996337890625" minWidth="10.0" prefWidth="147.20003662109374" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="383.1999557495117" minWidth="10.0" prefWidth="363.1999633789062" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -159,17 +167,11 @@
                   <Label text="DESCRIPCION" GridPane.halignment="CENTER">
                      <font>
                         <Font name="Bauhaus 93" size="18.0" />
-                     </font></Label>
-                  <Label fx:id="pitoDeLeche11115" text="Label" GridPane.columnIndex="1" />
+                     </font>
+                  </Label>
+                  <Label fx:id="info" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                </children>
             </GridPane>
-         </bottom>
-         <right>
-            <ImageView fitHeight="343.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-               <image>
-                  <Image url="@../Images/character.jpg" />
-               </image>
-            </ImageView>
-         </right></BorderPane>
+         </bottom></BorderPane>
    </right>
 </BorderPane>

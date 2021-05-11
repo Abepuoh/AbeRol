@@ -77,6 +77,7 @@ public class Player extends Character {
 	}
 	@Override
 	public String toString() {
-		return  name;
+		return name;
 	}
+	
 }
