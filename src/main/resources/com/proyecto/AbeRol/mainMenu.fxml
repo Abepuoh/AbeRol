@@ -57,14 +57,14 @@
    <right>
       <BorderPane prefHeight="500.0" prefWidth="522.0" BorderPane.alignment="CENTER">
          <top>
-            <GridPane prefHeight="53.0" prefWidth="500.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
+            <GridPane prefHeight="54.0" prefWidth="510.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="249.20001220703125" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.79998779296875" minWidth="10.0" prefWidth="250.79998779296875" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="160.8000244140625" minHeight="0.0" prefHeight="28.800006103515628" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="467.60001373291016" minHeight="10.0" prefHeight="23.999993896484376" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="160.8000244140625" minHeight="0.0" prefHeight="23.599999999999998" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="467.60001373291016" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ROLS DISPONIBLES" textOrigin="CENTER" GridPane.halignment="CENTER">
@@ -75,13 +75,13 @@
                      <font>
                         <Font name="Bauhaus 93" size="18.0" />
                      </font></Label>
-                  <ComboBox fx:id="choiceRol" prefHeight="28.0" prefWidth="279.0" GridPane.columnIndex="1" />
-                  <ChoiceBox fx:id="choosePlayer" prefHeight="28.0" prefWidth="254.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="choiceRol" prefHeight="0.0" prefWidth="251.0" GridPane.columnIndex="1" />
+                  <ChoiceBox fx:id="choosePlayer" prefHeight="28.0" prefWidth="282.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </top>
          <center>
-            <GridPane fx:id="gridPlayer" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
+            <GridPane fx:id="gridPlayer" prefHeight="215.0" prefWidth="310.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.5999755859375" minWidth="10.0" prefWidth="148.00001220703123" />
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="409.20001220703125" minWidth="0.0" prefWidth="151.19998779296876" />
@@ -155,7 +155,7 @@
             </ImageView>
          </right>
          <bottom>
-            <GridPane fx:id="gridDescripcion" prefHeight="102.0" prefWidth="482.0" BorderPane.alignment="CENTER">
+            <GridPane fx:id="gridDescripcion" prefHeight="96.0" prefWidth="510.0" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="253.39996337890625" minWidth="10.0" prefWidth="147.20003662109374" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="383.1999557495117" minWidth="10.0" prefWidth="363.1999633789062" />
@@ -169,7 +169,7 @@
                         <Font name="Bauhaus 93" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="info" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                  <Label fx:id="info" alignment="CENTER" prefHeight="96.0" prefWidth="363.0" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                </children>
             </GridPane>
          </bottom></BorderPane>

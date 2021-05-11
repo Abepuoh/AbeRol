@@ -79,7 +79,6 @@ public class mainMenu {
 		user = transfer.getUser();
 		this.choiceRol.setItems(user.getRol());
 		gridPlayer.setGridLinesVisible(true);
-		gridDescripcion.setGridLinesVisible(true);
 		RolDAO u = new RolDAO(1);
 		this.choosePlayer.setItems(u.getPlayer());
 		PlayerDAO p = new PlayerDAO(1);
