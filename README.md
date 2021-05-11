@@ -30,7 +30,7 @@ In this section I show you the tools I have used to develop the project, both ID
 * [JavaFx](https://www.java.com/es/)
 * [Scene Builder](https://gluonhq.com/products/scene-builder/)
 * [Eclipse](https://www.eclipse.org/downloads/)
-
+* [Adobe Photoshop](https://www.adobe.com/es/products/photoshop.html)
 
 
 
