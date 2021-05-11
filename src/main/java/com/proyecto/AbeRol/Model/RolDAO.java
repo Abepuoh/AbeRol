@@ -27,7 +27,7 @@ public class RolDAO extends Rol {
 	}
 
 	public RolDAO(Rol aux) {
-		this.id = aux.id;
+		this.id = aux.id; // APUNTA A NULL
 		this.name = aux.name;
 		this.description = aux.description;
 		this.masterRol = aux.masterRol;

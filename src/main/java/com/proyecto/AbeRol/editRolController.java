@@ -39,6 +39,7 @@ public class editRolController {
 		MasterSingleton transfer = MasterSingleton.getInstance();
 		user = transfer.getUser();
 		this.comboRol.setItems(user.getRol());
+
 	}
 
 	@FXML
@@ -46,8 +47,7 @@ public class editRolController {
 		String name = this.txtName.getText();
 		String desription = this.txtDesc.getText();
 
-
-		if (!this.txtName.getText().trim().isEmpty() && !this.txtDesc.getText().trim().isEmpty() && comboRol.getSelectionModel().isEmpty()) {
+		if (!this.txtName.getText().trim().isEmpty() && !this.txtDesc.getText().trim().isEmpty() && comboRol.getSelectionModel().isEmpty()) { //tiene que estar full
 			List<String> dummyDao = RolDAO.getRols();
 			if (!dummyDao.contains(name) && comboRol.getValue().toString() == name) {
 				Alert alert = new Alert(Alert.AlertType.ERROR);

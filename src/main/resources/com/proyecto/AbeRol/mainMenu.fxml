@@ -80,7 +80,7 @@
             </GridPane>
          </top>
          <center>
-            <GridPane fx:id="gridPlayer" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
+            <GridPane fx:id="P1Level" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.5999755859375" minWidth="10.0" prefWidth="148.00001220703123" />
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="409.20001220703125" minWidth="0.0" prefWidth="151.19998779296876" />
@@ -101,7 +101,7 @@
                      <font>
                         <Font name="Bauhaus 93" size="18.0" />
                      </font></Label>
-                  <Label text="INTELIGENCIA" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                  <Label fx:id="txtIntelligence" text="INTELIGENCIA" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                      <font>
                         <Font name="Bauhaus 93" size="18.0" />
                      </font></Label>
@@ -135,14 +135,14 @@
                      </font>
                   </Label>
                   <Label fx:id="P1Name" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                  <Label fx:id="pitoDeLeche1" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="pitoDeLeche11" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label fx:id="pitoDeLeche111" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label fx:id="pitoDeLeche1111" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label fx:id="pitoDeLeche1112" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label fx:id="pitoDeLeche1113" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <Label fx:id="pitoDeLeche1114" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <Label fx:id="pitoDeLeche1115" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="P1Strength" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="P1Dexerity" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="P1Intelligence" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="P1Height" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label fx:id="P1Weigth" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label fx:id="P1Class" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Label fx:id="P1Age" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                </children>
             </GridPane>
          </center>
@@ -160,7 +160,7 @@
                      <font>
                         <Font name="Bauhaus 93" size="18.0" />
                      </font></Label>
-                  <Label fx:id="pitoDeLeche11115" text="Label" GridPane.columnIndex="1" />
+                  <Label fx:id="P1Description" text="Label" GridPane.columnIndex="1" />
                </children>
             </GridPane>
          </bottom>
