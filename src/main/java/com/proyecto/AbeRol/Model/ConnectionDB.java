@@ -23,7 +23,6 @@ public class ConnectionDB {
 	public static void conecta() throws ClassNotFoundException {
 		 try {
 			con=DriverManager.getConnection(server+"/"+database,username,password);
-			System.out.println("Conexion establecida correctamente");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			con=null;

@@ -41,9 +41,9 @@ public class App extends Application {
         launch();
     }
     
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
 	public void stop(){
-	    System.out.println("Stage is closing");
 	    a.stop();
 	}
 

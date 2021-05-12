@@ -69,7 +69,6 @@ public class logInController {
 		Scene modalScene = new Scene(modal);
 		modalStage.setScene(modalScene);
 		modalStage.showAndWait();
-		modalStage.setResizable(false);
 	}
 
 	@FXML
@@ -83,8 +82,7 @@ public class logInController {
 		Scene modalScene = new Scene(modal);
 		modalStage.setScene(modalScene);
 		modalStage.showAndWait();
-		modalStage.setResizable(false);
-	}
+		}
 
 	public void OpenMenu() {
 		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("mainMenu.fxml"));
@@ -98,7 +96,6 @@ public class logInController {
 			Scene modalScene = new Scene(modal);
 			modalStage.setScene(modalScene);
 			modalStage.showAndWait();
-			modalStage.setResizable(false);
 			modalStage.show();
 
 		} catch (IOException ex) {

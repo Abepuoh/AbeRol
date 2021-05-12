@@ -1,7 +1,6 @@
 package com.proyecto.AbeRol;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 
 import com.proyecto.AbeRol.Model.Master;
@@ -47,21 +46,22 @@ public class editMasterController {
 
 		if (!this.txtName.getText().trim().isEmpty() && !this.txtPassword.getText().trim().isEmpty()
 				&& !this.txtEmail.getText().trim().isEmpty()) {
-			List<String> dummyDao = MasterDAO.getMasters();
-			if (!dummyDao.contains(name)) {
-				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setHeaderText(null);
-				alert.setTitle("Error de edicion");
-				alert.setContentText("Tiene que introducir su usuario");
-				alert.showAndWait();
-			} else {
+			
+			if (this.txtName.getText().equals(dummy.getName())) {
 				Master dummy = new Master(name, email, password);
 				MasterDAO aux = new MasterDAO(dummy);
-				aux.SaveMaster();
+				aux.updateMaster();
+				
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setHeaderText(null);
 				alert.setTitle("Informacion");
 				alert.setContentText("Se ha añadido correctamente");
+				alert.showAndWait();
+			} else {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setHeaderText(null);
+				alert.setTitle("Error de edicion");
+				alert.setContentText("Tiene que introducir su usuario");
 				alert.showAndWait();
 
 			}

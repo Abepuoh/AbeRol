@@ -17,7 +17,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -42,14 +41,14 @@ public class mainMenu {
 	private ComboBox<Rol> choiceRol;
 
 	@FXML
-	private ChoiceBox <Player> choosePlayer;
-
+	private ComboBox<Player> choosePlayer;
+	
 	@FXML
 	private GridPane gridPlayer;
-	
+
 	@FXML
 	private GridPane gridDescripcion;
-	
+
 	@FXML
 	private Label name;
 	@FXML
@@ -70,35 +69,49 @@ public class mainMenu {
 	private Label age;
 	@FXML
 	private Label info;
-	
+
 	MasterDAO user = new MasterDAO();
-	
+	RolDAO rol = new RolDAO(1);
+	PlayerDAO player = new PlayerDAO(1);
+
 	@FXML
 	public void initialize() {
-		MasterSingleton transfer =MasterSingleton.getInstance();
+		MasterSingleton transfer = MasterSingleton.getInstance();
 		user = transfer.getUser();
-		this.choiceRol.setItems(user.getRol());
 		gridPlayer.setGridLinesVisible(true);
-		RolDAO u = new RolDAO(1);
-		this.choosePlayer.setItems(u.getPlayer());
-		PlayerDAO p = new PlayerDAO(1);
-		
-		name.setText(p.getName().toString());
-		level.setText(p.getLevel()+"".toString());
-		strength.setText(p.getStrength()+"".toString());
-		dexerity.setText(p.getDexerity()+"".toString());
-		intelligence.setText(p.getIntelligence()+"".toString());
-		height.setText(p.getHeight()+"".toString());
-		weigth.setText(p.getWeight()+"".toString());
-		pclass.setText(p.getClassRol().toString());
-		age.setText(p.getAge()+"".toString());
-		info.setText(p.getInformation().toString());
-		
-	}
+
+		this.choiceRol.setItems(user.getRol());
+		this.choosePlayer.setItems(rol.getPlayer());
+
 	
+
+	}
+	@FXML
+	protected void choose(ActionEvent Event) throws IOException {
+		RolDAO rol = new RolDAO(this.choiceRol.getValue().toString());
+		System.out.println(rol.getPlayer());
+		this.choosePlayer.setItems(rol.getPlayer());
+	
+	}
+	@FXML
+	protected void fillGrid(ActionEvent Event) throws IOException {
+		PlayerDAO player = new PlayerDAO(this.choosePlayer.getValue());
+		
+		name.setText(player.getName().toString());
+		level.setText(player.getLevel() + "".toString());
+		strength.setText(player.getStrength() + "".toString());
+		dexerity.setText(player.getDexerity() + "".toString());
+		intelligence.setText(player.getIntelligence() + "".toString());
+		height.setText(player.getHeight() + "".toString());
+		weigth.setText(player.getWeight() + "".toString());
+		pclass.setText(player.getClassRol().toString());
+		age.setText(player.getAge() + "".toString());
+		info.setText(player.getInformation());
+	}
 	@FXML
 	protected void editMaster(ActionEvent Event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("editMaster.fxml"));
+	
 		Parent modal;
 		try {
 			modal = fxmlLoader.load();
@@ -157,7 +170,6 @@ public class mainMenu {
 	private void exit(ActionEvent event) {
 		Stage stage = (Stage) this.buttExit.getScene().getWindow();
 		stage.close();
-
 	}
 
 }

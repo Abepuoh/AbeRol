@@ -7,12 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.proyecto.AbeRol.Interfaces.IRolDAO;
 import com.proyecto.AbeRol.UIUtils.EnumBBDD;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class RolDAO extends Rol {
+public class RolDAO extends Rol implements IRolDAO{
 
 	public RolDAO(int id, String name, String description, Master masterRol, ObservableList<Player> players) {
 		super(id, name, description, masterRol, players);
@@ -27,7 +28,7 @@ public class RolDAO extends Rol {
 	}
 
 	public RolDAO(Rol aux) {
-		this.id = aux.id; // APUNTA A NULL
+		this.id = aux.id; 
 		this.name = aux.name;
 		this.description = aux.description;
 		this.masterRol = aux.masterRol;
@@ -65,6 +66,7 @@ public class RolDAO extends Rol {
 					this.name = rs.getString("name");
 					this.description = rs.getString("description");
 					this.masterRol = new MasterDAO(rs.getInt("id_Master"));
+					this.players = PlayerDAO.getPlayerByRol(this.id);
 				}
 				this.players = PlayerDAO.getPlayerByRol(this.id);
 			} catch (SQLException e) {
@@ -90,7 +92,12 @@ public class RolDAO extends Rol {
 		}
 		return saveResult;
 	}
-
+	
+	/**
+	* Delete a Rol starting from the id
+	* @param id identify of the Rol
+	* @return true if successfully removed
+	**/
 	public static int deleteRol(String name) {
 		int deleteMasterResult = 0;
 		Connection con = ConnectionDB.getConexion();
@@ -100,7 +107,6 @@ public class RolDAO extends Rol {
 				q.setString(1, name);
 				deleteMasterResult = q.executeUpdate();
 				} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -116,7 +122,6 @@ public class RolDAO extends Rol {
 				q.setInt(1, id);
 				ResultSet rs = q.executeQuery();
 				while (rs.next()) {
-					// cada row
 					Rol auxR = new Rol();
 					auxR.setId(rs.getInt("id"));
 					auxR.setName(rs.getString("name"));
@@ -124,7 +129,6 @@ public class RolDAO extends Rol {
 					rolList.add(auxR);
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -141,7 +145,6 @@ public class RolDAO extends Rol {
 	              getNombres.add(rs.getString("name"));
 	            }
 	          } catch (SQLException e) {
-	            // TODO Auto-generated catch block
 	            e.printStackTrace();
 	          }
 	        }

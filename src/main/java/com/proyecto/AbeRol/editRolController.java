@@ -47,9 +47,12 @@ public class editRolController {
 		String name = this.txtName.getText();
 		String desription = this.txtDesc.getText();
 
-		if (!this.txtName.getText().trim().isEmpty() && !this.txtDesc.getText().trim().isEmpty() && comboRol.getSelectionModel().isEmpty()) { //tiene que estar full
+		if (!this.txtName.getText().trim().isEmpty() && !this.txtDesc.getText().trim().isEmpty()
+				&& !comboRol.getSelectionModel().isEmpty()) { 
+			
 			List<String> dummyDao = RolDAO.getRols();
-			if (!dummyDao.contains(name) && comboRol.getValue().toString() == name) {
+			
+			if (!dummyDao.contains(name)) {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setHeaderText(null);
 				alert.setTitle("Error de edicion");

@@ -1,6 +1,7 @@
 package com.proyecto.AbeRol.UIUtils;
 
 public enum EnumBBDD {
+	UPDATEMASTER("UPDATE Master SET name=?,email=?,password= ? WHERE name=?"),
 	SELECTMASTERS("SELECT name FROM Master"),
 	SELECTROL("SELECT name FROM Rol"),
 	SELECTPLAYERS("SELECT name FROM player"),
@@ -20,6 +21,7 @@ public enum EnumBBDD {
 	GETPLAYERSBYROL("SELECT id, name, level, strength, dexerity, intelligence, information, height, weight, class, age, id_Rol FROM player WHERE id_Rol = ? "),/**/
 	
 	GETPLAYERBYID("SELECT id, name, level, strength, dexerity, intelligence, information, height, weight, class, age, id_Rol FROM player WHERE id = ?"),
+	GETPLAYERBYNAME("SELECT id, name, level, strength, dexerity, intelligence, information, height, weight, class, age, id_Rol FROM player WHERE name = ?"),
 	INSERTUPDATEPLAYER(
 			"INSERT INTO Player (name, level, strength, dexerity, intelligence, information, height, weight, classRol, age, contains) "
 					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE name=?,level=?,strength=?,dexerity=?,intelligence=?"

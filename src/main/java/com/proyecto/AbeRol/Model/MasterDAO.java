@@ -7,12 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.proyecto.AbeRol.Interfaces.IMasterDAO;
 import com.proyecto.AbeRol.UIUtils.EnumBBDD;
 
 import javafx.collections.ObservableList;
 
 
-public class MasterDAO extends Master {
+public class MasterDAO extends Master implements IMasterDAO {
 
 	public MasterDAO(int id, String name, String email, String password,ObservableList<Rol> rol) {
 		super(id, name, email, password, rol);
@@ -112,6 +113,24 @@ public class MasterDAO extends Master {
 		}
 		return saveResult;
 	}
+	//"UPDATE Master SET id=?,categoria=?,texto=? WHERE id=?"
+	public int updateMaster() {
+		int saveResult = 0;
+		Connection con = ConnectionDB.getConexion();
+		if (con != null) {
+			try {
+				PreparedStatement q = con.prepareStatement(EnumBBDD.INSERTUPDATEMASTER.getString());
+				q.setString(1, this.name);
+				q.setString(2, this.email);
+				q.setString(3, this.password);
+				saveResult = q.executeUpdate();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return saveResult;
+	}	
 
 	public int deleteMaster(String name) {
 		int deleteMasterResult = 0;
