@@ -30,14 +30,15 @@ In this section I show you the tools I have used to develop the project, both ID
 * [JavaFx](https://www.java.com/es/)
 * [Scene Builder](https://gluonhq.com/products/scene-builder/)
 * [Eclipse](https://www.eclipse.org/downloads/)
-
+* [Adobe Photoshop](https://www.adobe.com/es/products/photoshop.html)
 
 
 
 <!-- STATUS -->
 ### PROJECT STATUS  
 
-
+The project is currently at an early stage of development. It is not yet possible to edit the players of each Role and it would be necessary to correct code errors and make the code as clean and simple as possible.
+The project is currently at an early stage of development. It is not yet possible to edit the players of each Role and it would be necessary to correct code errors and make the code as clean and simple as possible.
 
 <!-- CONTRIBUTING -->
 #### CONTRIBUTIONS
