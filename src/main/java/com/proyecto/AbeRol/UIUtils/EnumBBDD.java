@@ -1,7 +1,8 @@
 package com.proyecto.AbeRol.UIUtils;
 
 public enum EnumBBDD {
-	UPDATEMASTER("UPDATE Master SET name=?,email=?,password= ? WHERE name=?"),
+	UPDATEMASTER("UPDATE Master SET name= ?,email=?,password =? Where id = ?"),
+	UPDATEROL("UPDATE Rol SET name= ?,description=? Where id = ?"),
 	SELECTMASTERS("SELECT name FROM Master"),
 	SELECTROL("SELECT name FROM Rol"),
 	SELECTPLAYERS("SELECT name FROM player"),

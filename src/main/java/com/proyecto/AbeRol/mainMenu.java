@@ -71,25 +71,20 @@ public class mainMenu {
 	private Label info;
 
 	MasterDAO user = new MasterDAO();
-	RolDAO rol = new RolDAO(1);
-	PlayerDAO player = new PlayerDAO(1);
+
 
 	@FXML
 	public void initialize() {
 		MasterSingleton transfer = MasterSingleton.getInstance();
 		user = transfer.getUser();
 		gridPlayer.setGridLinesVisible(true);
-
 		this.choiceRol.setItems(user.getRol());
-		this.choosePlayer.setItems(rol.getPlayer());
-
-	
 
 	}
 	@FXML
 	protected void choose(ActionEvent Event) throws IOException {
 		RolDAO rol = new RolDAO(this.choiceRol.getValue().toString());
-		System.out.println(rol.getPlayer());
+		
 		this.choosePlayer.setItems(rol.getPlayer());
 	
 	}

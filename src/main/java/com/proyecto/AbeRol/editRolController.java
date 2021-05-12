@@ -1,7 +1,6 @@
 package com.proyecto.AbeRol;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 
 import com.proyecto.AbeRol.Model.MasterDAO;
@@ -38,6 +37,7 @@ public class editRolController {
 	public void initialize() {
 		MasterSingleton transfer = MasterSingleton.getInstance();
 		user = transfer.getUser();
+		 
 		this.comboRol.setItems(user.getRol());
 
 	}
@@ -46,28 +46,25 @@ public class editRolController {
 	private void editRol(ActionEvent event) throws IOException {
 		String name = this.txtName.getText();
 		String desription = this.txtDesc.getText();
-
+		RolDAO auxRol = new RolDAO(this.comboRol.getValue().toString());
 		if (!this.txtName.getText().trim().isEmpty() && !this.txtDesc.getText().trim().isEmpty()
-				&& !comboRol.getSelectionModel().isEmpty()) { 
-			
-			List<String> dummyDao = RolDAO.getRols();
-			
-			if (!dummyDao.contains(name)) {
-				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setHeaderText(null);
-				alert.setTitle("Error de edicion");
-				alert.setContentText("Solo puede editar su partida");
-				alert.showAndWait();
-			} else {
+				&& !comboRol.getSelectionModel().isEmpty()) {
+
+			if (this.txtName.getText().equals(this.comboRol.getValue().toString())) {
 				Rol dummy = new Rol(name, desription);
 				RolDAO aux = new RolDAO(dummy);
-				aux.saveRol();
+				aux.updateRol(auxRol.getId());
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setHeaderText(null);
 				alert.setTitle("Informacion");
 				alert.setContentText("Se ha añadido correctamente");
 				alert.showAndWait();
-
+			} else {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setHeaderText(null);
+				alert.setTitle("Error de edicion");
+				alert.setContentText("Solo puede editar sus partida");
+				alert.showAndWait();
 			}
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -75,7 +72,7 @@ public class editRolController {
 			alert.setTitle("Error de creacion");
 			alert.setContentText("Porfavor no deje ningun dato vacío");
 			alert.showAndWait();
-			
+
 		}
 	}
 

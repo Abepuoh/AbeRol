@@ -48,9 +48,9 @@ public class editMasterController {
 				&& !this.txtEmail.getText().trim().isEmpty()) {
 			
 			if (this.txtName.getText().equals(dummy.getName())) {
-				Master dummy = new Master(name, email, password);
-				MasterDAO aux = new MasterDAO(dummy);
-				aux.updateMaster();
+				Master master = new Master(name, email, password);
+				MasterDAO aux = new MasterDAO(master);
+				aux.updateMaster(dummy.getId());
 				
 				Alert alert = new Alert(Alert.AlertType.INFORMATION);
 				alert.setHeaderText(null);

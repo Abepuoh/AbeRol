@@ -23,7 +23,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
     	a=new AudioFilePlayer();
-    	a.start();  
+    //	a.start();  
     	scene = new Scene(loadFXML("login"), 700, 500);
         stage.setScene(scene);
         stage.getIcons().add(new Image(App.class.getResourceAsStream("logo.png")));

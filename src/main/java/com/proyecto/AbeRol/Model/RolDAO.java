@@ -92,7 +92,24 @@ public class RolDAO extends Rol implements IRolDAO{
 		}
 		return saveResult;
 	}
-	
+
+	public int updateRol(int id) {
+		int saveResult = 0;
+		Connection con = ConnectionDB.getConexion();
+		if (con != null) {
+			try {
+				PreparedStatement q = con.prepareStatement(EnumBBDD.UPDATEROL.getString());
+				q.setString(1, this.name);
+				q.setString(2, this.description);
+				q.setInt(3, id);
+				saveResult = q.executeUpdate();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return saveResult;
+	}
 	/**
 	* Delete a Rol starting from the id
 	* @param id identify of the Rol

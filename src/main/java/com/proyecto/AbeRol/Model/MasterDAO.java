@@ -12,10 +12,9 @@ import com.proyecto.AbeRol.UIUtils.EnumBBDD;
 
 import javafx.collections.ObservableList;
 
-
 public class MasterDAO extends Master implements IMasterDAO {
 
-	public MasterDAO(int id, String name, String email, String password,ObservableList<Rol> rol) {
+	public MasterDAO(int id, String name, String email, String password, ObservableList<Rol> rol) {
 		super(id, name, email, password, rol);
 	}
 
@@ -34,7 +33,7 @@ public class MasterDAO extends Master implements IMasterDAO {
 		this.password = aux.password;
 		this.rol = aux.rol;
 	}
-	
+
 	public MasterDAO(int id) {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
@@ -49,13 +48,14 @@ public class MasterDAO extends Master implements IMasterDAO {
 					this.password = rs.getString("Password");
 					this.rol = RolDAO.getRolByMaster(id);
 				}
-				
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
 	}
-	public MasterDAO(String name,String pass) {
+
+	public MasterDAO(String name, String pass) {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
@@ -66,7 +66,7 @@ public class MasterDAO extends Master implements IMasterDAO {
 				while (rs.next()) {
 					this.id = rs.getInt("id");
 					this.name = rs.getString("name");
-					this.email =rs.getString("email");
+					this.email = rs.getString("email");
 					this.password = rs.getString("password");
 					this.rol = RolDAO.getRolByMaster(id);
 				}
@@ -75,6 +75,7 @@ public class MasterDAO extends Master implements IMasterDAO {
 			}
 		}
 	}
+
 	public MasterDAO(String email) {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
@@ -113,16 +114,17 @@ public class MasterDAO extends Master implements IMasterDAO {
 		}
 		return saveResult;
 	}
-	//"UPDATE Master SET id=?,categoria=?,texto=? WHERE id=?"
-	public int updateMaster() {
+
+	public int updateMaster(int id) {
 		int saveResult = 0;
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.INSERTUPDATEMASTER.getString());
+				PreparedStatement q = con.prepareStatement(EnumBBDD.UPDATEMASTER.getString());
 				q.setString(1, this.name);
 				q.setString(2, this.email);
 				q.setString(3, this.password);
+				q.setInt(4, id);
 				saveResult = q.executeUpdate();
 
 			} catch (SQLException e) {
@@ -130,7 +132,7 @@ public class MasterDAO extends Master implements IMasterDAO {
 			}
 		}
 		return saveResult;
-	}	
+	}
 
 	public int deleteMaster(String name) {
 		int deleteMasterResult = 0;
@@ -166,23 +168,23 @@ public class MasterDAO extends Master implements IMasterDAO {
 		}
 		return logResult;
 	}
-   
-    public static List<String> getMasters() {
-        List<String> getNombres = new ArrayList<>();
-        Connection con = ConnectionDB.getConexion();
-        if (con != null) {
-          try {
-        	PreparedStatement q = con.prepareStatement(EnumBBDD.SELECTMASTERS.getString());
-            ResultSet rs = q.executeQuery();
-            while (rs.next()) {
-              getNombres.add(rs.getString("name"));
-            }
-          } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-          }
-        }
-        return getNombres;
-      }
-	
+
+	public static List<String> getMasters() {
+		List<String> getNombres = new ArrayList<>();
+		Connection con = ConnectionDB.getConexion();
+		if (con != null) {
+			try {
+				PreparedStatement q = con.prepareStatement(EnumBBDD.SELECTMASTERS.getString());
+				ResultSet rs = q.executeQuery();
+				while (rs.next()) {
+					getNombres.add(rs.getString("name"));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return getNombres;
+	}
+
 }
