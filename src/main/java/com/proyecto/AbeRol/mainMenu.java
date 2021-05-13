@@ -161,8 +161,12 @@ public class mainMenu {
 
 	@FXML
 	private void exit(ActionEvent event) {
-		Stage stage = (Stage) this.buttExit.getScene().getWindow();
-		stage.close();
+		try {
+			App.setRoot("login");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
