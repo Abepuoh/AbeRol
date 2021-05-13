@@ -114,7 +114,11 @@ public class MasterDAO extends Master implements IMasterDAO {
 		}
 		return saveResult;
 	}
-
+	/**
+	 * method to update an existing master without creating a new one
+	 * @param id of the master
+	 * @return an update
+	 */
 	public int updateMaster(int id) {
 		int saveResult = 0;
 		Connection con = ConnectionDB.getConexion();
@@ -149,7 +153,12 @@ public class MasterDAO extends Master implements IMasterDAO {
 		}
 		return deleteMasterResult;
 	}
-
+	/**
+	 * boolean method to log in with name and password
+	 * @param name of the master
+	 * @param password of the master
+	 * @return true if the login was successful
+	 */
 	public boolean logIn(String name, String password) {
 		boolean logResult = false;
 		try {
@@ -168,7 +177,10 @@ public class MasterDAO extends Master implements IMasterDAO {
 		}
 		return logResult;
 	}
-
+	/**
+	 * method to obtain a list with the names of the masters
+	 * @return a list of existing masters
+	 */
 	public static List<String> getMasters() {
 		List<String> getNombres = new ArrayList<>();
 		Connection con = ConnectionDB.getConexion();
@@ -180,7 +192,6 @@ public class MasterDAO extends Master implements IMasterDAO {
 					getNombres.add(rs.getString("name"));
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

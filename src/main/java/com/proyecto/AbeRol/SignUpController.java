@@ -30,7 +30,7 @@ public class SignUpController {
 
 	@FXML
 	public void initialize() {
-
+		
 	}
 
 	@FXML

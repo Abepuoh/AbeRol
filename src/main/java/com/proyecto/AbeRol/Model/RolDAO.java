@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.proyecto.AbeRol.Interfaces.IRolDAO;
 import com.proyecto.AbeRol.UIUtils.EnumBBDD;
@@ -13,28 +11,30 @@ import com.proyecto.AbeRol.UIUtils.EnumBBDD;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class RolDAO extends Rol implements IRolDAO{
+public class RolDAO extends Rol implements IRolDAO {
 
 	public RolDAO(int id, String name, String description, Master masterRol, ObservableList<Player> players) {
 		super(id, name, description, masterRol, players);
 
 	}
+
 	public RolDAO(String name, String description) {
-		super(name,description);
+		super(name, description);
 	}
+
 	public RolDAO() {
 		super();
 
 	}
 
 	public RolDAO(Rol aux) {
-		this.id = aux.id; 
+		this.id = aux.id;
 		this.name = aux.name;
 		this.description = aux.description;
 		this.masterRol = aux.masterRol;
 		this.players = aux.players;
 	}
-	
+
 	public RolDAO(int id) {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
@@ -54,6 +54,7 @@ public class RolDAO extends Rol implements IRolDAO{
 			}
 		}
 	}
+
 	public RolDAO(String name) {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
@@ -74,7 +75,7 @@ public class RolDAO extends Rol implements IRolDAO{
 			}
 		}
 	}
-	
+
 	public int saveRol() {
 		int saveResult = 0;
 		Connection con = ConnectionDB.getConexion();
@@ -92,7 +93,11 @@ public class RolDAO extends Rol implements IRolDAO{
 		}
 		return saveResult;
 	}
-
+	/**
+	 * method I will use to update an existing user via the user id
+	 * @param id of the rol
+	 * @return an existing user updated
+	 */
 	public int updateRol(int id) {
 		int saveResult = 0;
 		Connection con = ConnectionDB.getConexion();
@@ -110,11 +115,13 @@ public class RolDAO extends Rol implements IRolDAO{
 		}
 		return saveResult;
 	}
+
 	/**
-	* Delete a Rol starting from the id
-	* @param id identify of the Rol
-	* @return true if successfully removed
-	**/
+	 * Delete a Rol starting from the id
+	 * 
+	 * @param id identify of the Rol
+	 * @return true if successfully removed
+	 **/
 	public static int deleteRol(String name) {
 		int deleteMasterResult = 0;
 		Connection con = ConnectionDB.getConexion();
@@ -123,13 +130,17 @@ public class RolDAO extends Rol implements IRolDAO{
 				PreparedStatement q = con.prepareStatement(EnumBBDD.DELETEROL.getString());
 				q.setString(1, name);
 				deleteMasterResult = q.executeUpdate();
-				} catch (SQLException e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
 		return deleteMasterResult;
 	}
-
+	/**
+	 * method that returns the rol of a master
+	 * @param id of the master
+	 * @return an observable list of rols
+	 */
 	public static ObservableList<Rol> getRolByMaster(int id) {
 		ObservableList<Rol> rolList = FXCollections.observableArrayList();
 		Connection con = ConnectionDB.getConexion();
@@ -151,21 +162,4 @@ public class RolDAO extends Rol implements IRolDAO{
 		}
 		return rolList;
 	}
-	 public static List<String> getRols() {
-	        List<String> getNombres = new ArrayList<>();
-	        Connection con = ConnectionDB.getConexion();
-	        if (con != null) {
-	          try {
-	        	PreparedStatement q = con.prepareStatement(EnumBBDD.SELECTROL.getString());
-	            ResultSet rs = q.executeQuery();
-	            while (rs.next()) {
-	              getNombres.add(rs.getString("name"));
-	            }
-	          } catch (SQLException e) {
-	            e.printStackTrace();
-	          }
-	        }
-	        return getNombres;
-	      }
-	 
 }
