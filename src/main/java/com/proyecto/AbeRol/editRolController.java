@@ -36,7 +36,7 @@ public class editRolController {
 	@FXML
 	public void initialize() {
 		MasterSingleton transfer = MasterSingleton.getInstance();
-		user = transfer.getUser(); 
+		user = transfer.getUser();
 		this.comboRol.setItems(user.getRol());
 
 	}

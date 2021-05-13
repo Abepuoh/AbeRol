@@ -1,8 +1,6 @@
 package com.proyecto.AbeRol;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.proyecto.AbeRol.Model.MasterDAO;
 import com.proyecto.AbeRol.Model.MasterSingleton;
@@ -48,7 +46,7 @@ public class logInController {
 		if (root.logIn(name, password) == true) {
 			MasterDAO data = new MasterDAO(name,password);
 			transfer.setUser(data);
-			OpenMenu();
+			App.setRoot("mainMenu");
 		} else {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setHeaderText(null);
@@ -84,22 +82,22 @@ public class logInController {
 		modalStage.showAndWait();
 		}
 
-	public void OpenMenu() {
-		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("mainMenu.fxml"));
-		Parent modal;
-		try {
-	
-			modal = fxmlLoader.load();
-			Stage modalStage = new Stage();
-			modalStage.initModality(Modality.APPLICATION_MODAL);
-			modalStage.initOwner(App.rootstage);
-			Scene modalScene = new Scene(modal);
-			modalStage.setScene(modalScene);
-			modalStage.showAndWait();
-			modalStage.show();
-
-		} catch (IOException ex) {
-			Logger.getLogger(logInController.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
+//	public void OpenMenu() {
+//		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("mainMenu.fxml"));
+//		Parent modal;
+//		try {
+//	
+//			modal = fxmlLoader.load();
+//			Stage modalStage = new Stage();
+//			modalStage.initModality(Modality.APPLICATION_MODAL);
+//			modalStage.initOwner(App.rootstage);
+//			Scene modalScene = new Scene(modal);
+//			modalStage.setScene(modalScene);
+//			modalStage.showAndWait();
+//			modalStage.show();
+//
+//		} catch (IOException ex) {
+//			Logger.getLogger(logInController.class.getName()).log(Level.SEVERE, null, ex);
+//		}
+//	}
 }

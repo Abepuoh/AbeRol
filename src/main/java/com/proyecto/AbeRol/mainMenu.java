@@ -84,9 +84,7 @@ public class mainMenu {
 	@FXML
 	protected void choose(ActionEvent Event) throws IOException {
 		RolDAO rol = new RolDAO(this.choiceRol.getValue().toString());
-		
 		this.choosePlayer.setItems(rol.getPlayer());
-	
 	}
 	@FXML
 	protected void fillGrid(ActionEvent Event) throws IOException {
