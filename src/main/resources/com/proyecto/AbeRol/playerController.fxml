@@ -18,7 +18,7 @@
             <Image url="@logo.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="416.0" fitWidth="364.0" layoutX="-7.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="416.0" fitWidth="364.0" layoutX="-7.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/editPlayer.png" />
          </image>
