@@ -118,8 +118,7 @@ public class RolDAO extends Rol implements IRolDAO {
 
 	/**
 	 * Delete a Rol starting from the id
-	 * 
-	 * @param id identify of the Rol
+	 * @param name identify of the Rol
 	 * @return true if successfully removed
 	 **/
 	public static int deleteRol(String name) {

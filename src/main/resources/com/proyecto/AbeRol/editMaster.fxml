@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="347.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.AbeRol.editMasterController">
-   <children>
+
       <ImageView fitHeight="508.0" fitWidth="353.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/editM.jpg" />
@@ -34,5 +34,5 @@
       </ImageView>
       <Button fx:id="buttDelete" layoutX="142.0" layoutY="422.0" mnemonicParsing="false" onAction="#deleteMaster" prefHeight="38.0" prefWidth="64.0" text="Borrar" />
       <Button fx:id="buttExit" layoutX="250.0" layoutY="422.0" mnemonicParsing="false" onAction="#exit" prefHeight="38.0" prefWidth="64.0" text="Salir" />
-   </children>
+
 </AnchorPane>

@@ -8,7 +8,6 @@ public interface IPlayerDAO {
 	public int SavePlayer();
 	/**
 	* Delete a Player starting from the id
-	* @param id identify of the rol
 	* @return true if successfully removed
 	**/
 	public int deletePlayer();
