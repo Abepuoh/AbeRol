@@ -44,7 +44,7 @@ public class editRolController {
 
 	}
 
-	////////////////////////////////////////////////////////////
+	//////////////////////////UPATE//////////////////////////
 	
 	@FXML
 	private void createRol(ActionEvent event) throws IOException {
@@ -55,7 +55,7 @@ public class editRolController {
 		aux.createRol();
 	}
 	
-	////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////
 	@FXML
 	private void editRol(ActionEvent event) throws IOException {
 		String name = this.txtName.getText();

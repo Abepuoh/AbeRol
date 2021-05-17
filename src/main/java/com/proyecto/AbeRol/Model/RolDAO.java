@@ -5,17 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.proyecto.AbeRol.Interfaces.IRolDAO;
 import com.proyecto.AbeRol.UIUtils.ConnectionDB;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class RolDAO extends Rol implements IRolDAO {
+public class RolDAO extends Rol {
 	
 	private final static String GETROLBYID = "SELECT id,name,description,id_Master FROM Rol WHERE id=?";
 	private final static String GETROLBYNAME = "SELECT id, name, description, id_master FROM rol WHERE name =?";
-	private final static String INTERTUPDATEROL = "INSERT INTO Rol (name,description) VALUES(?,?) ON DUPLICATE KEY UPDATE name= ?, description= ?";
 	private final static String UPDATEROL = "UPDATE Rol SET name= ?,description=? Where id = ?";
 	private final static String DELETEROL = "DELETE FROM Rol WHERE name = ?";
 	private final static String GETROLBYMASTER = "SELECT id,name,description FROM Rol WHERE id_master = ?";
@@ -87,25 +85,6 @@ public class RolDAO extends Rol implements IRolDAO {
 			}
 		}
 	}
-
-	public int saveRol() {
-		int saveResult = 0;
-		Connection con = ConnectionDB.getConexion();
-		if (con != null) {
-			try {
-				PreparedStatement q = con.prepareStatement(INTERTUPDATEROL);
-				q.setString(1, this.name);
-				q.setString(2, this.description);
-				q.setString(3, this.name);
-				q.setString(4, this.description);
-				saveResult = q.executeUpdate();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return saveResult;
-	}
-
 	/**
 	 * method I will use to update an existing user via the user id
 	 * 
