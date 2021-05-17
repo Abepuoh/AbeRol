@@ -9,13 +9,20 @@ import java.util.List;
 
 import com.proyecto.AbeRol.Interfaces.IPlayerDAO;
 import com.proyecto.AbeRol.UIUtils.ConnectionDB;
-import com.proyecto.AbeRol.UIUtils.EnumBBDD;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class PlayerDAO extends Player implements IPlayerDAO {
-
+	
+	private final static String GETPLAYERBYID = "SELECT id, name, level, strength, dexerity, intelligence, information, height, "
+			+ "weight, class, age, id_Rol FROM player WHERE id = ?";
+	private final static String GETPLAYERBYNAME = "SELECT id, name, level, strength, dexerity, intelligence, information, height, "
+			+ "weight, class, age, id_Rol FROM player WHERE name = ?";
+	private final static String GETPLAYERSBYROL = "SELECT id, name, level, strength, dexerity, intelligence, information, height, "
+			+ "weight, class, age, id_Rol FROM player WHERE id_Rol = ?";
+	private final static String SELECTPLAYERS = "SELECT name FROM player";
+	
 	public static PlayerDAO MPlayer;
 
 	public PlayerDAO(int id, String name, int level, int strength, int dexerity, int intelligence, String information,
@@ -47,7 +54,7 @@ public class PlayerDAO extends Player implements IPlayerDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.GETPLAYERBYID.getString());
+				PreparedStatement q = con.prepareStatement(GETPLAYERBYID);
 				q.setInt(1, id);
 				ResultSet rs = q.executeQuery();
 				while (rs.next()) {
@@ -75,7 +82,7 @@ public class PlayerDAO extends Player implements IPlayerDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.GETPLAYERBYNAME.getString());
+				PreparedStatement q = con.prepareStatement(GETPLAYERBYNAME);
 				q.setString(1, name);
 				ResultSet rs = q.executeQuery();
 				while (rs.next()) {
@@ -110,7 +117,7 @@ public class PlayerDAO extends Player implements IPlayerDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.GETPLAYERSBYROL.getString());
+				PreparedStatement q = con.prepareStatement(GETPLAYERSBYROL);
 				q.setInt(1, id);
 				ResultSet rs = q.executeQuery();
 				while (rs.next()) {
@@ -145,7 +152,7 @@ public class PlayerDAO extends Player implements IPlayerDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.SELECTPLAYERS.getString());
+				PreparedStatement q = con.prepareStatement(SELECTPLAYERS);
 				ResultSet rs = q.executeQuery();
 				while (rs.next()) {
 					getNombres.add(rs.getString("name"));
@@ -164,8 +171,8 @@ public class PlayerDAO extends Player implements IPlayerDAO {
 
 	///////////////////// UPDATE /////////////////////
 	
-	private final static String deletePlayer = "DELETE FROM Player WHERE name = ?";
-	private final static String modifyPlayer = "INSERT INTO Player (name, level, strength, dexerity, intelligence, information, height, weight, classRol, age, contains)"
+	private final static String DELETEPLAYER = "DELETE FROM Player WHERE name = ?";
+	private final static String MODIFYPLAYER = "INSERT INTO Player (name, level, strength, dexerity, intelligence, information, height, weight, classRol, age, contains)"
 			+ "VALUES (?,?,?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE name=?,level=?,strength=?,dexerity=?,intelligence=?"
 			+ ",information=?,height=?,weight=?,classRol=?,age=?,contains=?";
 	
@@ -174,7 +181,7 @@ public class PlayerDAO extends Player implements IPlayerDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement q = con.prepareStatement(deletePlayer);
+				PreparedStatement q = con.prepareStatement(DELETEPLAYER);
 				q.setInt(1, this.id);
 				rs = q.executeUpdate();
 				this.id = -1;
@@ -193,7 +200,7 @@ public class PlayerDAO extends Player implements IPlayerDAO {
 		}
 		if (con != null) {
 			try {
-				PreparedStatement q = con.prepareStatement(modifyPlayer);
+				PreparedStatement q = con.prepareStatement(MODIFYPLAYER);
 				q.setString(1, this.name);
 				q.setInt(2, this.level);
 				q.setInt(3, this.strength);

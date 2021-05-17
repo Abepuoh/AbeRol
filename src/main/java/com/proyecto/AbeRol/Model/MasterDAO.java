@@ -9,12 +9,21 @@ import java.util.List;
 
 import com.proyecto.AbeRol.Interfaces.IMasterDAO;
 import com.proyecto.AbeRol.UIUtils.ConnectionDB;
-import com.proyecto.AbeRol.UIUtils.EnumBBDD;
 
 import javafx.collections.ObservableList;
 
 public class MasterDAO extends Master implements IMasterDAO {
-
+	
+	private final static String LOGINMENU = "SELECT name,password FROM Master WHERE name LIKE ? and password LIKE ?";
+	private final static String GETMASTERBYID ="SELECT id,name,password,email FROM Master WHERE id = ?";
+	private final static String GETMASTERBYNAMEPASS = "SELECT id,name,password,email FROM Master WHERE name = ? AND password =?";
+	private final static String GETMASTERBYEMAIL = "SELECT id,name,password FROM Master WHERE email = ?";
+	private final static String INSERTUPDATEMASTER = "INSERT INTO Master (name, email, password) VALUES (?,?,?) ON DUPLICATE KEY UPDATE name= ?, "
+			+ "email = ?, password= ?";
+	private final static String DELETEMASTER = "DELETE FROM Master WHERE name = ?";
+	private final static String UPDATEMASTER = "UPDATE Master SET name= ?,email=?,password =? Where id = ?";
+	private final static String SELECTMASTERS = "SELECT name FROM Master";
+	
 	public MasterDAO(int id, String name, String email, String password, ObservableList<Rol> rol) {
 		super(id, name, email, password, rol);
 	}
@@ -39,7 +48,7 @@ public class MasterDAO extends Master implements IMasterDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement query = con.prepareStatement(EnumBBDD.GETMASTERBYID.getString());
+				PreparedStatement query = con.prepareStatement(GETMASTERBYID);
 				query.setInt(1, id);
 				ResultSet rs = query.executeQuery();
 				while (rs.next()) {
@@ -60,7 +69,7 @@ public class MasterDAO extends Master implements IMasterDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement query = con.prepareStatement(EnumBBDD.GETMASTERBYNAMEPASS.getString());
+				PreparedStatement query = con.prepareStatement(GETMASTERBYNAMEPASS);
 				query.setString(1, name);
 				query.setString(2, pass);
 				ResultSet rs = query.executeQuery();
@@ -81,7 +90,7 @@ public class MasterDAO extends Master implements IMasterDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement query = con.prepareStatement(EnumBBDD.GETMASTERBYEMAIL.getString());
+				PreparedStatement query = con.prepareStatement(GETMASTERBYEMAIL);
 				query.setString(1, email);
 				ResultSet rs = query.executeQuery();
 				while (rs.next()) {
@@ -100,7 +109,7 @@ public class MasterDAO extends Master implements IMasterDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.INSERTUPDATEMASTER.getString());
+				PreparedStatement q = con.prepareStatement(INSERTUPDATEMASTER);
 				q.setString(1, this.name);
 				q.setString(2, this.email);
 				q.setString(3, this.password);
@@ -125,7 +134,7 @@ public class MasterDAO extends Master implements IMasterDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.UPDATEMASTER.getString());
+				PreparedStatement q = con.prepareStatement(UPDATEMASTER);
 				q.setString(1, this.name);
 				q.setString(2, this.email);
 				q.setString(3, this.password);
@@ -144,7 +153,7 @@ public class MasterDAO extends Master implements IMasterDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.DELETEMASTER.getString());
+				PreparedStatement q = con.prepareStatement(DELETEMASTER);
 				q.setString(1, name);
 				deleteMasterResult = q.executeUpdate();
 			} catch (SQLException e) {
@@ -164,7 +173,7 @@ public class MasterDAO extends Master implements IMasterDAO {
 		boolean logResult = false;
 		try {
 			Connection con = ConnectionDB.getConexion();
-			PreparedStatement q = con.prepareStatement(EnumBBDD.LOGINMENU.getString());
+			PreparedStatement q = con.prepareStatement(LOGINMENU);
 			q.setString(1, name);
 			q.setString(2, password);
 			ResultSet rs = q.executeQuery();
@@ -187,7 +196,7 @@ public class MasterDAO extends Master implements IMasterDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.SELECTMASTERS.getString());
+				PreparedStatement q = con.prepareStatement(SELECTMASTERS);
 				ResultSet rs = q.executeQuery();
 				while (rs.next()) {
 					getNombres.add(rs.getString("name"));

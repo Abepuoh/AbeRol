@@ -44,7 +44,7 @@ public class logInController {
 		MasterSingleton transfer =MasterSingleton.getInstance();
 		this.txtPass.clear();
 		if (root.logIn(name, password) == true) {
-			MasterDAO data = new MasterDAO(name,password);
+		MasterDAO data = new MasterDAO(name,password);
 			transfer.setUser(data);
 			App.setRoot("mainMenu");
 		} else {

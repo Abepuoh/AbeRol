@@ -7,13 +7,19 @@ import java.sql.SQLException;
 
 import com.proyecto.AbeRol.Interfaces.IRolDAO;
 import com.proyecto.AbeRol.UIUtils.ConnectionDB;
-import com.proyecto.AbeRol.UIUtils.EnumBBDD;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class RolDAO extends Rol implements IRolDAO {
-
+	
+	private final static String GETROLBYID = "SELECT id,name,description,id_Master FROM Rol WHERE id=?";
+	private final static String GETROLBYNAME = "SELECT id, name, description, id_master FROM rol WHERE name =?";
+	private final static String INTERTUPDATEROL = "INSERT INTO Rol (name,description) VALUES(?,?) ON DUPLICATE KEY UPDATE name= ?, description= ?";
+	private final static String UPDATEROL = "UPDATE Rol SET name= ?,description=? Where id = ?";
+	private final static String DELETEROL = "DELETE FROM Rol WHERE name = ?";
+	private final static String GETROLBYMASTER = "SELECT id,name,description FROM Rol WHERE id_master = ?";
+	
 	public RolDAO(int id, String name, String description, Master masterRol, ObservableList<Player> players) {
 		super(id, name, description, masterRol, players);
 
@@ -45,7 +51,7 @@ public class RolDAO extends Rol implements IRolDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement query = con.prepareStatement(EnumBBDD.GETROLBYID.getString());
+				PreparedStatement query = con.prepareStatement(GETROLBYID);
 				query.setInt(1, id);
 				ResultSet rs = query.executeQuery();
 				while (rs.next()) {
@@ -65,7 +71,7 @@ public class RolDAO extends Rol implements IRolDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement query = con.prepareStatement(EnumBBDD.GETROLBYNAME.getString());
+				PreparedStatement query = con.prepareStatement(GETROLBYNAME);
 				query.setString(1, name);
 				ResultSet rs = query.executeQuery();
 				while (rs.next()) {
@@ -87,7 +93,7 @@ public class RolDAO extends Rol implements IRolDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.INTERTUPDATEROL.getString());
+				PreparedStatement q = con.prepareStatement(INTERTUPDATEROL);
 				q.setString(1, this.name);
 				q.setString(2, this.description);
 				q.setString(3, this.name);
@@ -111,7 +117,7 @@ public class RolDAO extends Rol implements IRolDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.UPDATEROL.getString());
+				PreparedStatement q = con.prepareStatement(UPDATEROL);
 				q.setString(1, this.name);
 				q.setString(2, this.description);
 				q.setInt(3, id);
@@ -135,7 +141,7 @@ public class RolDAO extends Rol implements IRolDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.DELETEROL.getString());
+				PreparedStatement q = con.prepareStatement(DELETEROL);
 				q.setString(1, name);
 				deleteMasterResult = q.executeUpdate();
 			} catch (SQLException e) {
@@ -156,7 +162,7 @@ public class RolDAO extends Rol implements IRolDAO {
 		Connection con = ConnectionDB.getConexion();
 		if (con != null) {
 			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.GETROLBYMASTER.getString());
+				PreparedStatement q = con.prepareStatement(GETROLBYMASTER);
 				q.setInt(1, id);
 				ResultSet rs = q.executeQuery();
 				while (rs.next()) {
@@ -174,13 +180,13 @@ public class RolDAO extends Rol implements IRolDAO {
 	}
 
 	///////////////////// UPDATE /////////////////////
-	
+
 	private final static String CREATE = "INSERT INTO Rol (name,description,id_master) VALUES(?,?,?) ON DUPLICATE KEY UPDATE"
 			+ " name= ?, description= ?,id_master= ?";
-	
-	
+
 	/**
 	 * new method that allows the user to save a new role game
+	 * 
 	 * @return the new role game
 	 */
 	public int createRol() {
