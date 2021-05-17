@@ -1,4 +1,4 @@
-package com.proyecto.AbeRol.Model;
+package com.proyecto.AbeRol.UIUtils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.proyecto.AbeRol.UIUtils.xmlConnection;
 
 public class ConnectionDB {
 	

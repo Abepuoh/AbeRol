@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.proyecto.AbeRol.Interfaces.IPlayerDAO;
+import com.proyecto.AbeRol.UIUtils.ConnectionDB;
 import com.proyecto.AbeRol.UIUtils.EnumBBDD;
 
 import javafx.collections.FXCollections;
@@ -97,52 +98,9 @@ public class PlayerDAO extends Player implements IPlayerDAO {
 		}
 	}
 
-	public int SavePlayer() {
-		int save = 0;
-		Connection con = ConnectionDB.getConexion();
-		if (this.contains == null) {
-			this.contains = new Rol();
-		}
-		if (con != null) {
-			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.INSERTUPDATEPLAYER.getString());
-				q.setString(1, this.name);
-				q.setInt(2, this.level);
-				q.setInt(3, this.strength);
-				q.setInt(4, this.dexerity);
-				q.setInt(5, this.intelligence);
-				q.setString(6, this.information);
-				q.setInt(7, this.height);
-				q.setInt(8, this.weight);
-				q.setString(9, this.classRol);
-				q.setInt(10, this.age);
-				q.setInt(11, this.contains.getId());
-				save = q.executeUpdate();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return save;
-	}
-
-	public int deletePlayer() {
-		int rs = 0;
-		Connection con = ConnectionDB.getConexion();
-		if (con != null) {
-			try {
-				PreparedStatement q = con.prepareStatement(EnumBBDD.DELETEPLAYER.getString());
-				q.setInt(1, this.id);
-				rs = q.executeUpdate();
-				this.id = -1;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return rs;
-	}
-
 	/**
 	 * method that returns an observable list of players
+	 * 
 	 * @param id rol identifier
 	 * @return returns the players of each rol
 	 */
@@ -179,6 +137,7 @@ public class PlayerDAO extends Player implements IPlayerDAO {
 
 	/**
 	 * method that returns a list of players' names
+	 * 
 	 * @return method that returns a list of players' names
 	 */
 	public static List<String> getPlayers() {
@@ -201,6 +160,70 @@ public class PlayerDAO extends Player implements IPlayerDAO {
 	@Override
 	public String toString() {
 		return name;
+	}
+
+	///////////////////// UPDATE /////////////////////
+	
+	private final static String deletePlayer = "DELETE FROM Player WHERE name = ?";
+	private final static String modifyPlayer = "INSERT INTO Player (name, level, strength, dexerity, intelligence, information, height, weight, classRol, age, contains)"
+			+ "VALUES (?,?,?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE name=?,level=?,strength=?,dexerity=?,intelligence=?"
+			+ ",information=?,height=?,weight=?,classRol=?,age=?,contains=?";
+	
+	public int deletePlayer() {
+		int rs = 0;
+		Connection con = ConnectionDB.getConexion();
+		if (con != null) {
+			try {
+				PreparedStatement q = con.prepareStatement(deletePlayer);
+				q.setInt(1, this.id);
+				rs = q.executeUpdate();
+				this.id = -1;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return rs;
+	}
+
+	public int SavePlayer() {
+		int save = 0;
+		Connection con = ConnectionDB.getConexion();
+		if (this.contains == null) {
+			this.contains = new Rol();
+		}
+		if (con != null) {
+			try {
+				PreparedStatement q = con.prepareStatement(modifyPlayer);
+				q.setString(1, this.name);
+				q.setInt(2, this.level);
+				q.setInt(3, this.strength);
+				q.setInt(4, this.dexerity);
+				q.setInt(5, this.intelligence);
+				q.setString(6, this.information);
+				q.setInt(7, this.height);
+				q.setInt(8, this.weight);
+				q.setString(9, this.classRol);
+				q.setInt(10, this.age);
+				q.setInt(11, this.contains!=null?this.contains.id:-1);
+				
+				q.setString(12, this.name);
+				q.setInt(13, this.level);
+				q.setInt(14, this.strength);
+				q.setInt(15, this.dexerity);
+				q.setInt(16, this.intelligence);
+				q.setString(17, this.information);
+				q.setInt(18, this.height);
+				q.setInt(19, this.weight);
+				q.setString(20, this.classRol);
+				q.setInt(21, this.age);
+				q.setInt(11, this.contains!=null?this.contains.id:-1);
+				
+				save = q.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return save;
 	}
 
 }

@@ -34,6 +34,9 @@ public class editRolController {
 	MasterDAO user = new MasterDAO();
 
 	@FXML
+	private Button buttCreate;
+
+	@FXML
 	public void initialize() {
 		MasterSingleton transfer = MasterSingleton.getInstance();
 		user = transfer.getUser();
@@ -41,6 +44,18 @@ public class editRolController {
 
 	}
 
+	////////////////////////////////////////////////////////////
+	
+	@FXML
+	private void createRol(ActionEvent event) throws IOException {
+		String name = this.txtName.getText();
+		String desription = this.txtDesc.getText();
+		Rol roldata = new Rol(name, desription,user);
+		RolDAO aux = new RolDAO(roldata);
+		aux.createRol();
+	}
+	
+	////////////////////////////////////////////////////////////
 	@FXML
 	private void editRol(ActionEvent event) throws IOException {
 		String name = this.txtName.getText();

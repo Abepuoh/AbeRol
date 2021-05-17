@@ -4,31 +4,38 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * Clase que usaremos para guardar los 
- * roles con los datos del rol y jugadores
+ * Clase que usaremos para guardar los roles con los datos del rol y jugadores
+ * 
  * @author Abepuoh
  *
  */
 public class Rol {
-	
+
 	protected int id;
 	protected String name;
 	protected String description;
 	protected Master masterRol;
 	protected ObservableList<Player> players;
-	
-	public Rol(int id,String name,String description, Master masterRol, ObservableList<Player> players) {
+
+	public Rol(int id, String name, String description, Master masterRol, ObservableList<Player> players) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.masterRol = masterRol;
 		this.players = players;
 	}
-	
+
 	public Rol(String name, String description) {
 		super();
 		this.name = name;
 		this.description = description;
+	}
+
+	public Rol(String name, String description, Master masterRol) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.masterRol = masterRol;
 	}
 
 	public Rol(int id) {
@@ -36,7 +43,7 @@ public class Rol {
 	}
 
 	public Rol() {
-		this(999,"UnknownRol","UnknownDesc",new Master(),FXCollections.observableArrayList());
+		this(999, "UnknownRol", "UnknownDesc", null, FXCollections.observableArrayList());
 	}
 
 	public Master getMasterRol() {
@@ -103,7 +110,7 @@ public class Rol {
 
 	@Override
 	public String toString() {
-		return  name;
+		return name;
 	}
 
 }

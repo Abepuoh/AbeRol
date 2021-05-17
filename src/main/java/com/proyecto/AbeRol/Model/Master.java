@@ -98,5 +98,14 @@ public class Master {
 			return false;
 		return true;
 	}
-
+	/////
+	public boolean añadeRol(Rol newRol) {
+	    boolean addRespuesta = false;
+	    if (this.rol.add(newRol)) {
+	      addRespuesta = true;
+	    }
+	    return addRespuesta;
+	  }
+	/////
+	
 }

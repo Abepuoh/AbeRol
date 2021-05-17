@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.proyecto.AbeRol.Interfaces.IMasterDAO;
+import com.proyecto.AbeRol.UIUtils.ConnectionDB;
 import com.proyecto.AbeRol.UIUtils.EnumBBDD;
 
 import javafx.collections.ObservableList;

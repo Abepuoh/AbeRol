@@ -29,7 +29,7 @@ public class Player extends Character {
 		this.contains = contains;
 	}
 	public Player() {
-		this(-1,"Unknown",-1,-1,-1,-1,"Unknown",-1,-1,"Unknown",-1,new Rol());
+		super();
 	}
 
 	public int getId() {
