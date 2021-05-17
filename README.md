@@ -5,8 +5,6 @@
     <img src="src/main/resources/com/proyecto/AbeRol/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">RolApp</h3>
-
   <p align="center">
     JavaFX RolApp Project
   </p>
