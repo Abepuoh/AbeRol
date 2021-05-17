@@ -53,6 +53,12 @@ public class editRolController {
 		Rol roldata = new Rol(name, desription,user);
 		RolDAO aux = new RolDAO(roldata);
 		aux.createRol();
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setHeaderText(null);
+		alert.setTitle("Informacion");
+		alert.setContentText("Se ha añadido correctamente");
+		alert.showAndWait();
+		
 	}
 	
 	/////////////////////////////////////////////////////////
