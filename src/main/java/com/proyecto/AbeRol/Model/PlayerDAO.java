@@ -169,7 +169,7 @@ public class PlayerDAO extends Player implements IPlayerDAO {
 		return name;
 	}
 
-	///////////////////// UPDATE /////////////////////
+	///////////////////// UPDATE NOT FINISHED /////////////////////
 	
 	private final static String DELETEPLAYER = "DELETE FROM Player WHERE name = ?";
 	private final static String MODIFYPLAYER = "INSERT INTO Player (name, level, strength, dexerity, intelligence, information, height, weight, classRol, age, contains)"
