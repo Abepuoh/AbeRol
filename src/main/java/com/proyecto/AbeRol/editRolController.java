@@ -40,19 +40,21 @@ public class editRolController {
 	public void initialize() {
 		MasterSingleton transfer = MasterSingleton.getInstance();
 		user = transfer.getUser();
-		this.comboRol.setItems(user.getRol());
+		this.comboRol.setItems(RolDAO.getRolByMaster(user.getId()));
 
 	}
-
 	//////////////////////////UPATE//////////////////////////
 	
 	@FXML
 	private void createRol(ActionEvent event) throws IOException {
 		String name = this.txtName.getText();
 		String desription = this.txtDesc.getText();
+		
 		Rol roldata = new Rol(name, desription,user);
 		RolDAO aux = new RolDAO(roldata);
 		aux.createRol();
+		this.comboRol.setItems(RolDAO.getRolByMaster(user.getId()));
+		
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setHeaderText(null);
 		alert.setTitle("Informacion");
@@ -102,6 +104,7 @@ public class editRolController {
 
 		if (showConfirm(selectedItem) == true) {
 			RolDAO.deleteRol(selectedItem);
+			this.comboRol.setItems(RolDAO.getRolByMaster(user.getId()));
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
 			alert.setHeaderText(null);
 			alert.setTitle("Informacion");

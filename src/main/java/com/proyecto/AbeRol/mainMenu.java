@@ -78,7 +78,7 @@ public class mainMenu {
 		MasterSingleton transfer = MasterSingleton.getInstance();
 		user = transfer.getUser();
 		gridPlayer.setGridLinesVisible(true);
-		this.choiceRol.setItems(user.getRol());
+		this.choiceRol.setItems(RolDAO.getRolByMaster(user.getId()));
 
 	}
 	@FXML
